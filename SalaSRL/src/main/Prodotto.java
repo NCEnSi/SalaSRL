@@ -148,8 +148,8 @@ public class Prodotto extends JPanel{
 		frame.setSize(1331, 768);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		frame.setLayout(null);
-		Prodotto prod = new Prodotto(0, 0, "PomodoroImgProdotto.png", "PomodoroTitleProdotto.png", "");
-		frame.add(prod);
+		Admin admin = new Admin();
+		frame.add(admin);
 		frame.setVisible(true);
 	}
 }
