@@ -148,8 +148,12 @@ public class Prodotto extends JPanel{
 		frame.setSize(1331, 768);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		frame.setLayout(null);
-		Admin admin = new Admin();
-		frame.add(admin);
+		
+		Login login = new Login();
+		frame.add(login);
+		
+		//Admin admin = new Admin();
+		//frame.add(admin);
 		frame.setVisible(true);
 	}
 }
