@@ -9,8 +9,9 @@ public class Login extends JPanel{
 	private JButton confermaLogin = new JButton();
 	private JButton confermaSignin = new JButton();
 	private JButton signin = new JButton();
-	//bottone per scegliere se la password è visibile oppure no
-	private JButton passwordVisible = new JButton();
+	//bottoni per scegliere se la password è visibile oppure no
+	private JButton passwordVisibleLogin = new JButton();
+	private JButton passwordVisibleSignin = new JButton();
 	//jlabel usati per lo sfondo di ogni schermata pannello
 	private JLabel schermataLogin = new JLabel();
 	private JLabel schermataSignin = new JLabel();
@@ -20,6 +21,11 @@ public class Login extends JPanel{
 	private JTextField usernameSignin = new JTextField();
 	private JTextField emailSignin = new JTextField();
 	private JPasswordField passwordSignin = new JPasswordField();
+	//immagini del bottone per nascondere la password
+	private ImageIcon nascosta;
+	private ImageIcon visibile;
+	//salvo il carattere usato di default per mascherare la password
+	private char charHidden = passwordLogin.getEchoChar();
 	//variabile usata come appoggio per poter caricare le immagini sui bottoni
 	private ImageIcon immagine;
 	private Image immScalata;
@@ -33,6 +39,17 @@ public class Login extends JPanel{
 		//imposto le dimensioni del pannello "schermo"
 		setLayout(null);
 		setBounds(0, 0, 1331, 768);
+		
+		//salvo le immagini per i bottoni delle password
+		immagine = new ImageIcon(getClass().getClassLoader().getResource("NoViewPass.png"));
+		immScalata = immagine.getImage().getScaledInstance(33, 33, Image.SCALE_SMOOTH);
+		immagine = new ImageIcon(immScalata);
+		nascosta = immagine;
+		immagine = new ImageIcon(getClass().getClassLoader().getResource("ViewPass.png"));
+		immScalata = immagine.getImage().getScaledInstance(31, 19, Image.SCALE_SMOOTH);
+		immagine = new ImageIcon(immScalata);
+		visibile = immagine;
+		
 		//creo le diverse "schermate" in modo tale da aggiornare la finestra in automatico quando viene cliccato un bottone
 		creaLogin();
 		creaSignin();
@@ -52,6 +69,7 @@ public class Login extends JPanel{
 		//imposto i bottoni
 		setBottoneSignin();
 		setBottoneConfermaToAccount();
+		setBottonePasswordLogin();
 		//imposto i diversi campi dove inserire i dati richiesti
 		setEmailLogin();
 		setPasswordLogin();
@@ -67,7 +85,8 @@ public class Login extends JPanel{
 		//imposto lo sfondo
 		setSchermataSignin();
 		//imposto i bottoni		
-		setBottoneConfermaToLogin();	
+		setBottoneConfermaToLogin();
+		setBottonePasswordSignin();
 		//imposto i diversi campi dove inserire i dati richiesti
 		setUsernameSignin();
 		setEmailSignin();
@@ -158,6 +177,30 @@ public class Login extends JPanel{
 		confermaSignin.addActionListener(e -> toLogin());
 		schermataSignin.add(confermaSignin);
 	}
+	//metodo per impostare il bottone della visibilità della password
+	public void setBottonePasswordLogin() {
+		//imposto le caratteristiche del bottone
+		passwordVisibleLogin.setContentAreaFilled(false);
+		passwordVisibleLogin.setBorderPainted(false);
+		passwordVisibleLogin.setBounds(740, 444, 33, 33);
+		//imposto l'immagine da dargli
+		passwordVisibleLogin.setIcon(nascosta);
+		//aggiungo un actionlistener per cambiare pannello
+		passwordVisibleLogin.addActionListener(e -> toVisibilityPass());
+		schermataLogin.add(passwordVisibleLogin);
+	}
+	//metodo per impostare il bottone della visibilità della password
+	public void setBottonePasswordSignin() {
+		//imposto le caratteristiche del bottone
+		passwordVisibleSignin.setContentAreaFilled(false);
+		passwordVisibleSignin.setBorderPainted(false);
+		passwordVisibleSignin.setBounds(740, 533, 33, 33);
+		//imposto l'immagine da dargli
+		passwordVisibleSignin.setIcon(nascosta);
+		//aggiungo un actionlistener per cambiare pannello
+		passwordVisibleSignin.addActionListener(e -> toVisibilityPass());
+		schermataSignin.add(passwordVisibleSignin);
+	}
 	
 	//metodo per cambiare pannello da login a signin
 	public void toSignin() {
@@ -177,6 +220,37 @@ public class Login extends JPanel{
 		//AGGIUNGERE COLLEGAMENTO ALLA PARTE DI NICOLO'
 		
 		
+	}
+	//metodo per rendere invisibile la password e viceversa
+	public void toVisibilityPass() {
+		//controllo quale delle due scermate è visibile
+		if(schermate[0].isVisible()) {
+			//controllo se la password attualmente è nascosta oppure no
+			if(passwordVisibleLogin.getIcon() == nascosta) {
+				//modifico l'immagine del bottone
+				passwordVisibleLogin.setIcon(visibile);
+				//modifico la visibilità della password
+				passwordLogin.setEchoChar((char) 0);
+			} else {
+				//modifico l'immagine del bottone
+				passwordVisibleLogin.setIcon(nascosta);
+				//modifico la visibilità della password
+				passwordLogin.setEchoChar(charHidden);
+			}
+		} else {
+			//controllo se la password attualmente è nascosta oppure no
+			if(passwordVisibleSignin.getIcon() == nascosta) {
+				//modifico l'immagine del bottone
+				passwordVisibleSignin.setIcon(visibile);
+				//modifico la visibilità della password
+				passwordSignin.setEchoChar((char) 0);
+			} else {
+				//modifico l'immagine del bottone
+				passwordVisibleSignin.setIcon(nascosta);
+				//modifico la visibilità della password
+				passwordSignin.setEchoChar(charHidden);
+			}
+		}
 	}
 	
 	
@@ -198,7 +272,10 @@ public class Login extends JPanel{
 	//metodo per impostare il campo della password
 	public void setPasswordLogin() {
 		//imposto le caratteristiche della casella per la password
-		passwordLogin.setBounds(543, 446, 230, 30);
+		passwordLogin.setOpaque(false);
+		passwordLogin.setBorder(null);
+		passwordLogin.setFont(new Font("Arial", Font.PLAIN, 20));
+		passwordLogin.setBounds(543, 446, 197, 30);
 
 		
 		
@@ -234,7 +311,10 @@ public class Login extends JPanel{
 	//metodo per impostare il campo della password
 	public void setPasswordSignin() {
 		//imposto le caratteristiche della casella per la password
-		passwordSignin.setBounds(543, 535, 230, 30);
+		passwordSignin.setOpaque(false);
+		passwordSignin.setBorder(null);
+		passwordSignin.setFont(new Font("Arial", Font.PLAIN, 20));
+		passwordSignin.setBounds(543, 535, 197, 30);
 
 		
 		
