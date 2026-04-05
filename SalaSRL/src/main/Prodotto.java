@@ -5,73 +5,65 @@ import javax.swing.*;
 
 public class Prodotto extends JPanel{
 	
-	private JLabel sfondo = new JLabel();
-	private JLabel img = new JLabel();
-	private JLabel title = new JLabel();
+	//Label per base del prodotto
+	private JLabel base = new JLabel();
+	//Label per numero quantità prodotto
 	private JLabel N = new JLabel("0");
-	private JLabel sfondoN = new JLabel();
+	//Button per aumentare N
 	private JButton piu = new JButton();
+	//Button per diminuire N
 	private JButton meno = new JButton();
+	//Button per comprare N elemtni del prodotto
 	private JButton buy = new JButton();
+	//variabili per inserire le immagini
 	private ImageIcon icon;
 	private Image iconScaled;
+	//variabili per tenere traccia di N e di quanti elementi si ha già comprato del prodotto
 	private int nAttuale = 0;
-	private int nProdotti = 0;
+	private int nAcquistati = 0;
 	
-	//coordinate, nome Immagine prodotto, nome Immagine nome prodotto, nome prodotto
-	public Prodotto(int prX, int prY, String prImg, String prTitle, String nomeProdotto) {	
+	//costruttore, richiede (coordinata x, coordinata y, nome prodotto)
+	public Prodotto(int prX, int prY, String nomeProdotto) {
+		//setto il Panel
 		setLayout(null);
 		setBounds(prX, prY, 243, 243);
-		setImg(prImg);
-		setTitle(prTitle);
-		setSfondoN();
+		setOpaque(false);
+		//setto le varie Label e i vari Button
+		setN();
 		setPiu(nomeProdotto);
 		setMeno(nomeProdotto);
 		setBuy(nomeProdotto);
-		setSfondo();
+		setSfondo(nomeProdotto);
 	}
 	
-	public void setSfondo() {
-		sfondo.setBounds(0, 0, 243, 243);
-		icon = new ImageIcon(getClass().getClassLoader().getResource("SfondoProdotto.png"));
-		sfondo.setIcon(icon);
-		add(sfondo);
-	}
-	
-	public void setImg(String img) {
-		this.img.setBounds(62, 62, 117, 121);
-		icon = new ImageIcon(getClass().getClassLoader().getResource(img));
-		this.img.setIcon(icon);
-		add(this.img);
+	//metodo per settare la label base
+	public void setSfondo(String nomeProdotto) {
+		//imposto coordinate e grandezza della label
+		base.setBounds(0, 0, 243, 243);
+		//imposto l'immagine da dargli
+		icon = new ImageIcon(getClass().getClassLoader().getResource("SfondoProdotto"+nomeProdotto+".png"));
+		base.setIcon(icon);
+		add(base);
 	}
 
-	public void setTitle(String title) {
-		this.title.setBounds(35, 14, 173, 38);
-		icon = new ImageIcon(getClass().getClassLoader().getResource(title));
-		iconScaled = icon.getImage().getScaledInstance(173, 38, Image.SCALE_SMOOTH);
-		icon = new ImageIcon(iconScaled);
-		this.title.setIcon(icon);
-		add(this.title);
-	}
-	
-	public void setSfondoN() {
-		sfondoN.setBounds(140, 190, 38, 38);
-		icon = new ImageIcon(getClass().getClassLoader().getResource("nProdotto.png"));
-		iconScaled = icon.getImage().getScaledInstance(38, 38, Image.SCALE_SMOOTH);
-		icon = new ImageIcon(iconScaled);
-		sfondoN.setIcon(icon);
+	//metodo per settare la label N
+	public void setN() {
+		//imposto coordinate e grandezza della label
 		N.setBounds(140, 190, 38, 38);
+		//personalizzo la label e il suo testo
+		N.setBackground(null);
 		N.setFont(new Font("Arial", Font.PLAIN, 24));
 		N.setHorizontalAlignment(JLabel.CENTER);
-		N.setBackground(null);
 		add(N);
-		add(sfondoN);
 	}
-	
+
+	//metodo per settare il bottone piu
 	public void setPiu(String nomeProdotto) {
+		//imposto le caratteristiche del bottone
 		piu.setContentAreaFilled(false);		
 		piu.setBorderPainted(false);
 		piu.setBounds(183, 190, 38, 38);
+		//imposto l'immagine da dargli
 		icon = new ImageIcon(getClass().getClassLoader().getResource("PiuProdottoPress.png"));
 		iconScaled = icon.getImage().getScaledInstance(38, 38, Image.SCALE_SMOOTH);
 		icon = new ImageIcon(iconScaled);
@@ -80,14 +72,18 @@ public class Prodotto extends JPanel{
 		iconScaled = icon.getImage().getScaledInstance(38, 38, Image.SCALE_SMOOTH);
 		icon = new ImageIcon(iconScaled);
 		piu.setIcon(icon);
+		//aggiungo un actionlistener per aumentare nAttuale
 		piu.addActionListener(e -> piuUno(nomeProdotto));
 		add(piu);
 	}
-	
+
+	//metodo per settare il bottone meno
 	public void setMeno(String nomeProdotto) {
+		//imposto le caratteristiche del bottone
 		meno.setContentAreaFilled(false);		
 		meno.setBorderPainted(false);
 		meno.setBounds(97, 190, 38, 38);
+		//imposto l'immagine da dargli
 		icon = new ImageIcon(getClass().getClassLoader().getResource("MenoProdottoPress.png"));
 		iconScaled = icon.getImage().getScaledInstance(38, 38, Image.SCALE_SMOOTH);
 		icon = new ImageIcon(iconScaled);
@@ -96,14 +92,18 @@ public class Prodotto extends JPanel{
 		iconScaled = icon.getImage().getScaledInstance(38, 38, Image.SCALE_SMOOTH);
 		icon = new ImageIcon(iconScaled);
 		meno.setIcon(icon);
+		//aggiungo un actionlistener per diminuire nAttuale
 		meno.addActionListener(e -> menoUno(nomeProdotto));
 		add(meno);
 	}
-	
-	public void setBuy(String nomeProdotto) {	
+
+	//metodo per settare il bottone buy
+	public void setBuy(String nomeProdotto) {
+		//imposto le caratteristiche del bottone	
 		buy.setContentAreaFilled(false);		
 		buy.setBorderPainted(false);
 		buy.setBounds(23, 190, 38, 38);
+		//imposto l'immagine da dargli
 		icon = new ImageIcon(getClass().getClassLoader().getResource("BuyProdottoPress.png"));
 		iconScaled = icon.getImage().getScaledInstance(38, 38, Image.SCALE_SMOOTH);
 		icon = new ImageIcon(iconScaled);
@@ -112,12 +112,15 @@ public class Prodotto extends JPanel{
 		iconScaled = icon.getImage().getScaledInstance(38, 38, Image.SCALE_SMOOTH);
 		icon = new ImageIcon(iconScaled);
 		buy.setIcon(icon);
+		//aggiungo un actionlistener per acquistare il numero di elementi selezionato, e quindi sommare nAttuale a nAcquistati
 		buy.addActionListener(e -> buy(nomeProdotto));
 		add(buy);
 	}
-	
+
+	//metodo per aumentare la variabile nAttuale in base al riferimento Label N
 	public void piuUno(String nomeProdotto) {
 		nAttuale++;
+		//controllo che il numero non vada sopra il 9
 		if(nAttuale>9) {
 			nAttuale = 9;
 		}
@@ -125,21 +128,21 @@ public class Prodotto extends JPanel{
 		System.out.println("Stai comprando "+nAttuale+" "+nomeProdotto);
 	}
 	
+	//metodo per diminuire la variabile nAttuale in base al riferimento Label N
 	public void menoUno(String nomeProdotto) {
 		nAttuale--;
+		//controllo che il numero non vada sotto lo 0
 		if(nAttuale<0) {
 			nAttuale = 0;
 		}
 		N.setText(""+nAttuale);
 		System.out.println("Stai comprando "+nAttuale+" "+nomeProdotto);
 	}
-	
+
+	//metodo per sommare il numero di elementi comprati del prodotto
 	public void buy(String nomeProdotto) {
-		nProdotti += nAttuale;
-		if(nProdotti<0) {
-			nProdotti = 0;
-		}
-		System.out.println("In totale hai comprato "+nProdotti+" "+nomeProdotto);
+		nAcquistati += nAttuale;
+		System.out.println("In totale hai comprato "+nAcquistati+" "+nomeProdotto);
 	}
 	
 	public static void main(String[]gg) {
@@ -149,11 +152,14 @@ public class Prodotto extends JPanel{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		frame.setLayout(null);
 		
-		Login login = new Login();
-		frame.add(login);
+		//Login login = new Login();
+		//frame.add(login);
 		
-		//Admin admin = new Admin();
-		//frame.add(admin);
+		//Prodotto prod = new Prodotto(0, 0, "Pomodoro");
+		//frame.add(prod);
+		
+		Admin admin = new Admin();
+		frame.add(admin);
 		frame.setVisible(true);
 	}
 }
