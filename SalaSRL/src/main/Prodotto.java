@@ -23,7 +23,7 @@ public class Prodotto extends JPanel{
 	private int nAttuale = 0;
 	private int nAcquistati = 0;
 	
-	//costruttore, richiede (coordinata x, coordinata y, nome prodotto)
+	//costruttore, richiede (coordinata x, coordinata y, nome prodotto)........
 	public Prodotto(int prX, int prY, String nomeProdotto) {
 		//setto il Panel
 		setLayout(null);
