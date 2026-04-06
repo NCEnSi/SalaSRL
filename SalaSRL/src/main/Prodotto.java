@@ -2,6 +2,7 @@ package main;
 
 import java.awt.*;
 import javax.swing.*;
+import java.io.*;
 
 public class Prodotto extends JPanel{
 	
@@ -145,21 +146,21 @@ public class Prodotto extends JPanel{
 		System.out.println("In totale hai comprato "+nAcquistati+" "+nomeProdotto);
 	}
 	
-	public static void main(String[]gg) {
+	public static void main(String[]gg) throws IOException{
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
 		frame.setSize(1331, 768);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		frame.setLayout(null);
 		
-		//Login login = new Login();
-		//frame.add(login);
+		Login login = new Login();
+		frame.add(login);
 		
 		//Prodotto prod = new Prodotto(0, 0, "Pomodoro");
 		//frame.add(prod);
 		
-		Admin admin = new Admin();
-		frame.add(admin);
+		//Admin admin = new Admin();
+		//frame.add(admin);
 		frame.setVisible(true);
 	}
 }

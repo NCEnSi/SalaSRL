@@ -1,6 +1,7 @@
 package main;
 import java.awt.*;
 import javax.swing.*;
+import java.io.*;
 
 public class Login extends JPanel{
 
@@ -26,6 +27,12 @@ public class Login extends JPanel{
 	private ImageIcon visibile;
 	//salvo il carattere usato di default per mascherare la password
 	private char charHidden = passwordLogin.getEchoChar();
+	//creo le variabili per poter gli oggetti per interagire con il file txt
+	private BufferedWriter scrittura;
+	private BufferedReader lettura;
+	//jlabel usati per mandare eventuali messaggi d'errore
+	private JLabel erroriLogin = new JLabel();
+	private JLabel erroriSignin = new JLabel();
 	//variabile usata come appoggio per poter caricare le immagini sui bottoni
 	private ImageIcon immagine;
 	private Image immScalata;
@@ -35,7 +42,7 @@ public class Login extends JPanel{
 	
 	
 	//COSTRUTTORE
-	public Login() {
+	public Login() throws IOException {
 		//imposto le dimensioni del pannello "schermo"
 		setLayout(null);
 		setBounds(0, 0, 1331, 768);
@@ -59,13 +66,15 @@ public class Login extends JPanel{
 	
 	//METODI PER CREARE I PANNELLI
 	//metodo per creare il pannello di login iniziale
-	public void creaLogin() {
+	public void creaLogin() throws IOException{
 		//creo e imposto il pannello che corrisponde alla schermata di login
 		schermate[0] = new JPanel();
 		schermate[0].setLayout(null);
 		schermate[0].setBounds(0, 0, 1331, 768);
 		//imposto lo sfondo
 		setSchermataLogin();
+		//imposto la sezione dei messaggi d'errore
+		setErroriLogin();
 		//imposto i bottoni
 		setBottoneSignin();
 		setBottoneConfermaToAccount();
@@ -84,6 +93,8 @@ public class Login extends JPanel{
 		schermate[1].setBounds(0, 0, 1331, 768);
 		//imposto lo sfondo
 		setSchermataSignin();
+		//imposto la sezione dei messaggi d'errore
+		setErroriSignin();
 		//imposto i bottoni		
 		setBottoneConfermaToLogin();
 		setBottonePasswordSignin();
@@ -99,7 +110,7 @@ public class Login extends JPanel{
 	
 	
 	
-	//METODI PER IMPOSTARE GLI SFONDI
+	//METODI PER IMPOSTARE I JLABEL
 	//metodo per impostare lo sfondo del pannello login
 	public void setSchermataLogin() {
 		//imposto lo sfondo
@@ -108,13 +119,35 @@ public class Login extends JPanel{
 		schermataLogin.setIcon(immagine);
 		schermate[0].add(schermataLogin);
 	}
-	//metodo per impostare lo sfondo del pannello login
+	//metodo per impostare lo sfondo del pannello signin
 	public void setSchermataSignin() {
 		//imposto lo sfondo
 		schermataSignin.setBounds(0, 0, 1331, 768);
 		immagine = new ImageIcon(getClass().getClassLoader().getResource("SchermataSignin.png"));
 		schermataSignin.setIcon(immagine);
 		schermate[1].add(schermataSignin);
+	}
+	//metodo per impostare il messaggio d'errore login
+	public void setErroriLogin() {
+		//imposto le caratteristiche della casella per gli errori
+		erroriLogin.setFont(new Font("Arial", Font.BOLD, 24));
+		erroriLogin.setHorizontalAlignment(SwingConstants.CENTER);		
+		erroriLogin.setBounds(0, 560, 1331, 30);
+		
+		//erroriLogin.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		
+		schermataLogin.add(erroriLogin);
+	}
+	//metodo per impostare il messaggio d'errore signin
+	public void setErroriSignin() {
+		//imposto le caratteristiche della casella per gli errori
+		erroriSignin.setFont(new Font("Arial", Font.BOLD, 24));
+		erroriSignin.setHorizontalAlignment(SwingConstants.CENTER);		
+		erroriSignin.setBounds(0, 632, 1331, 30);
+		
+		//erroriSignin.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		
+		schermataSignin.add(erroriSignin);
 	}
 	
 	
@@ -140,7 +173,7 @@ public class Login extends JPanel{
 		schermataLogin.add(signin);
 	}
 	//metodo per impostare il bottone conferma
-	public void setBottoneConfermaToAccount() {
+	public void setBottoneConfermaToAccount() throws IOException{
 		//imposto le caratteristiche del bottone
 		confermaLogin.setContentAreaFilled(false);
 		confermaLogin.setBorderPainted(false);
@@ -155,7 +188,13 @@ public class Login extends JPanel{
 		immagine = new ImageIcon(immScalata);
 		confermaLogin.setPressedIcon(immagine);	
 		//aggiungo un actionlistener per cambiare pannello
-		confermaLogin.addActionListener(e -> toAccount());
+		confermaLogin.addActionListener(e -> {
+			try{
+				toAccount();
+			}catch(IOException ioe) {
+				System.out.println("boh non so che mettere tanto non serve");
+			}
+		});
 		schermataLogin.add(confermaLogin);
 	}
 	//metodo per impostare il bottone conferma
@@ -174,7 +213,13 @@ public class Login extends JPanel{
 		immagine = new ImageIcon(immScalata);
 		confermaSignin.setPressedIcon(immagine);	
 		//aggiungo un actionlistener per cambiare pannello
-		confermaSignin.addActionListener(e -> toLogin());
+		confermaSignin.addActionListener(e -> {
+			try {
+				toLogin();
+			}catch(IOException ioe) {
+				System.out.println("boh non so che mettere tanto non serve");
+			}
+		});
 		schermataSignin.add(confermaSignin);
 	}
 	//metodo per impostare il bottone della visibilità della password
@@ -204,18 +249,51 @@ public class Login extends JPanel{
 	
 	//metodo per cambiare pannello da login a signin
 	public void toSignin() {
+		//rendo visibile il pannello con la schermata del signin
 		schermate[0].setVisible(false);
 		schermate[1].setVisible(true);
+		//svuoto tutte le caselle di testo della schermata di login
+		emailLogin.setText("");
+		passwordLogin.setText("");
+		erroriLogin.setText("");
 	}
 	//metodo per cambiare pannello da signin a login
-	public void toLogin() {
+	public void toLogin() throws IOException{
+		//controllo se è possibile salvare o no l'account
+		if(creaAccount()) {
+			//creo l'oggetto usato per salvare le diverse informazioni degli account
+			scrittura = new BufferedWriter(new FileWriter("Credenziali.txt", true));
+			//ricavo la password dal jpasswordfield
+			String password = new String(passwordLogin.getPassword());			
+			//salvo le diverse informazioni sul file txt
+			String account = usernameSignin.getText() +";"+ emailSignin.getText() +";"+ password +";utente";
+			scrittura.write(account);
+			scrittura.newLine();
+			scrittura.close();
+			//invio un messaggio di conferma
+			erroriLogin.setText("Account creato con successo!");
+		} else {
+			return;
+		}
+		
+		//rendo visibile solo la schermata di login
 		schermate[0].setVisible(true);
 		schermate[1].setVisible(false);
+		//svuoto tutte le caselle di testo della schermata di login
+		usernameSignin.setText("");
+		emailSignin.setText("");
+		passwordSignin.setText("");
+		erroriSignin.setText("");
 	}
 	//metodo per cambiare pannello da login a admin o utente
-	public void toAccount() {
+	public void toAccount() throws IOException{
+		//controllo che esista l'account con le credenziali indicate
+		if(accessoAccount()) return;
+		
+		//rendo invisibili entrambe le schermate
 		schermate[0].setVisible(false);
 		schermate[1].setVisible(false);
+		
 		
 		//AGGIUNGERE COLLEGAMENTO ALLA PARTE DI NICOLO'
 		
@@ -264,9 +342,6 @@ public class Login extends JPanel{
 		emailLogin.setFont(new Font("Arial", Font.PLAIN, 20));
 		emailLogin.setBounds(543, 357, 230, 30);
 		
-		
-		
-		
 		schermataLogin.add(emailLogin);
 	}
 	//metodo per impostare il campo della password
@@ -277,9 +352,6 @@ public class Login extends JPanel{
 		passwordLogin.setFont(new Font("Arial", Font.PLAIN, 20));
 		passwordLogin.setBounds(543, 446, 197, 30);
 
-		
-		
-		
 		schermataLogin.add(passwordLogin);
 	}
 	//metodo per impostare il campo dell'username
@@ -290,9 +362,6 @@ public class Login extends JPanel{
 		usernameSignin.setFont(new Font("Arial", Font.PLAIN, 20));
 		usernameSignin.setBounds(543, 357, 230, 30);
 
-		
-		
-		
 		schermataSignin.add(usernameSignin);
 	}
 	//metodo per impostare il campo dell'email
@@ -303,9 +372,6 @@ public class Login extends JPanel{
 		emailSignin.setFont(new Font("Arial", Font.PLAIN, 20));
 		emailSignin.setBounds(543, 446, 230, 30);
 
-		
-		
-		
 		schermataSignin.add(emailSignin);
 	}
 	//metodo per impostare il campo della password
@@ -316,20 +382,132 @@ public class Login extends JPanel{
 		passwordSignin.setFont(new Font("Arial", Font.PLAIN, 20));
 		passwordSignin.setBounds(543, 535, 197, 30);
 
-		
-		
-		
 		schermataSignin.add(passwordSignin);
 	}
 	
 	
 	
-	
-	
-	
-	
-	
-	
+	//METODI DI CONTROLLO
+	//metodo per creare un nuovo account
+	public boolean creaAccount() throws IOException{
+		boolean ok = true;
+		//ricavo la password dal jpasswordfield
+		String password = new String(passwordSignin.getPassword());
+		//controllo se sono stati inseriti tutti i campi richiesti
+		if(usernameSignin.getText().equals("") || emailSignin.getText().equals("") || password.trim().isEmpty()) {
+			//messaggio d'errore e impedisco il passaggio alla pagina successiva
+			erroriSignin.setText("Riempire tutti i campi richiesti!");
+			ok = false;
+		} else {
+			//controllo che non esista già un account con lo stesso username
+			if(checkPresenzaUsername()) {
+				//messaggio d'errore e impedisco il passaggio alla pagina successiva
+				erroriSignin.setText("Account con questo username già esistente!");
+				//impedisco che venga salvato l'account
+				ok = false;
+			} else {
+				//controllo che non esista già un account con la stessa email
+				if(checkPresenzaEmail()) {
+					//messaggio d'errore e impedisco il passaggio alla pagina successiva
+					erroriSignin.setText("Account con questa email già esistente!");
+					//impedisco che venga salvato l'account
+					ok = false;
+				}
+			}
+		}
+		return ok;
+	}
+	//metodo per controllare se sono state inserite le credenziali giuste dell'account
+	public boolean accessoAccount() throws IOException{
+		boolean ok = true;
+		//ricavo la password dal jpasswordfield
+		String password = new String(passwordLogin.getPassword());
+		//controllo se sono stati inseriti tutti i campi richiesti
+		if(emailLogin.getText().equals("") || password.trim().isEmpty()) {
+			//messaggio d'errore e impedisco il passaggio alla pagina successiva
+			erroriLogin.setText("Riempire tutti i campi richiesti!");
+			ok = false;
+		} else {
+			//variabile usata per salvarmi ogni riga del file txt
+			String riga = "";
+			//creo l'oggetto che legge il file txt
+			lettura = new BufferedReader(new FileReader("Credenziali.txt"));
+			//controllo ogni riga del file txt
+			while ((riga = lettura.readLine()) != null) {
+				//creo un array dove ogni componente contiene un'informazione dell'account sapendo le loro posizioni
+				String[] credenziali = riga.split(";");
+				//controllo se l'email usata esiste
+				if(emailLogin.getText().equals(credenziali[1])) {
+					//controllo se a quella email è associata la password inserita
+					if(password.trim().equals(credenziali[2])) {
+						ok = false;
+					}
+				}
+			}
+			//chiudo la lettura
+			lettura.close();
+			//se vale false significa che l'account non esiste oppure o la password o l'email sono sbagliati
+			if(ok) {
+				//messaggio d'errore e impedisco il passaggio alla pagina successiva
+				erroriLogin.setText("Email o password errati!");
+			}
+		}
+		return ok;
+	}
+	//metodo per controllare se esiste già un account con quell'username
+	public boolean checkPresenzaUsername() throws IOException{
+		boolean ok = false;
+		//variabile usata per salvarmi ogni riga del file txt
+		String riga = "";
+		//creo l'oggetto che legge il file txt
+		lettura = new BufferedReader(new FileReader("Credenziali.txt"));
+		//controllo ogni riga del file txt
+		while ((riga = lettura.readLine()) != null) {
+			//creo un array dove ogni componente contiene un'informazione dell'account sapendo le loro posizioni
+			String[] credenziali = riga.split(";");
+			//controllo se l'username inserito è già stato usato
+			if(usernameSignin.getText().equals(credenziali[0])) {
+				//interrompo i controlli e impedisco la creazione dell'account
+				ok = true;
+				break;
+			}
+		}
+		//chiudo la lettura
+		lettura.close();
+		return ok;
+	}
+	//metodo per controllare se esiste già un account con quella email
+	public boolean checkPresenzaEmail() throws IOException{
+		boolean ok = false;
+		//variabile usata per salvarmi ogni riga del file txt
+		String riga = "";
+		//creo l'oggetto che legge il file txt
+		lettura = new BufferedReader(new FileReader("Credenziali.txt"));
+		//controllo ogni riga del file txt
+		while ((riga = lettura.readLine()) != null) {
+			//creo un array dove ogni componente contiene un'informazione dell'account sapendo le loro posizioni
+			String[] credenziali = riga.split(";");
+			//controllo quale delle due schermate è attiva
+			if(schermate[0].isVisible()) {
+				//controllo se la email inserita è già stata usata (login)
+				if(emailLogin.getText().equals(credenziali[1])) {
+					//interrompo i controlli e confermo la presenza di un account con quella email
+					ok = true;
+					break;
+				}
+			} else {
+				//controllo se la email inserita è già stata usata (signin)
+				if(emailSignin.getText().equals(credenziali[1])) {
+					//interrompo i controlli e impedisco la creazione dell'account
+					ok = true;
+					break;
+				}
+			}
+		}
+		//chiudo la lettura
+		lettura.close();
+		return ok;
+	}
 	
 	
 	
