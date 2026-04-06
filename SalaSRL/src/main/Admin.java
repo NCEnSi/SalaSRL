@@ -83,10 +83,10 @@ public class Admin extends JPanel {
 		schermate[1] = new JPanel();
 		schermate[1].setLayout(null);
 		schermate[1].setBounds(0, 0, 1331, 768);
-		//setto i vari componenti
-		setImmagineProfiloCat();
 		//aggingo i prodotti
 		generaProdotti();
+		//setto i vari componenti
+		setImmagineProfiloCat();
 		setCopriLineaCatalogo();
 		setBaseCatalogo();
 		setMagazzinoCat();
