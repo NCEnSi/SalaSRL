@@ -47,6 +47,11 @@ public class Admin extends JPanel {
 	//jscroll e panel per contenere i prodotti del catalogo
 	private JPanel panelScrollCatalogo = new JPanel();
 	private JScrollPane scrollCatalogo;
+	//JPanel usata per scorrere i prodotti nel catalogo
+	private LineaScorrimento scorriCatalogo;
+	//variabili usate per settare scrollCatalogo e scorriCatalogo
+	private int valore;
+	private int cellaScorrimento;
 
 	//costruttore
 	public Admin() {
@@ -83,8 +88,9 @@ public class Admin extends JPanel {
 		schermate[1] = new JPanel();
 		schermate[1].setLayout(null);
 		schermate[1].setBounds(0, 0, 1331, 768);
-		//aggingo i prodotti
+		//aggingo i prodotti e la scrollbar personalizzata
 		generaProdotti();
+		setScorriCatalogo();
 		//setto i vari componenti
 		setImmagineProfiloCat();
 		setCopriLineaCatalogo();
@@ -385,6 +391,39 @@ public class Admin extends JPanel {
 		copriLineaCar.setIcon(icon);
 		schermate[2].add(copriLineaCar);
 	}
+	
+	//metodo per settare il panel scorriCatalogo
+	public void setScorriCatalogo() {
+		scorriCatalogo = new LineaScorrimento(1284, 102, scrollCatalogo);
+		//aggiungo un changelistener per spostare il bottone di scorrimento laterale se non si usa quello ma la rotellina del mouse
+		scrollCatalogo.getViewport().addChangeListener(e -> {
+			valore = (int) scrollCatalogo.getVerticalScrollBar().getValue();
+			//se il valore è 0 importa lo scorriCatalogo automaticamente in cima
+			if(valore == 0) {
+				//if per non far scattare lo scorriCatalogo
+				if(!scorriCatalogo.getStoScorrendo()) {
+					scorriCatalogo.setYTastoScorrimento(3, "no");
+				}
+			//se il valore è 0 importa lo scorriCatalogo automaticamente in fondo
+			} else if(valore > 7030) {
+				scrollCatalogo.getVerticalScrollBar().setValue(7030);
+				//if per non far scattare lo scorriCatalogo
+				if(!scorriCatalogo.getStoScorrendo()) {
+					scorriCatalogo.setYTastoScorrimento(618, "no");
+				}
+			//se il valore non è 0 o 7030 calcola la cella in cui spostare lo scorriCatalogo
+			} else {
+				cellaScorrimento = valore / 70 - 1;
+				//if per non far scattare lo scorriCatalogo
+				if(!scorriCatalogo.getStoScorrendo()) {
+					scorriCatalogo.setYTastoScorrimento(cellaScorrimento, "yes");
+				}
+			}
+			System.out.println(valore);
+			
+		});
+		schermate[1].add(scorriCatalogo);
+	}
 
 	//metodo per settare la label luogoProdotti
 	public void setLuogoProdotti() {
@@ -409,7 +448,7 @@ public class Admin extends JPanel {
 	//metodo per settare la label baseCatalogo
 	public void setBaseCatalogo() {
 		//imposto coordinate e grandezza della label
-		baseCatalogo.setBounds(0, 96, 1315, 675);
+		baseCatalogo.setBounds(0, 96, 1315, 672);
 		//imposto l'immagine da dargli
 		icon = new ImageIcon(getClass().getClassLoader().getResource("SfondoCatalogoCarrello.png"));
 		baseCatalogo.setIcon(icon);
@@ -419,7 +458,7 @@ public class Admin extends JPanel {
 	//metodo per settare la label baseCarrello
 	public void setBaseCarrello() {
 		//imposto coordinate e grandezza della label
-		baseCarrello.setBounds(0, 96, 1315, 675);
+		baseCarrello.setBounds(0, 96, 1315, 672);
 		//imposto l'immagine da dargli
 		icon = new ImageIcon(getClass().getClassLoader().getResource("SfondoCatalogoCarrello.png"));
 		baseCarrello.setIcon(icon);
@@ -455,167 +494,167 @@ public class Admin extends JPanel {
 		panelScrollCatalogo.setLayout(null);
 		panelScrollCatalogo.setOpaque(false);
 		//creo 150 diversi prodotti
-		prodotti[0] = new Prodotto(10, 20, "Pomodoro");
-		prodotti[1] = new Prodotto(273, 20, "Pomodoro");
-		prodotti[2] = new Prodotto(536, 20, "Pomodoro");
-		prodotti[3] = new Prodotto(799, 20, "Pomodoro");
-		prodotti[4] = new Prodotto(1062, 20, "Pomodoro");
-		prodotti[5] = new Prodotto(10, 293, "Pomodoro");
-		prodotti[6] = new Prodotto(273, 293, "Pomodoro");
-		prodotti[7] = new Prodotto(536, 293, "Pomodoro");
-		prodotti[8] = new Prodotto(799, 293, "Pomodoro");
-		prodotti[9] = new Prodotto(1062, 293, "Pomodoro");
-		prodotti[10] = new Prodotto(10, 566, "Pomodoro");
-		prodotti[11] = new Prodotto(273, 566, "Pomodoro");
-		prodotti[12] = new Prodotto(536, 566, "Pomodoro");
-		prodotti[13] = new Prodotto(799, 566, "Pomodoro");
-		prodotti[14] = new Prodotto(1062, 566, "Pomodoro");
-		prodotti[15] = new Prodotto(10, 839, "Pomodoro");
-		prodotti[16] = new Prodotto(273, 839, "Pomodoro");
-		prodotti[17] = new Prodotto(536, 839, "Pomodoro");
-		prodotti[18] = new Prodotto(799, 839, "Pomodoro");
-		prodotti[19] = new Prodotto(1062, 839, "Pomodoro");
-		prodotti[20] = new Prodotto(10, 1112, "Pomodoro");
-		prodotti[21] = new Prodotto(273, 1112, "Pomodoro");
-		prodotti[22] = new Prodotto(536, 1112, "Pomodoro");
-		prodotti[23] = new Prodotto(799, 1112, "Pomodoro");
-		prodotti[24] = new Prodotto(1062, 1112, "Pomodoro");
-		prodotti[25] = new Prodotto(10, 1385, "Pomodoro");
-		prodotti[26] = new Prodotto(273, 1385, "Pomodoro");
-		prodotti[27] = new Prodotto(536, 1385, "Pomodoro");
-		prodotti[28] = new Prodotto(799, 1385, "Pomodoro");
-		prodotti[29] = new Prodotto(1062, 1385, "Pomodoro");
-		prodotti[30] = new Prodotto(10, 1658, "Pomodoro");
-		prodotti[31] = new Prodotto(273, 1658, "Pomodoro");
-		prodotti[32] = new Prodotto(536, 1658, "Pomodoro");
-		prodotti[33] = new Prodotto(799, 1658, "Pomodoro");
-		prodotti[34] = new Prodotto(1062, 1658, "Pomodoro");
-		prodotti[35] = new Prodotto(10, 1931, "Pomodoro");
-		prodotti[36] = new Prodotto(273, 1931, "Pomodoro");
-		prodotti[37] = new Prodotto(536, 1931, "Pomodoro");
-		prodotti[38] = new Prodotto(799, 1931, "Pomodoro");
-		prodotti[39] = new Prodotto(1062, 1931, "Pomodoro");
-		prodotti[40] = new Prodotto(10, 2204, "Pomodoro");
-		prodotti[41] = new Prodotto(273, 2204, "Pomodoro");
-		prodotti[42] = new Prodotto(536, 2204, "Pomodoro");
-		prodotti[43] = new Prodotto(799, 2204, "Pomodoro");
-		prodotti[44] = new Prodotto(1062, 2204, "Pomodoro");
-		prodotti[45] = new Prodotto(10, 2477, "Pomodoro");
-		prodotti[46] = new Prodotto(273, 2477, "Pomodoro");
-		prodotti[47] = new Prodotto(536, 2477, "Pomodoro");
-		prodotti[48] = new Prodotto(799, 2477, "Pomodoro");
-		prodotti[49] = new Prodotto(1062, 2477, "Pomodoro");
-		prodotti[50] = new Prodotto(10, 2750, "Pomodoro");
-		prodotti[51] = new Prodotto(273, 2750, "Pomodoro");
-		prodotti[52] = new Prodotto(536, 2750, "Pomodoro");
-		prodotti[53] = new Prodotto(799, 2750, "Pomodoro");
-		prodotti[54] = new Prodotto(1062, 2750, "Pomodoro");
-		prodotti[55] = new Prodotto(10, 3023, "Pomodoro");
-		prodotti[56] = new Prodotto(273, 3023, "Pomodoro");
-		prodotti[57] = new Prodotto(536, 3023, "Pomodoro");
-		prodotti[58] = new Prodotto(799, 3023, "Pomodoro");
-		prodotti[59] = new Prodotto(1062, 3023, "Pomodoro");
-		prodotti[60] = new Prodotto(10, 3296, "Pomodoro");
-		prodotti[61] = new Prodotto(273, 3296, "Pomodoro");
-		prodotti[62] = new Prodotto(536, 3296, "Pomodoro");
-		prodotti[63] = new Prodotto(799, 3296, "Pomodoro");
-		prodotti[64] = new Prodotto(1062, 3296, "Pomodoro");
-		prodotti[65] = new Prodotto(10, 3569, "Pomodoro");
-		prodotti[66] = new Prodotto(273, 3569, "Pomodoro");
-		prodotti[67] = new Prodotto(536, 3569, "Pomodoro");
-		prodotti[68] = new Prodotto(799, 3569, "Pomodoro");
-		prodotti[69] = new Prodotto(1062, 3569, "Pomodoro");
-		prodotti[70] = new Prodotto(10, 3842, "Pomodoro");
-		prodotti[71] = new Prodotto(273, 3842, "Pomodoro");
-		prodotti[72] = new Prodotto(536, 3842, "Pomodoro");
-		prodotti[73] = new Prodotto(799, 3842, "Pomodoro");
-		prodotti[74] = new Prodotto(1062, 3842, "Pomodoro");
-		prodotti[75] = new Prodotto(10, 4115, "Pomodoro");
-		prodotti[76] = new Prodotto(273, 4115, "Pomodoro");
-		prodotti[77] = new Prodotto(536, 4115, "Pomodoro");
-		prodotti[78] = new Prodotto(799, 4115, "Pomodoro");
-		prodotti[79] = new Prodotto(1062, 4115, "Pomodoro");
-		prodotti[80] = new Prodotto(10, 4388, "Pomodoro");
-		prodotti[81] = new Prodotto(273, 4388, "Pomodoro");
-		prodotti[82] = new Prodotto(536, 4388, "Pomodoro");
-		prodotti[83] = new Prodotto(799, 4388, "Pomodoro");
-		prodotti[84] = new Prodotto(1062, 4388, "Pomodoro");
-		prodotti[85] = new Prodotto(10, 4661, "Pomodoro");
-		prodotti[86] = new Prodotto(273, 4661, "Pomodoro");
-		prodotti[87] = new Prodotto(536, 4661, "Pomodoro");
-		prodotti[88] = new Prodotto(799, 4661, "Pomodoro");
-		prodotti[89] = new Prodotto(1062, 4661, "Pomodoro");
-		prodotti[90] = new Prodotto(10, 4934, "Pomodoro");
-		prodotti[91] = new Prodotto(273, 4934, "Pomodoro");
-		prodotti[92] = new Prodotto(536, 4934, "Pomodoro");
-		prodotti[93] = new Prodotto(799, 4934, "Pomodoro");
-		prodotti[94] = new Prodotto(1062, 4934, "Pomodoro");
-		prodotti[95] = new Prodotto(10, 5207, "Pomodoro");
-		prodotti[96] = new Prodotto(273, 5207, "Pomodoro");
-		prodotti[97] = new Prodotto(536, 5207, "Pomodoro");
-		prodotti[98] = new Prodotto(799, 5207, "Pomodoro");
-		prodotti[99] = new Prodotto(1062, 5207, "Pomodoro");
-		prodotti[100] = new Prodotto(10, 5480, "Pomodoro");
-		prodotti[101] = new Prodotto(273, 5480, "Pomodoro");
-		prodotti[102] = new Prodotto(536, 5480, "Pomodoro");
-		prodotti[103] = new Prodotto(799, 5480, "Pomodoro");
-		prodotti[104] = new Prodotto(1062, 5480, "Pomodoro");
-		prodotti[105] = new Prodotto(10, 5753, "Pomodoro");
-		prodotti[106] = new Prodotto(273, 5753, "Pomodoro");
-		prodotti[107] = new Prodotto(536, 5753, "Pomodoro");
-		prodotti[108] = new Prodotto(799, 5753, "Pomodoro");
-		prodotti[109] = new Prodotto(1062, 5753, "Pomodoro");
-		prodotti[110] = new Prodotto(10, 6026, "Pomodoro");
-		prodotti[111] = new Prodotto(273, 6026, "Pomodoro");
-		prodotti[112] = new Prodotto(536, 6026, "Pomodoro");
-		prodotti[113] = new Prodotto(799, 6026, "Pomodoro");
-		prodotti[114] = new Prodotto(1062, 6026, "Pomodoro");
-		prodotti[115] = new Prodotto(10, 6299, "Pomodoro");
-		prodotti[116] = new Prodotto(273, 6299, "Pomodoro");
-		prodotti[117] = new Prodotto(536, 6299, "Pomodoro");
-		prodotti[118] = new Prodotto(799, 6299, "Pomodoro");
-		prodotti[119] = new Prodotto(1062, 6299, "Pomodoro");
-		prodotti[120] = new Prodotto(10, 6572, "Pomodoro");
-		prodotti[121] = new Prodotto(273, 6572, "Pomodoro");
-		prodotti[122] = new Prodotto(536, 6572, "Pomodoro");
-		prodotti[123] = new Prodotto(799, 6572, "Pomodoro");
-		prodotti[124] = new Prodotto(1062, 6572, "Pomodoro");
-		prodotti[125] = new Prodotto(10, 6845, "Pomodoro");
-		prodotti[126] = new Prodotto(273, 6845, "Pomodoro");
-		prodotti[127] = new Prodotto(536, 6845, "Pomodoro");
-		prodotti[128] = new Prodotto(799, 6845, "Pomodoro");
-		prodotti[129] = new Prodotto(1062, 6845, "Pomodoro");
-		prodotti[130] = new Prodotto(10, 7118, "Pomodoro");
-		prodotti[131] = new Prodotto(273, 7118, "Pomodoro");
-		prodotti[132] = new Prodotto(536, 7118, "Pomodoro");
-		prodotti[133] = new Prodotto(799, 7118, "Pomodoro");
-		prodotti[134] = new Prodotto(1062, 7118, "Pomodoro");
-		prodotti[135] = new Prodotto(10, 7391, "Pomodoro");
-		prodotti[136] = new Prodotto(273, 7391, "Pomodoro");
-		prodotti[137] = new Prodotto(536, 7391, "Pomodoro");
-		prodotti[138] = new Prodotto(799, 7391, "Pomodoro");
-		prodotti[139] = new Prodotto(1062, 7391, "Pomodoro");
-		prodotti[140] = new Prodotto(10, 7664, "Pomodoro");
-		prodotti[141] = new Prodotto(273, 7664, "Pomodoro");
-		prodotti[142] = new Prodotto(536, 7664, "Pomodoro");
-		prodotti[143] = new Prodotto(799, 7664, "Pomodoro");
-		prodotti[144] = new Prodotto(1062, 7664, "Pomodoro");
-		prodotti[145] = new Prodotto(10, 7937, "Pomodoro");
-		prodotti[146] = new Prodotto(273, 7937, "Pomodoro");
-		prodotti[147] = new Prodotto(536, 7937, "Pomodoro");
-		prodotti[148] = new Prodotto(799, 7937, "Pomodoro");
-		prodotti[149] = new Prodotto(1062, 7937, "Pomodoro");
+		prodotti[0] = new Prodotto(12, 20, "Pomodoro");
+		prodotti[1] = new Prodotto(268, 20, "Pomodoro");
+		prodotti[2] = new Prodotto(524, 20, "Pomodoro");
+		prodotti[3] = new Prodotto(780, 20, "Pomodoro");
+		prodotti[4] = new Prodotto(1036, 20, "Pomodoro");
+		prodotti[5] = new Prodotto(12, 276, "Pomodoro");
+		prodotti[6] = new Prodotto(268, 276, "Pomodoro");
+		prodotti[7] = new Prodotto(524, 276, "Pomodoro");
+		prodotti[8] = new Prodotto(780, 276, "Pomodoro");
+		prodotti[9] = new Prodotto(1036, 276, "Pomodoro");
+		prodotti[10] = new Prodotto(12, 532, "Pomodoro");
+		prodotti[11] = new Prodotto(268, 532, "Pomodoro");
+		prodotti[12] = new Prodotto(524, 532, "Pomodoro");
+		prodotti[13] = new Prodotto(780, 532, "Pomodoro");
+		prodotti[14] = new Prodotto(1036, 532, "Pomodoro");
+		prodotti[15] = new Prodotto(12, 788, "Pomodoro");
+		prodotti[16] = new Prodotto(268, 788, "Pomodoro");
+		prodotti[17] = new Prodotto(524, 788, "Pomodoro");
+		prodotti[18] = new Prodotto(780, 788, "Pomodoro");
+		prodotti[19] = new Prodotto(1036, 788, "Pomodoro");
+		prodotti[20] = new Prodotto(12, 1044, "Pomodoro");
+		prodotti[21] = new Prodotto(268, 1044, "Pomodoro");
+		prodotti[22] = new Prodotto(524, 1044, "Pomodoro");
+		prodotti[23] = new Prodotto(780, 1044, "Pomodoro");
+		prodotti[24] = new Prodotto(1036, 1044, "Pomodoro");
+		prodotti[25] = new Prodotto(12, 1300, "Pomodoro");
+		prodotti[26] = new Prodotto(268, 1300, "Pomodoro");
+		prodotti[27] = new Prodotto(524, 1300, "Pomodoro");
+		prodotti[28] = new Prodotto(780, 1300, "Pomodoro");
+		prodotti[29] = new Prodotto(1036, 1300, "Pomodoro");
+		prodotti[30] = new Prodotto(12, 1556, "Pomodoro");
+		prodotti[31] = new Prodotto(268, 1556, "Pomodoro");
+		prodotti[32] = new Prodotto(524, 1556, "Pomodoro");
+		prodotti[33] = new Prodotto(780, 1556, "Pomodoro");
+		prodotti[34] = new Prodotto(1036, 1556, "Pomodoro");
+		prodotti[35] = new Prodotto(12, 1812, "Pomodoro");
+		prodotti[36] = new Prodotto(268, 1812, "Pomodoro");
+		prodotti[37] = new Prodotto(524, 1812, "Pomodoro");
+		prodotti[38] = new Prodotto(780, 1812, "Pomodoro");
+		prodotti[39] = new Prodotto(1036, 1812, "Pomodoro");
+		prodotti[40] = new Prodotto(12, 2068, "Pomodoro");
+		prodotti[41] = new Prodotto(268, 2068, "Pomodoro");
+		prodotti[42] = new Prodotto(524, 2068, "Pomodoro");
+		prodotti[43] = new Prodotto(780, 2068, "Pomodoro");
+		prodotti[44] = new Prodotto(1036, 2068, "Pomodoro");
+		prodotti[45] = new Prodotto(12, 2324, "Pomodoro");
+		prodotti[46] = new Prodotto(268, 2324, "Pomodoro");
+		prodotti[47] = new Prodotto(524, 2324, "Pomodoro");
+		prodotti[48] = new Prodotto(780, 2324, "Pomodoro");
+		prodotti[49] = new Prodotto(1036, 2324, "Pomodoro");
+		prodotti[50] = new Prodotto(12, 2580, "Pomodoro");
+		prodotti[51] = new Prodotto(268, 2580, "Pomodoro");
+		prodotti[52] = new Prodotto(524, 2580, "Pomodoro");
+		prodotti[53] = new Prodotto(780, 2580, "Pomodoro");
+		prodotti[54] = new Prodotto(1036, 2580, "Pomodoro");
+		prodotti[55] = new Prodotto(12, 2836, "Pomodoro");
+		prodotti[56] = new Prodotto(268, 2836, "Pomodoro");
+		prodotti[57] = new Prodotto(524, 2836, "Pomodoro");
+		prodotti[58] = new Prodotto(780, 2836, "Pomodoro");
+		prodotti[59] = new Prodotto(1036, 2836, "Pomodoro");
+		prodotti[60] = new Prodotto(12, 3092, "Pomodoro");
+		prodotti[61] = new Prodotto(268, 3092, "Pomodoro");
+		prodotti[62] = new Prodotto(524, 3092, "Pomodoro");
+		prodotti[63] = new Prodotto(780, 3092, "Pomodoro");
+		prodotti[64] = new Prodotto(1036, 3092, "Pomodoro");
+		prodotti[65] = new Prodotto(12, 3348, "Pomodoro");
+		prodotti[66] = new Prodotto(268, 3348, "Pomodoro");
+		prodotti[67] = new Prodotto(524, 3348, "Pomodoro");
+		prodotti[68] = new Prodotto(780, 3348, "Pomodoro");
+		prodotti[69] = new Prodotto(1036, 3348, "Pomodoro");
+		prodotti[70] = new Prodotto(12, 3604, "Pomodoro");
+		prodotti[71] = new Prodotto(268, 3604, "Pomodoro");
+		prodotti[72] = new Prodotto(524, 3604, "Pomodoro");
+		prodotti[73] = new Prodotto(780, 3604, "Pomodoro");
+		prodotti[74] = new Prodotto(1036, 3604, "Pomodoro");
+		prodotti[75] = new Prodotto(12, 3860, "Pomodoro");
+		prodotti[76] = new Prodotto(268, 3860, "Pomodoro");
+		prodotti[77] = new Prodotto(524, 3860, "Pomodoro");
+		prodotti[78] = new Prodotto(780, 3860, "Pomodoro");
+		prodotti[79] = new Prodotto(1036, 3860, "Pomodoro");
+		prodotti[80] = new Prodotto(12, 4116, "Pomodoro");
+		prodotti[81] = new Prodotto(268, 4116, "Pomodoro");
+		prodotti[82] = new Prodotto(524, 4116, "Pomodoro");
+		prodotti[83] = new Prodotto(780, 4116, "Pomodoro");
+		prodotti[84] = new Prodotto(1036, 4116, "Pomodoro");
+		prodotti[85] = new Prodotto(12, 4372, "Pomodoro");
+		prodotti[86] = new Prodotto(268, 4372, "Pomodoro");
+		prodotti[87] = new Prodotto(524, 4372, "Pomodoro");
+		prodotti[88] = new Prodotto(780, 4372, "Pomodoro");
+		prodotti[89] = new Prodotto(1036, 4372, "Pomodoro");
+		prodotti[90] = new Prodotto(12, 4628, "Pomodoro");
+		prodotti[91] = new Prodotto(268, 4628, "Pomodoro");
+		prodotti[92] = new Prodotto(524, 4628, "Pomodoro");
+		prodotti[93] = new Prodotto(780, 4628, "Pomodoro");
+		prodotti[94] = new Prodotto(1036, 4628, "Pomodoro");
+		prodotti[95] = new Prodotto(12, 4884, "Pomodoro");
+		prodotti[96] = new Prodotto(268, 4884, "Pomodoro");
+		prodotti[97] = new Prodotto(524, 4884, "Pomodoro");
+		prodotti[98] = new Prodotto(780, 4884, "Pomodoro");
+		prodotti[99] = new Prodotto(1036, 4884, "Pomodoro");
+		prodotti[100] = new Prodotto(12, 5140, "Pomodoro");
+		prodotti[101] = new Prodotto(268, 5140, "Pomodoro");
+		prodotti[102] = new Prodotto(524, 5140, "Pomodoro");
+		prodotti[103] = new Prodotto(780, 5140, "Pomodoro");
+		prodotti[104] = new Prodotto(1036, 5140, "Pomodoro");
+		prodotti[105] = new Prodotto(12, 5396, "Pomodoro");
+		prodotti[106] = new Prodotto(268, 5396, "Pomodoro");
+		prodotti[107] = new Prodotto(524, 5396, "Pomodoro");
+		prodotti[108] = new Prodotto(780, 5396, "Pomodoro");
+		prodotti[109] = new Prodotto(1036, 5396, "Pomodoro");
+		prodotti[110] = new Prodotto(12, 5652, "Pomodoro");
+		prodotti[111] = new Prodotto(268, 5652, "Pomodoro");
+		prodotti[112] = new Prodotto(524, 5652, "Pomodoro");
+		prodotti[113] = new Prodotto(780, 5652, "Pomodoro");
+		prodotti[114] = new Prodotto(1036, 5652, "Pomodoro");
+		prodotti[115] = new Prodotto(12, 5908, "Pomodoro");
+		prodotti[116] = new Prodotto(268, 5908, "Pomodoro");
+		prodotti[117] = new Prodotto(524, 5908, "Pomodoro");
+		prodotti[118] = new Prodotto(780, 5908, "Pomodoro");
+		prodotti[119] = new Prodotto(1036, 5908, "Pomodoro");
+		prodotti[120] = new Prodotto(12, 6164, "Pomodoro");
+		prodotti[121] = new Prodotto(268, 6164, "Pomodoro");
+		prodotti[122] = new Prodotto(524, 6164, "Pomodoro");
+		prodotti[123] = new Prodotto(780, 6164, "Pomodoro");
+		prodotti[124] = new Prodotto(1036, 6164, "Pomodoro");
+		prodotti[125] = new Prodotto(12, 6420, "Pomodoro");
+		prodotti[126] = new Prodotto(268, 6420, "Pomodoro");
+		prodotti[127] = new Prodotto(524, 6420, "Pomodoro");
+		prodotti[128] = new Prodotto(780, 6420, "Pomodoro");
+		prodotti[129] = new Prodotto(1036, 6420, "Pomodoro");
+		prodotti[130] = new Prodotto(12, 6676, "Pomodoro");
+		prodotti[131] = new Prodotto(268, 6676, "Pomodoro");
+		prodotti[132] = new Prodotto(524, 6676, "Pomodoro");
+		prodotti[133] = new Prodotto(780, 6676, "Pomodoro");
+		prodotti[134] = new Prodotto(1036, 6676, "Pomodoro");
+		prodotti[135] = new Prodotto(12, 6932, "Pomodoro");
+		prodotti[136] = new Prodotto(268, 6932, "Pomodoro");
+		prodotti[137] = new Prodotto(524, 6932, "Pomodoro");
+		prodotti[138] = new Prodotto(780, 6932, "Pomodoro");
+		prodotti[139] = new Prodotto(1036, 6932, "Pomodoro");
+		prodotti[140] = new Prodotto(12, 7188, "Pomodoro");
+		prodotti[141] = new Prodotto(268, 7188, "Pomodoro");
+		prodotti[142] = new Prodotto(524, 7188, "Pomodoro");
+		prodotti[143] = new Prodotto(780, 7188, "Pomodoro");
+		prodotti[144] = new Prodotto(1036, 7188, "Pomodoro");
+		prodotti[145] = new Prodotto(12, 7444, "Pomodoro");
+		prodotti[146] = new Prodotto(268, 7444, "Pomodoro");
+		prodotti[147] = new Prodotto(524, 7444, "Pomodoro");
+		prodotti[148] = new Prodotto(780, 7444, "Pomodoro");
+		prodotti[149] = new Prodotto(1036, 7444, "Pomodoro");
 		for(int c = 0; c<150; c++) {
 			panelScrollCatalogo.add(prodotti[c]);
 		}
-		//settp lo scrollpane
+		//setto lo scrollpane
 		scrollCatalogo = new JScrollPane(panelScrollCatalogo, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollCatalogo.setBounds(0, 100, 1315, 631);
+		scrollCatalogo.setBounds(0, 100, 1279, 663);
 		scrollCatalogo.setBackground(null);
 		scrollCatalogo.setOpaque(false);
 		scrollCatalogo.getViewport().setOpaque(false);
 		scrollCatalogo.setBorder(null);
-		scrollCatalogo.getVerticalScrollBar().setUnitIncrement(10);
+		scrollCatalogo.getVerticalScrollBar().setUnitIncrement(20);
 		schermate[1].add(scrollCatalogo);
 	}
 	

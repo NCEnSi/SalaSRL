@@ -27,7 +27,7 @@ public class Prodotto extends JPanel{
 	public Prodotto(int prX, int prY, String nomeProdotto) {
 		//setto il Panel
 		setLayout(null);
-		setBounds(prX, prY, 243, 243);
+		setBounds(prX, prY, 236, 236);
 		setOpaque(false);
 		//setto le varie Label e i vari Button
 		setN();
@@ -40,7 +40,7 @@ public class Prodotto extends JPanel{
 	//metodo per settare la label base
 	public void setSfondo(String nomeProdotto) {
 		//imposto coordinate e grandezza della label
-		base.setBounds(0, 0, 243, 243);
+		base.setBounds(0, 0, 236, 236);
 		//imposto l'immagine da dargli
 		icon = new ImageIcon(getClass().getClassLoader().getResource("SfondoProdotto"+nomeProdotto+".png"));
 		base.setIcon(icon);
@@ -50,7 +50,7 @@ public class Prodotto extends JPanel{
 	//metodo per settare la label N
 	public void setN() {
 		//imposto coordinate e grandezza della label
-		N.setBounds(140, 190, 38, 38);
+		N.setBounds(139, 185, 37, 37);
 		//personalizzo la label e il suo testo
 		N.setBackground(null);
 		N.setFont(new Font("Arial", Font.PLAIN, 24));
@@ -63,7 +63,7 @@ public class Prodotto extends JPanel{
 		//imposto le caratteristiche del bottone
 		piu.setContentAreaFilled(false);		
 		piu.setBorderPainted(false);
-		piu.setBounds(183, 190, 38, 38);
+		piu.setBounds(179, 185, 37, 37);
 		//imposto l'immagine da dargli
 		icon = new ImageIcon(getClass().getClassLoader().getResource("PiuProdottoPress.png"));
 		iconScaled = icon.getImage().getScaledInstance(38, 38, Image.SCALE_SMOOTH);
@@ -83,14 +83,14 @@ public class Prodotto extends JPanel{
 		//imposto le caratteristiche del bottone
 		meno.setContentAreaFilled(false);		
 		meno.setBorderPainted(false);
-		meno.setBounds(97, 190, 38, 38);
+		meno.setBounds(99, 185, 37, 37);
 		//imposto l'immagine da dargli
 		icon = new ImageIcon(getClass().getClassLoader().getResource("MenoProdottoPress.png"));
-		iconScaled = icon.getImage().getScaledInstance(38, 38, Image.SCALE_SMOOTH);
+		iconScaled = icon.getImage().getScaledInstance(37, 37, Image.SCALE_SMOOTH);
 		icon = new ImageIcon(iconScaled);
 		meno.setPressedIcon(icon);	
 		icon = new ImageIcon(getClass().getClassLoader().getResource("MenoProdotto.png"));
-		iconScaled = icon.getImage().getScaledInstance(38, 38, Image.SCALE_SMOOTH);
+		iconScaled = icon.getImage().getScaledInstance(37, 37, Image.SCALE_SMOOTH);
 		icon = new ImageIcon(iconScaled);
 		meno.setIcon(icon);
 		//aggiungo un actionlistener per diminuire nAttuale
@@ -103,14 +103,14 @@ public class Prodotto extends JPanel{
 		//imposto le caratteristiche del bottone	
 		buy.setContentAreaFilled(false);		
 		buy.setBorderPainted(false);
-		buy.setBounds(23, 190, 38, 38);
+		buy.setBounds(20, 185, 37, 37);
 		//imposto l'immagine da dargli
 		icon = new ImageIcon(getClass().getClassLoader().getResource("BuyProdottoPress.png"));
-		iconScaled = icon.getImage().getScaledInstance(38, 38, Image.SCALE_SMOOTH);
+		iconScaled = icon.getImage().getScaledInstance(37, 37, Image.SCALE_SMOOTH);
 		icon = new ImageIcon(iconScaled);
 		buy.setPressedIcon(icon);	
 		icon = new ImageIcon(getClass().getClassLoader().getResource("BuyProdotto.png"));
-		iconScaled = icon.getImage().getScaledInstance(38, 38, Image.SCALE_SMOOTH);
+		iconScaled = icon.getImage().getScaledInstance(37, 37, Image.SCALE_SMOOTH);
 		icon = new ImageIcon(iconScaled);
 		buy.setIcon(icon);
 		//aggiungo un actionlistener per acquistare il numero di elementi selezionato, e quindi sommare nAttuale a nAcquistati
@@ -149,7 +149,8 @@ public class Prodotto extends JPanel{
 	public static void main(String[]gg) throws IOException{
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
-		frame.setSize(1331, 768);
+		//1331 e 807 sono le grandezze definitive (mangia rispettivamente 16 e 39 px)
+		frame.setSize(1331, 807);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		frame.setLayout(null);
 		
