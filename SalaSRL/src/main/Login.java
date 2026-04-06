@@ -227,6 +227,7 @@ public class Login extends JPanel{
 		//imposto le caratteristiche del bottone
 		passwordVisibleLogin.setContentAreaFilled(false);
 		passwordVisibleLogin.setBorderPainted(false);
+		passwordVisibleLogin.setBorder(null);
 		passwordVisibleLogin.setBounds(740, 444, 33, 33);
 		//imposto l'immagine da dargli
 		passwordVisibleLogin.setIcon(nascosta);
@@ -239,6 +240,7 @@ public class Login extends JPanel{
 		//imposto le caratteristiche del bottone
 		passwordVisibleSignin.setContentAreaFilled(false);
 		passwordVisibleSignin.setBorderPainted(false);
+		passwordVisibleSignin.setBorder(null);
 		passwordVisibleSignin.setBounds(740, 533, 33, 33);
 		//imposto l'immagine da dargli
 		passwordVisibleSignin.setIcon(nascosta);
