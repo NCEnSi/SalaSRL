@@ -58,7 +58,7 @@ public class Prodotto extends JPanel{
 		add(N);
 	}
 
-	//metodo per settare il bottone piu
+	//metodo per settare il bottone piu.....
 	public void setPiu(String nomeProdotto) {
 		//imposto le caratteristiche del bottone
 		piu.setContentAreaFilled(false);		
