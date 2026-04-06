@@ -23,7 +23,7 @@ public class Prodotto extends JPanel{
 	private int nAttuale = 0;
 	private int nAcquistati = 0;
 	
-	//costruttore, richiede (coordinata x, coordinata y, nome prodotto)........
+	//costruttore, richiede (coordinata x, coordinata y, nome prodotto)......
 	public Prodotto(int prX, int prY, String nomeProdotto) {
 		//setto il Panel
 		setLayout(null);
@@ -58,7 +58,7 @@ public class Prodotto extends JPanel{
 		add(N);
 	}
 
-	//metodo per settare il bottone piu
+	//metodo per settare il bottone piu........
 	public void setPiu(String nomeProdotto) {
 		//imposto le caratteristiche del bottone
 		piu.setContentAreaFilled(false);		
