@@ -266,7 +266,7 @@ public class Login extends JPanel{
 			//creo l'oggetto usato per salvare le diverse informazioni degli account
 			scrittura = new BufferedWriter(new FileWriter("Credenziali.txt", true));
 			//ricavo la password dal jpasswordfield
-			String password = new String(passwordLogin.getPassword());			
+			String password = new String(passwordLogin.getPassword());
 			//salvo le diverse informazioni sul file txt
 			String account = usernameSignin.getText() +";"+ emailSignin.getText() +";"+ password +";utente";
 			scrittura.write(account);
