@@ -17,27 +17,44 @@ public class LineaScorrimento extends JPanel{
 	Point xyVecchia;
 	int yNuova, xNuova;
 	//suddividendo la base e il JScrollPane associato in 100 celle riesco ad associare il movimento di uno al movimento dell'altro
-	private int cellaScroll;
-	private int cellaScorrimento;
+	private double cellaScroll;
+	private double cellaScorrimento;
 	//variabile usata per non far scattare tastoScorrimento
 	private boolean stoScorrendo = false;
+	//variabili da settare con switch in base al tipo
+	private int grandezza, altezza, yMaxTastoScorrimento, yMaxScrollPane;
 
 	//costruttore, richiede (coordinata x, coordinata y, JScrollPane che sposta)
-	public LineaScorrimento(int x, int y, JScrollPane scroll) {
+	public LineaScorrimento(int x, int y, JScrollPane scroll, String tipo) {
+		//switch per decidere che tipo di LineaScorrimento inserire
+		switch(tipo) {
+		case "AdminCatalogo":
+			grandezza = 26;
+			altezza = 661;
+			yMaxTastoScorrimento = 618;
+			yMaxScrollPane = 7037;
+			break;
+		case "AdminCarrello":
+			grandezza = 26;
+			altezza = 568;
+			yMaxTastoScorrimento = 525;
+			yMaxScrollPane = 11126;
+			break;
+		}
 		//setto il Panel
 		setLayout(null);
-		setBounds(x, y, 26, 661);
+		setBounds(x, y, grandezza, altezza);
 		//setto i vari componenti
 		setTastoScorrimento(scroll);
-		setBase();
+		setBase(tipo);
 	}
 	
-	public void setBase() {
+	public void setBase(String tipo) {
 		//imposto coordinate e grandezza della label
-		base.setBounds(0, 0, 26, 661);
+		base.setBounds(0, 0, grandezza, altezza);
 		//imposto l'immagine da dargli	
-		icon = new ImageIcon(getClass().getClassLoader().getResource("baseScorrimento.png"));
-		iconScaled = icon.getImage().getScaledInstance(26, 661, Image.SCALE_SMOOTH);
+		icon = new ImageIcon(getClass().getClassLoader().getResource("baseScorrimento"+tipo+".png"));
+		iconScaled = icon.getImage().getScaledInstance(grandezza, altezza, Image.SCALE_SMOOTH);
 		icon = new ImageIcon(iconScaled);
 		base.setIcon(icon);
 		add(base);
@@ -78,26 +95,26 @@ public class LineaScorrimento extends JPanel{
 		yNuova = (int) (tastoScorrimento.getY() + e.getY() - xyVecchia.getY());
 		if(yNuova<3) {
 			yNuova = 3;
-		} else if(yNuova>618) {
-			yNuova = 618;
+		} else if(yNuova>yMaxTastoScorrimento) {
+			yNuova = yMaxTastoScorrimento;
 		}
 	}
 	
 	//metodo per settare la posizione dello scrollPane associato
 	public void setYScrollPane(JScrollPane scroll) {
-		cellaScorrimento = yNuova / 6 - 1;
-		cellaScroll = cellaScorrimento * 70;
+		cellaScorrimento = yNuova / (yMaxTastoScorrimento/100) - 1;
+		cellaScroll = cellaScorrimento * (yMaxScrollPane/100);
 		if(cellaScorrimento == 99) {
-			scroll.getVerticalScrollBar().setValue(7030);
+			scroll.getVerticalScrollBar().setValue(yMaxScrollPane);
 		} else {
-			scroll.getVerticalScrollBar().setValue(cellaScroll);
+			scroll.getVerticalScrollBar().setValue((int) cellaScroll);
 		}
 	}
 	
 	//metodo per reimpostare la posizione del tastoScorrimento, se si inserisce "yes" la posizione viene moltiplicata per 6 altrimenti no (usato per gli estremi del JSCrollPane)
 	public void setYTastoScorrimento(int n, String yes) {
 		if(yes.equals("yes")) {
-			n = n * 6;
+			n = n * (yMaxTastoScorrimento/100);
 		}
 		tastoScorrimento.setLocation(3, n);
 	}

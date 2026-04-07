@@ -24,17 +24,26 @@ public class ProdottoQuadrato extends JPanel{
 	private int nAcquistati = 0;
 	
 	//costruttore, richiede (coordinata x, coordinata y, nome prodotto)
-	public ProdottoQuadrato(int prX, int prY, String nomeProdotto) {
+	public ProdottoQuadrato(int prX, int prY, String nomeProdotto, String compra) {
 		//setto il Panel
 		setLayout(null);
 		setBounds(prX, prY, 236, 236);
 		setOpaque(false);
 		//setto le varie Label e i vari Button
-		setN();
-		setPiu(nomeProdotto);
-		setMeno(nomeProdotto);
-		setBuy(nomeProdotto);
-		setSfondo(nomeProdotto);
+		switch(compra) {
+		case "yes":
+			setN();
+			setPiu(nomeProdotto);
+			setMeno(nomeProdotto);
+			setBuy(nomeProdotto);
+			setSfondo(nomeProdotto);
+			break;
+			
+		case "no":
+			setSfondo(nomeProdotto);
+			break;
+		}
+		
 	}
 	
 	//metodo per settare la label base

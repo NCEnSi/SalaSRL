@@ -139,24 +139,24 @@ public class Catalogo extends JPanel{
 
 	//metodo per settare il panel scorriCatalogo
 	public void setScorriCatalogo() {
-		scorriCatalogo = new LineaScorrimento(1284, 102, scrollCatalogo);
+		//setto la posizione di scorriCatalogo, il JScrollPane associato e il tipo di LineaScorrimento che deve essere
+		scorriCatalogo = new LineaScorrimento(1284, 102, scrollCatalogo, "AdminCatalogo");
 		//aggiungo un changelistener per spostare il bottone di scorrimento laterale se non si usa quello ma la rotellina del mouse
 		scrollCatalogo.getViewport().addChangeListener(e -> {
 			valore = (int) scrollCatalogo.getVerticalScrollBar().getValue();
-			//se il valore è 0 importa lo scorriCatalogo automaticamente in cima
+			//se il valore è 0 imposta lo scorriCatalogo automaticamente in cima
 			if(valore == 0) {
 				//if per non far scattare lo scorriCatalogo
 				if(!scorriCatalogo.getStoScorrendo()) {
 					scorriCatalogo.setYTastoScorrimento(3, "no");
 				}
-			//se il valore è 0 importa lo scorriCatalogo automaticamente in fondo
-			} else if(valore > 7030) {
-				scrollCatalogo.getVerticalScrollBar().setValue(7030);
+			//se il valore è uguale alla y massima che può raggiungere il pane dentro lo scroll imposta lo scorriCatalogo automaticamente in fondo
+			} else if(valore == 7037) {
 				//if per non far scattare lo scorriCatalogo
 				if(!scorriCatalogo.getStoScorrendo()) {
 					scorriCatalogo.setYTastoScorrimento(618, "no");
 				}
-			//se il valore non è 0 o 7030 calcola la cella in cui spostare lo scorriCatalogo
+			//se il valore non è 0 o 7037 calcola la cella in cui spostare lo scorriCatalogo
 			} else {
 				cellaScorrimento = valore / 70 - 1;
 				//if per non far scattare lo scorriCatalogo
@@ -180,166 +180,166 @@ public class Catalogo extends JPanel{
 	
 	//metodo per generare i 150 prodotti nel catalogo
 	public void generaProdotti() {
-		//setto il panel
-		panelScrollCatalogo.setPreferredSize(new Dimension(1315, 8210));
+		//setto il panel con la grandezza totale che deve avere
+		panelScrollCatalogo.setPreferredSize(new Dimension(1315, 7700));
 		panelScrollCatalogo.setBackground(null);
 		panelScrollCatalogo.setLayout(null);
 		panelScrollCatalogo.setOpaque(false);
 		//creo 150 diversi prodotti
-		prodotti[0] = new ProdottoQuadrato(12, 20, "Pomodoro");
-		prodotti[1] = new ProdottoQuadrato(268, 20, "Pomodoro");
-		prodotti[2] = new ProdottoQuadrato(524, 20, "Pomodoro");
-		prodotti[3] = new ProdottoQuadrato(780, 20, "Pomodoro");
-		prodotti[4] = new ProdottoQuadrato(1036, 20, "Pomodoro");
-		prodotti[5] = new ProdottoQuadrato(12, 276, "Pomodoro");
-		prodotti[6] = new ProdottoQuadrato(268, 276, "Pomodoro");
-		prodotti[7] = new ProdottoQuadrato(524, 276, "Pomodoro");
-		prodotti[8] = new ProdottoQuadrato(780, 276, "Pomodoro");
-		prodotti[9] = new ProdottoQuadrato(1036, 276, "Pomodoro");
-		prodotti[10] = new ProdottoQuadrato(12, 532, "Pomodoro");
-		prodotti[11] = new ProdottoQuadrato(268, 532, "Pomodoro");
-		prodotti[12] = new ProdottoQuadrato(524, 532, "Pomodoro");
-		prodotti[13] = new ProdottoQuadrato(780, 532, "Pomodoro");
-		prodotti[14] = new ProdottoQuadrato(1036, 532, "Pomodoro");
-		prodotti[15] = new ProdottoQuadrato(12, 788, "Pomodoro");
-		prodotti[16] = new ProdottoQuadrato(268, 788, "Pomodoro");
-		prodotti[17] = new ProdottoQuadrato(524, 788, "Pomodoro");
-		prodotti[18] = new ProdottoQuadrato(780, 788, "Pomodoro");
-		prodotti[19] = new ProdottoQuadrato(1036, 788, "Pomodoro");
-		prodotti[20] = new ProdottoQuadrato(12, 1044, "Pomodoro");
-		prodotti[21] = new ProdottoQuadrato(268, 1044, "Pomodoro");
-		prodotti[22] = new ProdottoQuadrato(524, 1044, "Pomodoro");
-		prodotti[23] = new ProdottoQuadrato(780, 1044, "Pomodoro");
-		prodotti[24] = new ProdottoQuadrato(1036, 1044, "Pomodoro");
-		prodotti[25] = new ProdottoQuadrato(12, 1300, "Pomodoro");
-		prodotti[26] = new ProdottoQuadrato(268, 1300, "Pomodoro");
-		prodotti[27] = new ProdottoQuadrato(524, 1300, "Pomodoro");
-		prodotti[28] = new ProdottoQuadrato(780, 1300, "Pomodoro");
-		prodotti[29] = new ProdottoQuadrato(1036, 1300, "Pomodoro");
-		prodotti[30] = new ProdottoQuadrato(12, 1556, "Pomodoro");
-		prodotti[31] = new ProdottoQuadrato(268, 1556, "Pomodoro");
-		prodotti[32] = new ProdottoQuadrato(524, 1556, "Pomodoro");
-		prodotti[33] = new ProdottoQuadrato(780, 1556, "Pomodoro");
-		prodotti[34] = new ProdottoQuadrato(1036, 1556, "Pomodoro");
-		prodotti[35] = new ProdottoQuadrato(12, 1812, "Pomodoro");
-		prodotti[36] = new ProdottoQuadrato(268, 1812, "Pomodoro");
-		prodotti[37] = new ProdottoQuadrato(524, 1812, "Pomodoro");
-		prodotti[38] = new ProdottoQuadrato(780, 1812, "Pomodoro");
-		prodotti[39] = new ProdottoQuadrato(1036, 1812, "Pomodoro");
-		prodotti[40] = new ProdottoQuadrato(12, 2068, "Pomodoro");
-		prodotti[41] = new ProdottoQuadrato(268, 2068, "Pomodoro");
-		prodotti[42] = new ProdottoQuadrato(524, 2068, "Pomodoro");
-		prodotti[43] = new ProdottoQuadrato(780, 2068, "Pomodoro");
-		prodotti[44] = new ProdottoQuadrato(1036, 2068, "Pomodoro");
-		prodotti[45] = new ProdottoQuadrato(12, 2324, "Pomodoro");
-		prodotti[46] = new ProdottoQuadrato(268, 2324, "Pomodoro");
-		prodotti[47] = new ProdottoQuadrato(524, 2324, "Pomodoro");
-		prodotti[48] = new ProdottoQuadrato(780, 2324, "Pomodoro");
-		prodotti[49] = new ProdottoQuadrato(1036, 2324, "Pomodoro");
-		prodotti[50] = new ProdottoQuadrato(12, 2580, "Pomodoro");
-		prodotti[51] = new ProdottoQuadrato(268, 2580, "Pomodoro");
-		prodotti[52] = new ProdottoQuadrato(524, 2580, "Pomodoro");
-		prodotti[53] = new ProdottoQuadrato(780, 2580, "Pomodoro");
-		prodotti[54] = new ProdottoQuadrato(1036, 2580, "Pomodoro");
-		prodotti[55] = new ProdottoQuadrato(12, 2836, "Pomodoro");
-		prodotti[56] = new ProdottoQuadrato(268, 2836, "Pomodoro");
-		prodotti[57] = new ProdottoQuadrato(524, 2836, "Pomodoro");
-		prodotti[58] = new ProdottoQuadrato(780, 2836, "Pomodoro");
-		prodotti[59] = new ProdottoQuadrato(1036, 2836, "Pomodoro");
-		prodotti[60] = new ProdottoQuadrato(12, 3092, "Pomodoro");
-		prodotti[61] = new ProdottoQuadrato(268, 3092, "Pomodoro");
-		prodotti[62] = new ProdottoQuadrato(524, 3092, "Pomodoro");
-		prodotti[63] = new ProdottoQuadrato(780, 3092, "Pomodoro");
-		prodotti[64] = new ProdottoQuadrato(1036, 3092, "Pomodoro");
-		prodotti[65] = new ProdottoQuadrato(12, 3348, "Pomodoro");
-		prodotti[66] = new ProdottoQuadrato(268, 3348, "Pomodoro");
-		prodotti[67] = new ProdottoQuadrato(524, 3348, "Pomodoro");
-		prodotti[68] = new ProdottoQuadrato(780, 3348, "Pomodoro");
-		prodotti[69] = new ProdottoQuadrato(1036, 3348, "Pomodoro");
-		prodotti[70] = new ProdottoQuadrato(12, 3604, "Pomodoro");
-		prodotti[71] = new ProdottoQuadrato(268, 3604, "Pomodoro");
-		prodotti[72] = new ProdottoQuadrato(524, 3604, "Pomodoro");
-		prodotti[73] = new ProdottoQuadrato(780, 3604, "Pomodoro");
-		prodotti[74] = new ProdottoQuadrato(1036, 3604, "Pomodoro");
-		prodotti[75] = new ProdottoQuadrato(12, 3860, "Pomodoro");
-		prodotti[76] = new ProdottoQuadrato(268, 3860, "Pomodoro");
-		prodotti[77] = new ProdottoQuadrato(524, 3860, "Pomodoro");
-		prodotti[78] = new ProdottoQuadrato(780, 3860, "Pomodoro");
-		prodotti[79] = new ProdottoQuadrato(1036, 3860, "Pomodoro");
-		prodotti[80] = new ProdottoQuadrato(12, 4116, "Pomodoro");
-		prodotti[81] = new ProdottoQuadrato(268, 4116, "Pomodoro");
-		prodotti[82] = new ProdottoQuadrato(524, 4116, "Pomodoro");
-		prodotti[83] = new ProdottoQuadrato(780, 4116, "Pomodoro");
-		prodotti[84] = new ProdottoQuadrato(1036, 4116, "Pomodoro");
-		prodotti[85] = new ProdottoQuadrato(12, 4372, "Pomodoro");
-		prodotti[86] = new ProdottoQuadrato(268, 4372, "Pomodoro");
-		prodotti[87] = new ProdottoQuadrato(524, 4372, "Pomodoro");
-		prodotti[88] = new ProdottoQuadrato(780, 4372, "Pomodoro");
-		prodotti[89] = new ProdottoQuadrato(1036, 4372, "Pomodoro");
-		prodotti[90] = new ProdottoQuadrato(12, 4628, "Pomodoro");
-		prodotti[91] = new ProdottoQuadrato(268, 4628, "Pomodoro");
-		prodotti[92] = new ProdottoQuadrato(524, 4628, "Pomodoro");
-		prodotti[93] = new ProdottoQuadrato(780, 4628, "Pomodoro");
-		prodotti[94] = new ProdottoQuadrato(1036, 4628, "Pomodoro");
-		prodotti[95] = new ProdottoQuadrato(12, 4884, "Pomodoro");
-		prodotti[96] = new ProdottoQuadrato(268, 4884, "Pomodoro");
-		prodotti[97] = new ProdottoQuadrato(524, 4884, "Pomodoro");
-		prodotti[98] = new ProdottoQuadrato(780, 4884, "Pomodoro");
-		prodotti[99] = new ProdottoQuadrato(1036, 4884, "Pomodoro");
-		prodotti[100] = new ProdottoQuadrato(12, 5140, "Pomodoro");
-		prodotti[101] = new ProdottoQuadrato(268, 5140, "Pomodoro");
-		prodotti[102] = new ProdottoQuadrato(524, 5140, "Pomodoro");
-		prodotti[103] = new ProdottoQuadrato(780, 5140, "Pomodoro");
-		prodotti[104] = new ProdottoQuadrato(1036, 5140, "Pomodoro");
-		prodotti[105] = new ProdottoQuadrato(12, 5396, "Pomodoro");
-		prodotti[106] = new ProdottoQuadrato(268, 5396, "Pomodoro");
-		prodotti[107] = new ProdottoQuadrato(524, 5396, "Pomodoro");
-		prodotti[108] = new ProdottoQuadrato(780, 5396, "Pomodoro");
-		prodotti[109] = new ProdottoQuadrato(1036, 5396, "Pomodoro");
-		prodotti[110] = new ProdottoQuadrato(12, 5652, "Pomodoro");
-		prodotti[111] = new ProdottoQuadrato(268, 5652, "Pomodoro");
-		prodotti[112] = new ProdottoQuadrato(524, 5652, "Pomodoro");
-		prodotti[113] = new ProdottoQuadrato(780, 5652, "Pomodoro");
-		prodotti[114] = new ProdottoQuadrato(1036, 5652, "Pomodoro");
-		prodotti[115] = new ProdottoQuadrato(12, 5908, "Pomodoro");
-		prodotti[116] = new ProdottoQuadrato(268, 5908, "Pomodoro");
-		prodotti[117] = new ProdottoQuadrato(524, 5908, "Pomodoro");
-		prodotti[118] = new ProdottoQuadrato(780, 5908, "Pomodoro");
-		prodotti[119] = new ProdottoQuadrato(1036, 5908, "Pomodoro");
-		prodotti[120] = new ProdottoQuadrato(12, 6164, "Pomodoro");
-		prodotti[121] = new ProdottoQuadrato(268, 6164, "Pomodoro");
-		prodotti[122] = new ProdottoQuadrato(524, 6164, "Pomodoro");
-		prodotti[123] = new ProdottoQuadrato(780, 6164, "Pomodoro");
-		prodotti[124] = new ProdottoQuadrato(1036, 6164, "Pomodoro");
-		prodotti[125] = new ProdottoQuadrato(12, 6420, "Pomodoro");
-		prodotti[126] = new ProdottoQuadrato(268, 6420, "Pomodoro");
-		prodotti[127] = new ProdottoQuadrato(524, 6420, "Pomodoro");
-		prodotti[128] = new ProdottoQuadrato(780, 6420, "Pomodoro");
-		prodotti[129] = new ProdottoQuadrato(1036, 6420, "Pomodoro");
-		prodotti[130] = new ProdottoQuadrato(12, 6676, "Pomodoro");
-		prodotti[131] = new ProdottoQuadrato(268, 6676, "Pomodoro");
-		prodotti[132] = new ProdottoQuadrato(524, 6676, "Pomodoro");
-		prodotti[133] = new ProdottoQuadrato(780, 6676, "Pomodoro");
-		prodotti[134] = new ProdottoQuadrato(1036, 6676, "Pomodoro");
-		prodotti[135] = new ProdottoQuadrato(12, 6932, "Pomodoro");
-		prodotti[136] = new ProdottoQuadrato(268, 6932, "Pomodoro");
-		prodotti[137] = new ProdottoQuadrato(524, 6932, "Pomodoro");
-		prodotti[138] = new ProdottoQuadrato(780, 6932, "Pomodoro");
-		prodotti[139] = new ProdottoQuadrato(1036, 6932, "Pomodoro");
-		prodotti[140] = new ProdottoQuadrato(12, 7188, "Pomodoro");
-		prodotti[141] = new ProdottoQuadrato(268, 7188, "Pomodoro");
-		prodotti[142] = new ProdottoQuadrato(524, 7188, "Pomodoro");
-		prodotti[143] = new ProdottoQuadrato(780, 7188, "Pomodoro");
-		prodotti[144] = new ProdottoQuadrato(1036, 7188, "Pomodoro");
-		prodotti[145] = new ProdottoQuadrato(12, 7444, "Pomodoro");
-		prodotti[146] = new ProdottoQuadrato(268, 7444, "Pomodoro");
-		prodotti[147] = new ProdottoQuadrato(524, 7444, "Pomodoro");
-		prodotti[148] = new ProdottoQuadrato(780, 7444, "Pomodoro");
-		prodotti[149] = new ProdottoQuadrato(1036, 7444, "Pomodoro");
+		prodotti[0] = new ProdottoQuadrato(12, 20, "Pomodoro", "yes");
+		prodotti[1] = new ProdottoQuadrato(268, 20, "Pomodoro", "yes");
+		prodotti[2] = new ProdottoQuadrato(524, 20, "Pomodoro", "yes");
+		prodotti[3] = new ProdottoQuadrato(780, 20, "Pomodoro", "yes");
+		prodotti[4] = new ProdottoQuadrato(1036, 20, "Pomodoro", "yes");
+		prodotti[5] = new ProdottoQuadrato(12, 276, "Pomodoro", "yes");
+		prodotti[6] = new ProdottoQuadrato(268, 276, "Pomodoro", "yes");
+		prodotti[7] = new ProdottoQuadrato(524, 276, "Pomodoro", "yes");
+		prodotti[8] = new ProdottoQuadrato(780, 276, "Pomodoro", "yes");
+		prodotti[9] = new ProdottoQuadrato(1036, 276, "Pomodoro", "yes");
+		prodotti[10] = new ProdottoQuadrato(12, 532, "Pomodoro", "yes");
+		prodotti[11] = new ProdottoQuadrato(268, 532, "Pomodoro", "yes");
+		prodotti[12] = new ProdottoQuadrato(524, 532, "Pomodoro", "yes");
+		prodotti[13] = new ProdottoQuadrato(780, 532, "Pomodoro", "yes");
+		prodotti[14] = new ProdottoQuadrato(1036, 532, "Pomodoro", "yes");
+		prodotti[15] = new ProdottoQuadrato(12, 788, "Pomodoro", "yes");
+		prodotti[16] = new ProdottoQuadrato(268, 788, "Pomodoro", "yes");
+		prodotti[17] = new ProdottoQuadrato(524, 788, "Pomodoro", "yes");
+		prodotti[18] = new ProdottoQuadrato(780, 788, "Pomodoro", "yes");
+		prodotti[19] = new ProdottoQuadrato(1036, 788, "Pomodoro", "yes");
+		prodotti[20] = new ProdottoQuadrato(12, 1044, "Pomodoro", "yes");
+		prodotti[21] = new ProdottoQuadrato(268, 1044, "Pomodoro", "yes");
+		prodotti[22] = new ProdottoQuadrato(524, 1044, "Pomodoro", "yes");
+		prodotti[23] = new ProdottoQuadrato(780, 1044, "Pomodoro", "yes");
+		prodotti[24] = new ProdottoQuadrato(1036, 1044, "Pomodoro", "yes");
+		prodotti[25] = new ProdottoQuadrato(12, 1300, "Pomodoro", "yes");
+		prodotti[26] = new ProdottoQuadrato(268, 1300, "Pomodoro", "yes");
+		prodotti[27] = new ProdottoQuadrato(524, 1300, "Pomodoro", "yes");
+		prodotti[28] = new ProdottoQuadrato(780, 1300, "Pomodoro", "yes");
+		prodotti[29] = new ProdottoQuadrato(1036, 1300, "Pomodoro", "yes");
+		prodotti[30] = new ProdottoQuadrato(12, 1556, "Pomodoro", "yes");
+		prodotti[31] = new ProdottoQuadrato(268, 1556, "Pomodoro", "yes");
+		prodotti[32] = new ProdottoQuadrato(524, 1556, "Pomodoro", "yes");
+		prodotti[33] = new ProdottoQuadrato(780, 1556, "Pomodoro", "yes");
+		prodotti[34] = new ProdottoQuadrato(1036, 1556, "Pomodoro", "yes");
+		prodotti[35] = new ProdottoQuadrato(12, 1812, "Pomodoro", "yes");
+		prodotti[36] = new ProdottoQuadrato(268, 1812, "Pomodoro", "yes");
+		prodotti[37] = new ProdottoQuadrato(524, 1812, "Pomodoro", "yes");
+		prodotti[38] = new ProdottoQuadrato(780, 1812, "Pomodoro", "yes");
+		prodotti[39] = new ProdottoQuadrato(1036, 1812, "Pomodoro", "yes");
+		prodotti[40] = new ProdottoQuadrato(12, 2068, "Pomodoro", "yes");
+		prodotti[41] = new ProdottoQuadrato(268, 2068, "Pomodoro", "yes");
+		prodotti[42] = new ProdottoQuadrato(524, 2068, "Pomodoro", "yes");
+		prodotti[43] = new ProdottoQuadrato(780, 2068, "Pomodoro", "yes");
+		prodotti[44] = new ProdottoQuadrato(1036, 2068, "Pomodoro", "yes");
+		prodotti[45] = new ProdottoQuadrato(12, 2324, "Pomodoro", "yes");
+		prodotti[46] = new ProdottoQuadrato(268, 2324, "Pomodoro", "yes");
+		prodotti[47] = new ProdottoQuadrato(524, 2324, "Pomodoro", "yes");
+		prodotti[48] = new ProdottoQuadrato(780, 2324, "Pomodoro", "yes");
+		prodotti[49] = new ProdottoQuadrato(1036, 2324, "Pomodoro", "yes");
+		prodotti[50] = new ProdottoQuadrato(12, 2580, "Pomodoro", "yes");
+		prodotti[51] = new ProdottoQuadrato(268, 2580, "Pomodoro", "yes");
+		prodotti[52] = new ProdottoQuadrato(524, 2580, "Pomodoro", "yes");
+		prodotti[53] = new ProdottoQuadrato(780, 2580, "Pomodoro", "yes");
+		prodotti[54] = new ProdottoQuadrato(1036, 2580, "Pomodoro", "yes");
+		prodotti[55] = new ProdottoQuadrato(12, 2836, "Pomodoro", "yes");
+		prodotti[56] = new ProdottoQuadrato(268, 2836, "Pomodoro", "yes");
+		prodotti[57] = new ProdottoQuadrato(524, 2836, "Pomodoro", "yes");
+		prodotti[58] = new ProdottoQuadrato(780, 2836, "Pomodoro", "yes");
+		prodotti[59] = new ProdottoQuadrato(1036, 2836, "Pomodoro", "yes");
+		prodotti[60] = new ProdottoQuadrato(12, 3092, "Pomodoro", "yes");
+		prodotti[61] = new ProdottoQuadrato(268, 3092, "Pomodoro", "yes");
+		prodotti[62] = new ProdottoQuadrato(524, 3092, "Pomodoro", "yes");
+		prodotti[63] = new ProdottoQuadrato(780, 3092, "Pomodoro", "yes");
+		prodotti[64] = new ProdottoQuadrato(1036, 3092, "Pomodoro", "yes");
+		prodotti[65] = new ProdottoQuadrato(12, 3348, "Pomodoro", "yes");
+		prodotti[66] = new ProdottoQuadrato(268, 3348, "Pomodoro", "yes");
+		prodotti[67] = new ProdottoQuadrato(524, 3348, "Pomodoro", "yes");
+		prodotti[68] = new ProdottoQuadrato(780, 3348, "Pomodoro", "yes");
+		prodotti[69] = new ProdottoQuadrato(1036, 3348, "Pomodoro", "yes");
+		prodotti[70] = new ProdottoQuadrato(12, 3604, "Pomodoro", "yes");
+		prodotti[71] = new ProdottoQuadrato(268, 3604, "Pomodoro", "yes");
+		prodotti[72] = new ProdottoQuadrato(524, 3604, "Pomodoro", "yes");
+		prodotti[73] = new ProdottoQuadrato(780, 3604, "Pomodoro", "yes");
+		prodotti[74] = new ProdottoQuadrato(1036, 3604, "Pomodoro", "yes");
+		prodotti[75] = new ProdottoQuadrato(12, 3860, "Pomodoro", "yes");
+		prodotti[76] = new ProdottoQuadrato(268, 3860, "Pomodoro", "yes");
+		prodotti[77] = new ProdottoQuadrato(524, 3860, "Pomodoro", "yes");
+		prodotti[78] = new ProdottoQuadrato(780, 3860, "Pomodoro", "yes");
+		prodotti[79] = new ProdottoQuadrato(1036, 3860, "Pomodoro", "yes");
+		prodotti[80] = new ProdottoQuadrato(12, 4116, "Pomodoro", "yes");
+		prodotti[81] = new ProdottoQuadrato(268, 4116, "Pomodoro", "yes");
+		prodotti[82] = new ProdottoQuadrato(524, 4116, "Pomodoro", "yes");
+		prodotti[83] = new ProdottoQuadrato(780, 4116, "Pomodoro", "yes");
+		prodotti[84] = new ProdottoQuadrato(1036, 4116, "Pomodoro", "yes");
+		prodotti[85] = new ProdottoQuadrato(12, 4372, "Pomodoro", "yes");
+		prodotti[86] = new ProdottoQuadrato(268, 4372, "Pomodoro", "yes");
+		prodotti[87] = new ProdottoQuadrato(524, 4372, "Pomodoro", "yes");
+		prodotti[88] = new ProdottoQuadrato(780, 4372, "Pomodoro", "yes");
+		prodotti[89] = new ProdottoQuadrato(1036, 4372, "Pomodoro", "yes");
+		prodotti[90] = new ProdottoQuadrato(12, 4628, "Pomodoro", "yes");
+		prodotti[91] = new ProdottoQuadrato(268, 4628, "Pomodoro", "yes");
+		prodotti[92] = new ProdottoQuadrato(524, 4628, "Pomodoro", "yes");
+		prodotti[93] = new ProdottoQuadrato(780, 4628, "Pomodoro", "yes");
+		prodotti[94] = new ProdottoQuadrato(1036, 4628, "Pomodoro", "yes");
+		prodotti[95] = new ProdottoQuadrato(12, 4884, "Pomodoro", "yes");
+		prodotti[96] = new ProdottoQuadrato(268, 4884, "Pomodoro", "yes");
+		prodotti[97] = new ProdottoQuadrato(524, 4884, "Pomodoro", "yes");
+		prodotti[98] = new ProdottoQuadrato(780, 4884, "Pomodoro", "yes");
+		prodotti[99] = new ProdottoQuadrato(1036, 4884, "Pomodoro", "yes");
+		prodotti[100] = new ProdottoQuadrato(12, 5140, "Pomodoro", "yes");
+		prodotti[101] = new ProdottoQuadrato(268, 5140, "Pomodoro", "yes");
+		prodotti[102] = new ProdottoQuadrato(524, 5140, "Pomodoro", "yes");
+		prodotti[103] = new ProdottoQuadrato(780, 5140, "Pomodoro", "yes");
+		prodotti[104] = new ProdottoQuadrato(1036, 5140, "Pomodoro", "yes");
+		prodotti[105] = new ProdottoQuadrato(12, 5396, "Pomodoro", "yes");
+		prodotti[106] = new ProdottoQuadrato(268, 5396, "Pomodoro", "yes");
+		prodotti[107] = new ProdottoQuadrato(524, 5396, "Pomodoro", "yes");
+		prodotti[108] = new ProdottoQuadrato(780, 5396, "Pomodoro", "yes");
+		prodotti[109] = new ProdottoQuadrato(1036, 5396, "Pomodoro", "yes");
+		prodotti[110] = new ProdottoQuadrato(12, 5652, "Pomodoro", "yes");
+		prodotti[111] = new ProdottoQuadrato(268, 5652, "Pomodoro", "yes");
+		prodotti[112] = new ProdottoQuadrato(524, 5652, "Pomodoro", "yes");
+		prodotti[113] = new ProdottoQuadrato(780, 5652, "Pomodoro", "yes");
+		prodotti[114] = new ProdottoQuadrato(1036, 5652, "Pomodoro", "yes");
+		prodotti[115] = new ProdottoQuadrato(12, 5908, "Pomodoro", "yes");
+		prodotti[116] = new ProdottoQuadrato(268, 5908, "Pomodoro", "yes");
+		prodotti[117] = new ProdottoQuadrato(524, 5908, "Pomodoro", "yes");
+		prodotti[118] = new ProdottoQuadrato(780, 5908, "Pomodoro", "yes");
+		prodotti[119] = new ProdottoQuadrato(1036, 5908, "Pomodoro", "yes");
+		prodotti[120] = new ProdottoQuadrato(12, 6164, "Pomodoro", "yes");
+		prodotti[121] = new ProdottoQuadrato(268, 6164, "Pomodoro", "yes");
+		prodotti[122] = new ProdottoQuadrato(524, 6164, "Pomodoro", "yes");
+		prodotti[123] = new ProdottoQuadrato(780, 6164, "Pomodoro", "yes");
+		prodotti[124] = new ProdottoQuadrato(1036, 6164, "Pomodoro", "yes");
+		prodotti[125] = new ProdottoQuadrato(12, 6420, "Pomodoro", "yes");
+		prodotti[126] = new ProdottoQuadrato(268, 6420, "Pomodoro", "yes");
+		prodotti[127] = new ProdottoQuadrato(524, 6420, "Pomodoro", "yes");
+		prodotti[128] = new ProdottoQuadrato(780, 6420, "Pomodoro", "yes");
+		prodotti[129] = new ProdottoQuadrato(1036, 6420, "Pomodoro", "yes");
+		prodotti[130] = new ProdottoQuadrato(12, 6676, "Pomodoro", "yes");
+		prodotti[131] = new ProdottoQuadrato(268, 6676, "Pomodoro", "yes");
+		prodotti[132] = new ProdottoQuadrato(524, 6676, "Pomodoro", "yes");
+		prodotti[133] = new ProdottoQuadrato(780, 6676, "Pomodoro", "yes");
+		prodotti[134] = new ProdottoQuadrato(1036, 6676, "Pomodoro", "yes");
+		prodotti[135] = new ProdottoQuadrato(12, 6932, "Pomodoro", "yes");
+		prodotti[136] = new ProdottoQuadrato(268, 6932, "Pomodoro", "yes");
+		prodotti[137] = new ProdottoQuadrato(524, 6932, "Pomodoro", "yes");
+		prodotti[138] = new ProdottoQuadrato(780, 6932, "Pomodoro", "yes");
+		prodotti[139] = new ProdottoQuadrato(1036, 6932, "Pomodoro", "yes");
+		prodotti[140] = new ProdottoQuadrato(12, 7188, "Pomodoro", "yes");
+		prodotti[141] = new ProdottoQuadrato(268, 7188, "Pomodoro", "yes");
+		prodotti[142] = new ProdottoQuadrato(524, 7188, "Pomodoro", "yes");
+		prodotti[143] = new ProdottoQuadrato(780, 7188, "Pomodoro", "yes");
+		prodotti[144] = new ProdottoQuadrato(1036, 7188, "Pomodoro", "yes");
+		prodotti[145] = new ProdottoQuadrato(12, 7444, "Pomodoro", "yes");
+		prodotti[146] = new ProdottoQuadrato(268, 7444, "Pomodoro", "yes");
+		prodotti[147] = new ProdottoQuadrato(524, 7444, "Pomodoro", "yes");
+		prodotti[148] = new ProdottoQuadrato(780, 7444, "Pomodoro", "yes");
+		prodotti[149] = new ProdottoQuadrato(1036, 7444, "Pomodoro", "yes");
 		for(int c = 0; c<150; c++) {
 			panelScrollCatalogo.add(prodotti[c]);
 		}
-		//setto lo scrollpane
+		//setto lo scrollpane con la grandezza da mostrare
 		scrollCatalogo = new JScrollPane(panelScrollCatalogo, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollCatalogo.setBounds(0, 100, 1279, 663);
 		scrollCatalogo.setBackground(null);
