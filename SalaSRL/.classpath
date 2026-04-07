@@ -6,9 +6,10 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="Prodotto"/>
+	<classpathentry kind="src" path="ProdottoQuad"/>
 	<classpathentry kind="src" path="Admin"/>
 	<classpathentry kind="src" path="Login"/>
 	<classpathentry kind="src" path="LineaScorrimento"/>
+	<classpathentry kind="src" path="ProdottoLung"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

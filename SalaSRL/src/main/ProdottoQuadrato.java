@@ -4,7 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.io.*;
 
-public class Prodotto extends JPanel{
+public class ProdottoQuadrato extends JPanel{
 	
 	//Label per base del prodotto
 	private JLabel base = new JLabel();
@@ -24,7 +24,7 @@ public class Prodotto extends JPanel{
 	private int nAcquistati = 0;
 	
 	//costruttore, richiede (coordinata x, coordinata y, nome prodotto)
-	public Prodotto(int prX, int prY, String nomeProdotto) {
+	public ProdottoQuadrato(int prX, int prY, String nomeProdotto) {
 		//setto il Panel
 		setLayout(null);
 		setBounds(prX, prY, 236, 236);
@@ -42,7 +42,7 @@ public class Prodotto extends JPanel{
 		//imposto coordinate e grandezza della label
 		base.setBounds(0, 0, 236, 236);
 		//imposto l'immagine da dargli
-		icon = new ImageIcon(getClass().getClassLoader().getResource("SfondoProdotto"+nomeProdotto+".png"));
+		icon = new ImageIcon(getClass().getClassLoader().getResource("SfondoProdottoQuad"+nomeProdotto+".png"));
 		base.setIcon(icon);
 		add(base);
 	}
@@ -65,11 +65,11 @@ public class Prodotto extends JPanel{
 		piu.setBorderPainted(false);
 		piu.setBounds(179, 185, 37, 37);
 		//imposto l'immagine da dargli
-		icon = new ImageIcon(getClass().getClassLoader().getResource("PiuProdottoPress.png"));
+		icon = new ImageIcon(getClass().getClassLoader().getResource("PiuProdottoQuadPress.png"));
 		iconScaled = icon.getImage().getScaledInstance(38, 38, Image.SCALE_SMOOTH);
 		icon = new ImageIcon(iconScaled);
 		piu.setPressedIcon(icon);	
-		icon = new ImageIcon(getClass().getClassLoader().getResource("PiuProdotto.png"));
+		icon = new ImageIcon(getClass().getClassLoader().getResource("PiuProdottoQuad.png"));
 		iconScaled = icon.getImage().getScaledInstance(38, 38, Image.SCALE_SMOOTH);
 		icon = new ImageIcon(iconScaled);
 		piu.setIcon(icon);
@@ -85,11 +85,11 @@ public class Prodotto extends JPanel{
 		meno.setBorderPainted(false);
 		meno.setBounds(99, 185, 37, 37);
 		//imposto l'immagine da dargli
-		icon = new ImageIcon(getClass().getClassLoader().getResource("MenoProdottoPress.png"));
+		icon = new ImageIcon(getClass().getClassLoader().getResource("MenoProdottoQuadPress.png"));
 		iconScaled = icon.getImage().getScaledInstance(37, 37, Image.SCALE_SMOOTH);
 		icon = new ImageIcon(iconScaled);
 		meno.setPressedIcon(icon);	
-		icon = new ImageIcon(getClass().getClassLoader().getResource("MenoProdotto.png"));
+		icon = new ImageIcon(getClass().getClassLoader().getResource("MenoProdottoQuad.png"));
 		iconScaled = icon.getImage().getScaledInstance(37, 37, Image.SCALE_SMOOTH);
 		icon = new ImageIcon(iconScaled);
 		meno.setIcon(icon);
@@ -105,11 +105,11 @@ public class Prodotto extends JPanel{
 		buy.setBorderPainted(false);
 		buy.setBounds(20, 185, 37, 37);
 		//imposto l'immagine da dargli
-		icon = new ImageIcon(getClass().getClassLoader().getResource("BuyProdottoPress.png"));
+		icon = new ImageIcon(getClass().getClassLoader().getResource("BuyProdottoQuadPress.png"));
 		iconScaled = icon.getImage().getScaledInstance(37, 37, Image.SCALE_SMOOTH);
 		icon = new ImageIcon(iconScaled);
 		buy.setPressedIcon(icon);	
-		icon = new ImageIcon(getClass().getClassLoader().getResource("BuyProdotto.png"));
+		icon = new ImageIcon(getClass().getClassLoader().getResource("BuyProdottoQuad.png"));
 		iconScaled = icon.getImage().getScaledInstance(37, 37, Image.SCALE_SMOOTH);
 		icon = new ImageIcon(iconScaled);
 		buy.setIcon(icon);
@@ -154,14 +154,17 @@ public class Prodotto extends JPanel{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		frame.setLayout(null);
 		
-		Login login = new Login();
-		frame.add(login);
+		//Login login = new Login();
+		//frame.add(login);
 		
-		//Prodotto prod = new Prodotto(0, 0, "Pomodoro");
+		//ProdottoQuadrato prod = new ProdottoQuadrato(0, 0, "Pomodoro");
 		//frame.add(prod);
 		
-		//Admin admin = new Admin();
-		//frame.add(admin);
+		//ProdottoLungo prod = new ProdottoLungo(0, 0, "Pomodoro");
+		//frame.add(prod);
+		
+		Admin admin = new Admin();
+		frame.add(admin);
 		frame.setVisible(true);
 	}
 }
