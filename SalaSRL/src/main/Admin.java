@@ -1,7 +1,8 @@
 package main;
 
-import java.awt.Dimension;
-import java.awt.Image;
+import java.awt.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 public class Admin extends JPanel {
@@ -14,8 +15,8 @@ public class Admin extends JPanel {
 		setLayout(null);
 		setBounds(0, 0, 1331, 768);
 		//creo le 3 schermate
-		creaMagazzino();
 		creaCatalogo();
+		creaMagazzino();
 		creaCarrello();
 	}
 	
@@ -25,7 +26,7 @@ public class Admin extends JPanel {
 		//aggiungo un actionlistener per cambiare schermata in catalogo
 		((Magazzino) schermate[0]).getCatalogoMag().addActionListener(e -> changeInCatalogo());
 		//aggiungo un actionlistener per cambiare schermata in carrello
-		((Magazzino) schermate[0]).getCarrellooMag().addActionListener(e -> changeInCarrello());
+		((Magazzino) schermate[0]).getCarrellooMag().addActionListener(e -> changeInCarrello(((Catalogo) schermate[1]).getProdottiNelCarrello()));
 		add(schermate[0]);
 	}
 	
@@ -35,7 +36,7 @@ public class Admin extends JPanel {
 		//aggiungo un actionlistener per cambiare schermata in magazzino
 		((Catalogo) schermate[1]).getMagazzinoCat().addActionListener(e -> changeInMagazzino());
 		//aggiungo un actionlistener per cambiare schermata in carrello
-		((Catalogo) schermate[1]).getCarrelloCat().addActionListener(e -> changeInCarrello());
+		((Catalogo) schermate[1]).getCarrelloCat().addActionListener(e -> changeInCarrello(((Catalogo) schermate[1]).getProdottiNelCarrello()));
 		add(schermate[1]);
 	}
 	
@@ -64,8 +65,8 @@ public class Admin extends JPanel {
 	}
 
 	//metodo per mostrare la schermata carrello
-	public void changeInCarrello() {
-		
+	public void changeInCarrello(ArrayList<InformazioniDaPassare> prodotti) {
+		((Carrello) schermate[2]).generaProdotti(prodotti);
 		schermate[0].setVisible(false);
 		schermate[1].setVisible(false);
 		schermate[2].setVisible(true);

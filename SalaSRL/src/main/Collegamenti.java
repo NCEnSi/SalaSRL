@@ -35,8 +35,8 @@ public class Collegamenti extends JFrame {
 		schermateCompl[2] = new Utente();
 		
 		//faccio vedere solo login
-		schermateCompl[0].setVisible(true);
-		schermateCompl[1].setVisible(false);
+		schermateCompl[0].setVisible(false);
+		schermateCompl[1].setVisible(true);
 		schermateCompl[2].setVisible(false);
 		
 		//aggiungo le schermate alla finestra

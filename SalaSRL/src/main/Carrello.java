@@ -1,6 +1,8 @@
 package main;
 
 import java.awt.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 public class Carrello extends JPanel{
@@ -27,12 +29,13 @@ public class Carrello extends JPanel{
 	private JLabel sfondoProdotti = new JLabel();
 	private JLabel informazioni = new JLabel();
 	//jscroll e panel per contenere i prodotti del carrello
+	private int altezzaPanelScrollCarrello, yMax;
 	private JPanel panelScrollCarrello = new JPanel();
 	private JScrollPane scrollCarrello;
 	//JPanel usata per scorrere i prodotti nel carrello
 	private LineaScorrimento scorriCarrello;
 	//array che contiene prodotti in catalogo
-	private ProdottoLungo[] prodotti = new ProdottoLungo[70];
+	private ArrayList<ProdottoLungo> prodotti = new ArrayList<>();
 	private int valore;
 	private int cellaScorrimento;
 	//label per contenere lo sfondo delle info dei prodotti nel carrello
@@ -44,7 +47,7 @@ public class Carrello extends JPanel{
 		setLayout(null);
 		setBounds(0, 0, 1331, 768);
 		//aggingo i prodotti e la scrollbar personalizzata
-		generaProdotti();
+		addComponentiScroll();
 		setScorriCarrello();
 		//setto i vari componenti
 		setImmagineProfiloCar();
@@ -167,88 +170,15 @@ public class Carrello extends JPanel{
 		return catalogoCar;
 	}
 	
-	//metodo per generare i 70 prodotti nel catalogo
-	public void generaProdotti() {
-		//setto il panel con la grandezza totale che deve avere
-		panelScrollCarrello.setPreferredSize(new Dimension(804, 11710));
+	//GENERA PRODOTTI DEVE RIATTIVARSI ANCHE QUANDO SI ELIMINA DEL TUTTO UN PRODOTTO DAL CARRELLO
+	//QUINDI AGGIUGERE ANCHE LE FUNZIONI DEI TASTI DEL PRODOTTOLUNGO
+	
+	//metodo per aggiungere subito questi due componenti se no vengono coperti
+	public void addComponentiScroll() {
+		panelScrollCarrello.setPreferredSize(new Dimension(804, 584));
 		panelScrollCarrello.setBackground(null);
 		panelScrollCarrello.setLayout(null);
 		panelScrollCarrello.setOpaque(false);
-		//creo 70 diversi prodotti
-		prodotti[0] = new ProdottoLungo(10, 10, "Pomodoro");
-		prodotti[1] = new ProdottoLungo(10, 88, "Pomodoro");
-		prodotti[2] = new ProdottoLungo(10, 166, "Pomodoro");
-		prodotti[3] = new ProdottoLungo(10, 244, "Pomodoro");
-		prodotti[4] = new ProdottoLungo(10, 322, "Pomodoro");
-		prodotti[5] = new ProdottoLungo(10, 400, "Pomodoro");
-		prodotti[6] = new ProdottoLungo(10, 478, "Pomodoro");
-		prodotti[7] = new ProdottoLungo(10, 556, "Pomodoro");
-		prodotti[8] = new ProdottoLungo(10, 634, "Pomodoro");
-		prodotti[9] = new ProdottoLungo(10, 712, "Pomodoro");
-		prodotti[10] = new ProdottoLungo(10, 790, "Pomodoro");
-		prodotti[11] = new ProdottoLungo(10, 868, "Pomodoro");
-		prodotti[12] = new ProdottoLungo(10, 946, "Pomodoro");
-		prodotti[13] = new ProdottoLungo(10, 1024, "Pomodoro");
-		prodotti[14] = new ProdottoLungo(10, 1102, "Pomodoro");
-		prodotti[15] = new ProdottoLungo(10, 1180, "Pomodoro");
-		prodotti[16] = new ProdottoLungo(10, 1258, "Pomodoro");
-		prodotti[17] = new ProdottoLungo(10, 1336, "Pomodoro");
-		prodotti[18] = new ProdottoLungo(10, 1414, "Pomodoro");
-		prodotti[19] = new ProdottoLungo(10, 1492, "Pomodoro");
-		prodotti[20] = new ProdottoLungo(10, 1570, "Pomodoro");
-		prodotti[21] = new ProdottoLungo(10, 1648, "Pomodoro");
-		prodotti[22] = new ProdottoLungo(10, 1726, "Pomodoro");
-		prodotti[23] = new ProdottoLungo(10, 1804, "Pomodoro");
-		prodotti[24] = new ProdottoLungo(10, 1882, "Pomodoro");
-		prodotti[25] = new ProdottoLungo(10, 1960, "Pomodoro");
-		prodotti[26] = new ProdottoLungo(10, 2038, "Pomodoro");
-		prodotti[27] = new ProdottoLungo(10, 2116, "Pomodoro");
-		prodotti[28] = new ProdottoLungo(10, 2194, "Pomodoro");
-		prodotti[29] = new ProdottoLungo(10, 2272, "Pomodoro");
-		prodotti[30] = new ProdottoLungo(10, 2350, "Pomodoro");
-		prodotti[31] = new ProdottoLungo(10, 2428, "Pomodoro");
-		prodotti[32] = new ProdottoLungo(10, 2506, "Pomodoro");
-		prodotti[33] = new ProdottoLungo(10, 2584, "Pomodoro");
-		prodotti[34] = new ProdottoLungo(10, 2662, "Pomodoro");
-		prodotti[35] = new ProdottoLungo(10, 2740, "Pomodoro");
-		prodotti[36] = new ProdottoLungo(10, 2818, "Pomodoro");
-		prodotti[37] = new ProdottoLungo(10, 2896, "Pomodoro");
-		prodotti[38] = new ProdottoLungo(10, 2974, "Pomodoro");
-		prodotti[39] = new ProdottoLungo(10, 3052, "Pomodoro");
-		prodotti[40] = new ProdottoLungo(10, 3130, "Pomodoro");
-		prodotti[41] = new ProdottoLungo(10, 3208, "Pomodoro");
-		prodotti[42] = new ProdottoLungo(10, 3286, "Pomodoro");
-		prodotti[43] = new ProdottoLungo(10, 3364, "Pomodoro");
-		prodotti[44] = new ProdottoLungo(10, 3442, "Pomodoro");
-		prodotti[45] = new ProdottoLungo(10, 3520, "Pomodoro");
-		prodotti[46] = new ProdottoLungo(10, 3598, "Pomodoro");
-		prodotti[47] = new ProdottoLungo(10, 3676, "Pomodoro");
-		prodotti[48] = new ProdottoLungo(10, 3754, "Pomodoro");
-		prodotti[49] = new ProdottoLungo(10, 3832, "Pomodoro");
-		prodotti[50] = new ProdottoLungo(10, 3910, "Pomodoro");
-		prodotti[51] = new ProdottoLungo(10, 3988, "Pomodoro");
-		prodotti[52] = new ProdottoLungo(10, 4066, "Pomodoro");
-		prodotti[53] = new ProdottoLungo(10, 4144, "Pomodoro");
-		prodotti[54] = new ProdottoLungo(10, 4222, "Pomodoro");
-		prodotti[55] = new ProdottoLungo(10, 4300, "Pomodoro");
-		prodotti[56] = new ProdottoLungo(10, 4378, "Pomodoro");
-		prodotti[57] = new ProdottoLungo(10, 4456, "Pomodoro");
-		prodotti[58] = new ProdottoLungo(10, 4534, "Pomodoro");
-		prodotti[59] = new ProdottoLungo(10, 4612, "Pomodoro");
-		prodotti[60] = new ProdottoLungo(10, 4690, "Pomodoro");
-		prodotti[61] = new ProdottoLungo(10, 4768, "Pomodoro");
-		prodotti[62] = new ProdottoLungo(10, 4846, "Pomodoro");
-		prodotti[63] = new ProdottoLungo(10, 4924, "Pomodoro");
-		prodotti[64] = new ProdottoLungo(10, 5002, "Pomodoro");
-		prodotti[65] = new ProdottoLungo(10, 5080, "Pomodoro");
-		prodotti[66] = new ProdottoLungo(10, 5158, "Pomodoro");
-		prodotti[67] = new ProdottoLungo(10, 5236, "Pomodoro");
-		prodotti[68] = new ProdottoLungo(10, 5314, "Pomodoro");
-		prodotti[69] = new ProdottoLungo(10, 5392, "Pomodoro");
-		for(int c = 0; c<70; c++) {
-			panelScrollCarrello.add(prodotti[c]);
-		}
-		//setto lo scrollpane con la grandezza da mostrare
 		scrollCarrello = new JScrollPane(panelScrollCarrello, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollCarrello.setBounds(42, 140, 804, 584);
 		scrollCarrello.setBackground(null);
@@ -256,6 +186,31 @@ public class Carrello extends JPanel{
 		scrollCarrello.getViewport().setOpaque(false);
 		scrollCarrello.setBorder(null);
 		scrollCarrello.getVerticalScrollBar().setUnitIncrement(20);
+		altezzaPanelScrollCarrello = 0;
+		add(scrollCarrello);
+	}
+	
+	//metodo per generare i 70 prodotti nel catalogo
+	public void generaProdotti(ArrayList<InformazioniDaPassare> prodotti) {
+		//genero i prodotti
+		int y = 10; 
+		for(InformazioniDaPassare info : prodotti) {
+			this.prodotti.add(new ProdottoLungo(10, y, info.getNome(), info.getQuantita()));
+			y += 78;
+		}
+		//setto il panel con la grandezza totale che deve avere
+		if(this.prodotti.size()==0) {
+			altezzaPanelScrollCarrello = 0;
+		} else {
+			altezzaPanelScrollCarrello = 10+78*this.prodotti.size();
+		}
+		panelScrollCarrello.setPreferredSize(new Dimension(804, altezzaPanelScrollCarrello));
+		for(ProdottoLungo prodotto : this.prodotti) {
+			panelScrollCarrello.add(prodotto);
+		}
+		//setto lo scrollpane con la grandezza da mostrare
+		scrollCarrello = new JScrollPane(panelScrollCarrello, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollCarrello.setBounds(42, 140, 804, 584);
 		add(scrollCarrello);
 	}
 	
@@ -273,10 +228,13 @@ public class Carrello extends JPanel{
 					scorriCarrello.setYTastoScorrimento(3, "no");
 				}
 			//se il valore è uguale alla y massima che può raggiungere il pane dentro lo scroll imposta lo scorriCatalogo automaticamente in fondo
-			} else if(valore == 11126) {
+				yMax = altezzaPanelScrollCarrello - 584;
+			} else if(valore == yMax) {
 				//if per non far scattare lo scorriCatalogo
-				if(!scorriCarrello.getStoScorrendo()) {
-					scorriCarrello.setYTastoScorrimento(525, "no");
+				if(yMax>0) {
+					if(!scorriCarrello.getStoScorrendo()) {
+						scorriCarrello.setYTastoScorrimento(525, "no");
+					}
 				}
 			//se il valore non è 0 o 11126 calcola la cella in cui spostare lo scorriCatalogo
 			} else {

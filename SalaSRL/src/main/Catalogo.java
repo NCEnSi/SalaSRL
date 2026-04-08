@@ -26,7 +26,7 @@ public class Catalogo extends JPanel{
 	//array che contiene prodotti in catalogo
 	private ProdottoQuadrato[] prodotti = new ProdottoQuadrato[70];
 	//array che contiene il nome dei prodotti messi nel carrello
-	private ArrayList<String> prodottiNelCarrello = new ArrayList<>();
+	private ArrayList<InformazioniDaPassare> prodottiNelCarrello = new ArrayList<>();
 	//jscroll e panel per contenere i prodotti del catalogo
 	private JPanel panelScrollCatalogo = new JPanel();
 	private JScrollPane scrollCatalogo;
@@ -294,10 +294,16 @@ public class Catalogo extends JPanel{
 					giaPresente = true;
 				}
 				if(!giaPresente) {
-					prodottiNelCarrello.add(prodotto.getNomeProdotto());
+					InformazioniDaPassare info = new InformazioniDaPassare(prodotto.getNomeProdotto(), prodotto.getNAcquistati());
+					prodottiNelCarrello.add(info);
 				}
 			}
 		});
+	}
+	
+	//metodo per ottenere l'array list prodottiNelCarrello
+	public ArrayList<InformazioniDaPassare> getProdottiNelCarrello() {
+		return prodottiNelCarrello;
 	}
 
 }

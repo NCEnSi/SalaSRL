@@ -15,7 +15,7 @@ public class ProdottoLungo extends JPanel{
 	//Button per diminuire N
 	private JButton meno = new JButton();
 	//Button per comprare N elemtni del prodotto
-	private JButton buy = new JButton();
+	private JButton canc = new JButton();
 	//variabili per inserire le immagini
 	private ImageIcon icon;
 	private Image iconScaled;
@@ -24,7 +24,8 @@ public class ProdottoLungo extends JPanel{
 	private int nAcquistati = 10;
 	
 	//costruttore, richiede (coordinata x, coordinata y, nome prodotto)
-	public ProdottoLungo(int prX, int prY, String nomeProdotto) {
+	public ProdottoLungo(int prX, int prY, String nomeProdotto, int nAcquistati) {
+		this.nAcquistati = nAcquistati;
 		//setto il Panel
 		setLayout(null);
 		setBounds(prX, prY, 788, 68);
@@ -101,21 +102,21 @@ public class ProdottoLungo extends JPanel{
 	//metodo per settare il bottone buy
 	public void setBuy(String nomeProdotto) {
 		//imposto le caratteristiche del bottone	
-		buy.setContentAreaFilled(false);		
-		buy.setBorderPainted(false);
-		buy.setBounds(731, 18, 32, 32);
+		canc.setContentAreaFilled(false);		
+		canc.setBorderPainted(false);
+		canc.setBounds(731, 18, 32, 32);
 		//imposto l'immagine da dargli
 		icon = new ImageIcon(getClass().getClassLoader().getResource("CancProdottoLungPress.png"));
 		iconScaled = icon.getImage().getScaledInstance(32, 32, Image.SCALE_SMOOTH);
 		icon = new ImageIcon(iconScaled);
-		buy.setPressedIcon(icon);	
+		canc.setPressedIcon(icon);	
 		icon = new ImageIcon(getClass().getClassLoader().getResource("CancProdottoLung.png"));
 		iconScaled = icon.getImage().getScaledInstance(32, 32, Image.SCALE_SMOOTH);
 		icon = new ImageIcon(iconScaled);
-		buy.setIcon(icon);
+		canc.setIcon(icon);
 		//aggiungo un actionlistener per acquistare il numero di elementi selezionato, e quindi sommare nAttuale a nAcquistati
-		buy.addActionListener(e -> canc(nomeProdotto));
-		add(buy);
+		canc.addActionListener(e -> canc(nomeProdotto));
+		add(canc);
 	}
 
 	//metodo per aumentare la variabile nAttuale in base al riferimento Label N
@@ -143,6 +144,9 @@ public class ProdottoLungo extends JPanel{
 	//metodo per sommare il numero di elementi comprati del prodotto
 	public void canc(String nomeProdotto) {
 		nAcquistati -= nAttuale;
+		if(nAcquistati<0) {
+			nAcquistati = 0;
+		}
 		System.out.println("In totale hai comprato "+nAcquistati+" "+nomeProdotto);
 	}
 }
