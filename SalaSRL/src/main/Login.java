@@ -85,6 +85,8 @@ public class Login extends JPanel{
 		setPasswordLogin();
 		
 		add(schermate[0]);
+		//faccio in modo che all'inizio sia visibile la prima schermata di login
+		schermate[0].setVisible(true);
 	}
 	//metodo per creare il pannello di signin
 	public void creaSignin() {
@@ -260,7 +262,7 @@ public class Login extends JPanel{
 		passwordLogin.setText("");
 		erroriLogin.setText("");
 	}
-	//metodo per cambiare pannello da signin a login
+	//metodo per cambiare pannello da signup a login
 	public void toLogin() throws IOException{
 		//controllo se è possibile salvare o no l'account
 		if(creaAccount()) {
@@ -299,16 +301,20 @@ public class Login extends JPanel{
 			return;
 		}
 		//controllo che esista l'account con le credenziali indicate
-		if(accessoAccount(password)) return;
+		String answer = accessoAccount(password);
+		String[] account = answer.split(";");
+		if(account[1].equals("vero")) return;
 		
 		//rendo invisibili entrambe le schermate
 		schermate[0].setVisible(false);
 		schermate[1].setVisible(false);
 		
-		
-		//AGGIUNGERE COLLEGAMENTO ALLA PARTE DI NICOLO'
-		
-		
+		//passo alla sezione admin o utente
+		if(account[0].equals("admin")) {
+			Collegamenti.fromLoginToAdmin();
+		} else {
+			Collegamenti.fromLoginToUtente();
+		}
 	}
 	//metodo per rendere invisibile la password e viceversa
 	public void toVisibilityPass() {
@@ -437,33 +443,40 @@ public class Login extends JPanel{
 		return ok;
 	}
 	//metodo per controllare se sono state inserite le credenziali giuste dell'account
-	public boolean accessoAccount(String password) throws IOException{
+	public String accessoAccount(String password) throws IOException{
+		//stringa usata per restituire due risultati contemporaneamente
+		String risultato = "";
+		//variabile usata per capire se esiste l'account indicato
 		boolean ok = true;
-			//variabile usata per salvarmi ogni riga del file txt
-			String riga = "";
-			//creo l'oggetto che legge il file txt
-			lettura = new BufferedReader(new FileReader("Credenziali.txt"));
-			//controllo ogni riga del file txt
-			while ((riga = lettura.readLine()) != null) {
-				//creo un array dove ogni componente contiene un'informazione dell'account sapendo le loro posizioni
-				String[] credenziali = riga.split(";");
-				//controllo se l'email usata esiste
-				if(emailLogin.getText().equals(credenziali[1])) {
-					//controllo se a quella email è associata la password inserita
-					if(password.trim().equals(credenziali[2])) {
-						ok = false;
-					}
+		//variabile usata per salvarmi ogni riga del file txt
+		String riga = "";
+		//creo l'oggetto che legge il file txt
+		lettura = new BufferedReader(new FileReader("Credenziali.txt"));
+		//controllo ogni riga del file txt
+		while ((riga = lettura.readLine()) != null) {
+			//creo un array dove ogni componente contiene un'informazione dell'account sapendo le loro posizioni
+			String[] credenziali = riga.split(";");
+			//controllo se l'email usata esiste
+			if(emailLogin.getText().equals(credenziali[1])) {
+				//controllo se a quella email è associata la password inserita
+				if(password.trim().equals(credenziali[2])) {
+					ok = false;
+					//mi salvo se l'account è utente o admin
+					risultato = credenziali[3] +";";
 				}
 			}
-			//chiudo la lettura
-			lettura.close();
-			//se vale false significa che l'account non esiste oppure o la password o l'email sono sbagliati
-			if(ok) {
-				//messaggio d'errore e impedisco il passaggio alla pagina successiva
-				erroriLogin.setText("Email o password errati!");
-			}
-		
-		return ok;
+		}
+		//chiudo la lettura
+		lettura.close();
+		//se vale false significa che l'account non esiste oppure o la password o l'email sono sbagliati
+		if(ok) {
+			//messaggio d'errore e impedisco il passaggio alla pagina successiva
+			erroriLogin.setText("Email o password errati!");
+			risultato = "null;vero";
+		} else {
+			risultato = risultato +"falso";
+		}
+		return risultato;
 	}
 	//metodo per controllare se il formato dell'email è corretto
 	public boolean checkFormatoEmail() {

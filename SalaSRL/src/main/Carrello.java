@@ -32,7 +32,7 @@ public class Carrello extends JPanel{
 	//JPanel usata per scorrere i prodotti nel carrello
 	private LineaScorrimento scorriCarrello;
 	//array che contiene prodotti in catalogo
-	private ProdottoLungo[] prodotti = new ProdottoLungo[150];
+	private ProdottoLungo[] prodotti = new ProdottoLungo[70];
 	private int valore;
 	private int cellaScorrimento;
 
@@ -239,87 +239,8 @@ public class Carrello extends JPanel{
 		prodotti[67] = new ProdottoLungo(10, 5236, "Pomodoro");
 		prodotti[68] = new ProdottoLungo(10, 5314, "Pomodoro");
 		prodotti[69] = new ProdottoLungo(10, 5392, "Pomodoro");
-		prodotti[70] = new ProdottoLungo(10, 5470, "Pomodoro");
-		prodotti[71] = new ProdottoLungo(10, 5548, "Pomodoro");
-		prodotti[72] = new ProdottoLungo(10, 5626, "Pomodoro");
-		prodotti[73] = new ProdottoLungo(10, 5704, "Pomodoro");
-		prodotti[74] = new ProdottoLungo(10, 5782, "Pomodoro");
-		prodotti[75] = new ProdottoLungo(10, 5860, "Pomodoro");
-		prodotti[76] = new ProdottoLungo(10, 5938, "Pomodoro");
-		prodotti[77] = new ProdottoLungo(10, 6016, "Pomodoro");
-		prodotti[78] = new ProdottoLungo(10, 6094, "Pomodoro");
-		prodotti[79] = new ProdottoLungo(10, 6172, "Pomodoro");
-		prodotti[80] = new ProdottoLungo(10, 6250, "Pomodoro");
-		prodotti[81] = new ProdottoLungo(10, 6328, "Pomodoro");
-		prodotti[82] = new ProdottoLungo(10, 6406, "Pomodoro");
-		prodotti[83] = new ProdottoLungo(10, 6484, "Pomodoro");
-		prodotti[84] = new ProdottoLungo(10, 6562, "Pomodoro");
-		prodotti[85] = new ProdottoLungo(10, 6640, "Pomodoro");
-		prodotti[86] = new ProdottoLungo(10, 6718, "Pomodoro");
-		prodotti[87] = new ProdottoLungo(10, 6796, "Pomodoro");
-		prodotti[88] = new ProdottoLungo(10, 6874, "Pomodoro");
-		prodotti[89] = new ProdottoLungo(10, 6952, "Pomodoro");
-		prodotti[90] = new ProdottoLungo(10, 7030, "Pomodoro");
-		prodotti[91] = new ProdottoLungo(10, 7108, "Pomodoro");
-		prodotti[92] = new ProdottoLungo(10, 7186, "Pomodoro");
-		prodotti[93] = new ProdottoLungo(10, 7264, "Pomodoro");
-		prodotti[94] = new ProdottoLungo(10, 7342, "Pomodoro");
-		prodotti[95] = new ProdottoLungo(10, 7420, "Pomodoro");
-		prodotti[96] = new ProdottoLungo(10, 7498, "Pomodoro");
-		prodotti[97] = new ProdottoLungo(10, 7576, "Pomodoro");
-		prodotti[98] = new ProdottoLungo(10, 7654, "Pomodoro");
-		prodotti[99] = new ProdottoLungo(10, 7732, "Pomodoro");
-		prodotti[100] = new ProdottoLungo(10, 7810, "Pomodoro");
-		prodotti[101] = new ProdottoLungo(10, 7888, "Pomodoro");
-		prodotti[102] = new ProdottoLungo(10, 7966, "Pomodoro");
-		prodotti[103] = new ProdottoLungo(10, 8044, "Pomodoro");
-		prodotti[104] = new ProdottoLungo(10, 8122, "Pomodoro");
-		prodotti[105] = new ProdottoLungo(10, 8200, "Pomodoro");
-		prodotti[106] = new ProdottoLungo(10, 8278, "Pomodoro");
-		prodotti[107] = new ProdottoLungo(10, 8356, "Pomodoro");
-		prodotti[108] = new ProdottoLungo(10, 8434, "Pomodoro");
-		prodotti[109] = new ProdottoLungo(10, 8512, "Pomodoro");
-		prodotti[110] = new ProdottoLungo(10, 8590, "Pomodoro");
-		prodotti[111] = new ProdottoLungo(10, 8668, "Pomodoro");
-		prodotti[112] = new ProdottoLungo(10, 8746, "Pomodoro");
-		prodotti[113] = new ProdottoLungo(10, 8824, "Pomodoro");
-		prodotti[114] = new ProdottoLungo(10, 8902, "Pomodoro");
-		prodotti[115] = new ProdottoLungo(10, 8980, "Pomodoro");
-		prodotti[116] = new ProdottoLungo(10, 9058, "Pomodoro");
-		prodotti[117] = new ProdottoLungo(10, 9136, "Pomodoro");
-		prodotti[118] = new ProdottoLungo(10, 9214, "Pomodoro");
-		prodotti[119] = new ProdottoLungo(10, 9292, "Pomodoro");
-		prodotti[120] = new ProdottoLungo(10, 9370, "Pomodoro");
-		prodotti[121] = new ProdottoLungo(10, 9448, "Pomodoro");
-		prodotti[122] = new ProdottoLungo(10, 9526, "Pomodoro");
-		prodotti[123] = new ProdottoLungo(10, 9604, "Pomodoro");
-		prodotti[124] = new ProdottoLungo(10, 9682, "Pomodoro");
-		prodotti[125] = new ProdottoLungo(10, 9760, "Pomodoro");
-		prodotti[126] = new ProdottoLungo(10, 9838, "Pomodoro");
-		prodotti[127] = new ProdottoLungo(10, 9916, "Pomodoro");
-		prodotti[128] = new ProdottoLungo(10, 9994, "Pomodoro");
-		prodotti[129] = new ProdottoLungo(10, 10072, "Pomodoro");
-		prodotti[130] = new ProdottoLungo(10, 10150, "Pomodoro");
-		prodotti[131] = new ProdottoLungo(10, 10228, "Pomodoro");
-		prodotti[132] = new ProdottoLungo(10, 10306, "Pomodoro");
-		prodotti[133] = new ProdottoLungo(10, 10384, "Pomodoro");
-		prodotti[134] = new ProdottoLungo(10, 10462, "Pomodoro");
-		prodotti[135] = new ProdottoLungo(10, 10540, "Pomodoro");
-		prodotti[136] = new ProdottoLungo(10, 10618, "Pomodoro");
-		prodotti[137] = new ProdottoLungo(10, 10696, "Pomodoro");
-		prodotti[138] = new ProdottoLungo(10, 10774, "Pomodoro");
-		prodotti[139] = new ProdottoLungo(10, 10852, "Pomodoro");
-		prodotti[140] = new ProdottoLungo(10, 10930, "Pomodoro");
-		prodotti[141] = new ProdottoLungo(10, 11008, "Pomodoro");
-		prodotti[142] = new ProdottoLungo(10, 11086, "Pomodoro");
-		prodotti[143] = new ProdottoLungo(10, 11164, "Pomodoro");
-		prodotti[144] = new ProdottoLungo(10, 11242, "Pomodoro");
-		prodotti[145] = new ProdottoLungo(10, 11320, "Pomodoro");
-		prodotti[146] = new ProdottoLungo(10, 11398, "Pomodoro");
-		prodotti[147] = new ProdottoLungo(10, 11476, "Pomodoro");
-		prodotti[148] = new ProdottoLungo(10, 11554, "Pomodoro");
-		prodotti[149] = new ProdottoLungo(10, 11632, "Pomodoro");
-		for(int c = 0; c<150; c++) {
+
+		for(int c = 0; c<70; c++) {
 			panelScrollCarrello.add(prodotti[c]);
 		}
 		//setto lo scrollpane con la grandezza da mostrare
