@@ -65,6 +65,7 @@ public class Admin extends JPanel {
 
 	//metodo per mostrare la schermata carrello
 	public void changeInCarrello() {
+		
 		schermate[0].setVisible(false);
 		schermate[1].setVisible(false);
 		schermate[2].setVisible(true);

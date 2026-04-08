@@ -147,10 +147,12 @@ public class Magazzino extends JPanel{
 		add(immagineProfiloMag);
 	}
 	
+	//metodo da usare per settare il cambio schermata
 	public JButton getCatalogoMag() {
 		return catalogoMag;
 	}
 	
+	//metodo da usare per settare il cambio schermata
 	public JButton getCarrellooMag() {
 		return carrelloMag;
 	}

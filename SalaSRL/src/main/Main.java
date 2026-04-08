@@ -11,8 +11,8 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		frame.setLayout(null);
 		
-		Login login = new Login();
-		frame.add(login);
+		//Login login = new Login();
+		//frame.add(login);
 		
 		//ProdottoQuadrato prod = new ProdottoQuadrato(0, 0, "Pomodoro");
 		//frame.add(prod);
@@ -20,8 +20,8 @@ public class Main {
 		//ProdottoLungo prod = new ProdottoLungo(0, 0, "Pomodoro");
 		//frame.add(prod);
 		
-		//Admin admin = new Admin();
-		//frame.add(admin);
+		Admin admin = new Admin();
+		frame.add(admin);
 		frame.setVisible(true);
 	}
 }

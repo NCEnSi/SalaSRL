@@ -22,9 +22,12 @@ public class ProdottoQuadrato extends JPanel{
 	//variabili per tenere traccia di N e di quanti elementi si ha già comprato del prodotto
 	private int nAttuale = 0;
 	private int nAcquistati = 0;
+	//string per tenere il nome del prodotto
+	private String nomeProdotto;
 	
 	//costruttore, richiede (coordinata x, coordinata y, nome prodotto)
 	public ProdottoQuadrato(int prX, int prY, String nomeProdotto, String compra) {
+		this.nomeProdotto = nomeProdotto;
 		//setto il Panel
 		setLayout(null);
 		setBounds(prX, prY, 236, 236);
@@ -155,4 +158,33 @@ public class ProdottoQuadrato extends JPanel{
 		System.out.println("In totale hai comprato "+nAcquistati+" "+nomeProdotto);
 	}
 	
+	//metodo per resettare nAcquistati
+	public void resetNAcquistati() {
+		nAcquistati = 0;
+	}
+	
+	//metodo per diminuire nAcquistati se si elimina dal carrello
+	public void delNAcquistati(int n) {
+		nAcquistati -= n;
+	}
+
+	//metodo per ottenere nAttuale
+	public int getNAttuale() {
+		return nAttuale;
+	}
+	
+	//metodo per ottenere nAcquistati
+	public int getNAcquistati() {
+		return nAcquistati;
+	}
+	
+	//metodo per ottenere il nome del prodotto
+	public String getNomeProdotto() {
+		return nomeProdotto;
+	}
+	
+	//metodo per ottenere il tasto buy
+	public JButton getBuyButton() {
+		return buy;
+	}
 }

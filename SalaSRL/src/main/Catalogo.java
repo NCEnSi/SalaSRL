@@ -1,6 +1,8 @@
 package main;
 
 import java.awt.*;
+import java.util.*;
+
 import javax.swing.*;
 
 public class Catalogo extends JPanel{
@@ -22,7 +24,9 @@ public class Catalogo extends JPanel{
 	private ImageIcon icon;
 	private Image iconScaled;
 	//array che contiene prodotti in catalogo
-	private ProdottoQuadrato[] prodotti = new ProdottoQuadrato[150];
+	private ProdottoQuadrato[] prodotti = new ProdottoQuadrato[70];
+	//array che contiene il nome dei prodotti messi nel carrello
+	private ArrayList<String> prodottiNelCarrello = new ArrayList<>();
 	//jscroll e panel per contenere i prodotti del catalogo
 	private JPanel panelScrollCatalogo = new JPanel();
 	private JScrollPane scrollCatalogo;
@@ -178,14 +182,14 @@ public class Catalogo extends JPanel{
 		add(baseCatalogo);
 	}
 	
-	//metodo per generare i 150 prodotti nel catalogo
+	//metodo per generare i 70 prodotti nel catalogo
 	public void generaProdotti() {
 		//setto il panel con la grandezza totale che deve avere
 		panelScrollCatalogo.setPreferredSize(new Dimension(1315, 7700));
 		panelScrollCatalogo.setBackground(null);
 		panelScrollCatalogo.setLayout(null);
 		panelScrollCatalogo.setOpaque(false);
-		//creo 150 diversi prodotti
+		//creo 70 diversi prodotti
 		prodotti[0] = new ProdottoQuadrato(12, 20, "Pomodoro", "yes");
 		prodotti[1] = new ProdottoQuadrato(268, 20, "Pomodoro", "yes");
 		prodotti[2] = new ProdottoQuadrato(524, 20, "Pomodoro", "yes");
@@ -256,88 +260,9 @@ public class Catalogo extends JPanel{
 		prodotti[67] = new ProdottoQuadrato(524, 3348, "Pomodoro", "yes");
 		prodotti[68] = new ProdottoQuadrato(780, 3348, "Pomodoro", "yes");
 		prodotti[69] = new ProdottoQuadrato(1036, 3348, "Pomodoro", "yes");
-		prodotti[70] = new ProdottoQuadrato(12, 3604, "Pomodoro", "yes");
-		prodotti[71] = new ProdottoQuadrato(268, 3604, "Pomodoro", "yes");
-		prodotti[72] = new ProdottoQuadrato(524, 3604, "Pomodoro", "yes");
-		prodotti[73] = new ProdottoQuadrato(780, 3604, "Pomodoro", "yes");
-		prodotti[74] = new ProdottoQuadrato(1036, 3604, "Pomodoro", "yes");
-		prodotti[75] = new ProdottoQuadrato(12, 3860, "Pomodoro", "yes");
-		prodotti[76] = new ProdottoQuadrato(268, 3860, "Pomodoro", "yes");
-		prodotti[77] = new ProdottoQuadrato(524, 3860, "Pomodoro", "yes");
-		prodotti[78] = new ProdottoQuadrato(780, 3860, "Pomodoro", "yes");
-		prodotti[79] = new ProdottoQuadrato(1036, 3860, "Pomodoro", "yes");
-		prodotti[80] = new ProdottoQuadrato(12, 4116, "Pomodoro", "yes");
-		prodotti[81] = new ProdottoQuadrato(268, 4116, "Pomodoro", "yes");
-		prodotti[82] = new ProdottoQuadrato(524, 4116, "Pomodoro", "yes");
-		prodotti[83] = new ProdottoQuadrato(780, 4116, "Pomodoro", "yes");
-		prodotti[84] = new ProdottoQuadrato(1036, 4116, "Pomodoro", "yes");
-		prodotti[85] = new ProdottoQuadrato(12, 4372, "Pomodoro", "yes");
-		prodotti[86] = new ProdottoQuadrato(268, 4372, "Pomodoro", "yes");
-		prodotti[87] = new ProdottoQuadrato(524, 4372, "Pomodoro", "yes");
-		prodotti[88] = new ProdottoQuadrato(780, 4372, "Pomodoro", "yes");
-		prodotti[89] = new ProdottoQuadrato(1036, 4372, "Pomodoro", "yes");
-		prodotti[90] = new ProdottoQuadrato(12, 4628, "Pomodoro", "yes");
-		prodotti[91] = new ProdottoQuadrato(268, 4628, "Pomodoro", "yes");
-		prodotti[92] = new ProdottoQuadrato(524, 4628, "Pomodoro", "yes");
-		prodotti[93] = new ProdottoQuadrato(780, 4628, "Pomodoro", "yes");
-		prodotti[94] = new ProdottoQuadrato(1036, 4628, "Pomodoro", "yes");
-		prodotti[95] = new ProdottoQuadrato(12, 4884, "Pomodoro", "yes");
-		prodotti[96] = new ProdottoQuadrato(268, 4884, "Pomodoro", "yes");
-		prodotti[97] = new ProdottoQuadrato(524, 4884, "Pomodoro", "yes");
-		prodotti[98] = new ProdottoQuadrato(780, 4884, "Pomodoro", "yes");
-		prodotti[99] = new ProdottoQuadrato(1036, 4884, "Pomodoro", "yes");
-		prodotti[100] = new ProdottoQuadrato(12, 5140, "Pomodoro", "yes");
-		prodotti[101] = new ProdottoQuadrato(268, 5140, "Pomodoro", "yes");
-		prodotti[102] = new ProdottoQuadrato(524, 5140, "Pomodoro", "yes");
-		prodotti[103] = new ProdottoQuadrato(780, 5140, "Pomodoro", "yes");
-		prodotti[104] = new ProdottoQuadrato(1036, 5140, "Pomodoro", "yes");
-		prodotti[105] = new ProdottoQuadrato(12, 5396, "Pomodoro", "yes");
-		prodotti[106] = new ProdottoQuadrato(268, 5396, "Pomodoro", "yes");
-		prodotti[107] = new ProdottoQuadrato(524, 5396, "Pomodoro", "yes");
-		prodotti[108] = new ProdottoQuadrato(780, 5396, "Pomodoro", "yes");
-		prodotti[109] = new ProdottoQuadrato(1036, 5396, "Pomodoro", "yes");
-		prodotti[110] = new ProdottoQuadrato(12, 5652, "Pomodoro", "yes");
-		prodotti[111] = new ProdottoQuadrato(268, 5652, "Pomodoro", "yes");
-		prodotti[112] = new ProdottoQuadrato(524, 5652, "Pomodoro", "yes");
-		prodotti[113] = new ProdottoQuadrato(780, 5652, "Pomodoro", "yes");
-		prodotti[114] = new ProdottoQuadrato(1036, 5652, "Pomodoro", "yes");
-		prodotti[115] = new ProdottoQuadrato(12, 5908, "Pomodoro", "yes");
-		prodotti[116] = new ProdottoQuadrato(268, 5908, "Pomodoro", "yes");
-		prodotti[117] = new ProdottoQuadrato(524, 5908, "Pomodoro", "yes");
-		prodotti[118] = new ProdottoQuadrato(780, 5908, "Pomodoro", "yes");
-		prodotti[119] = new ProdottoQuadrato(1036, 5908, "Pomodoro", "yes");
-		prodotti[120] = new ProdottoQuadrato(12, 6164, "Pomodoro", "yes");
-		prodotti[121] = new ProdottoQuadrato(268, 6164, "Pomodoro", "yes");
-		prodotti[122] = new ProdottoQuadrato(524, 6164, "Pomodoro", "yes");
-		prodotti[123] = new ProdottoQuadrato(780, 6164, "Pomodoro", "yes");
-		prodotti[124] = new ProdottoQuadrato(1036, 6164, "Pomodoro", "yes");
-		prodotti[125] = new ProdottoQuadrato(12, 6420, "Pomodoro", "yes");
-		prodotti[126] = new ProdottoQuadrato(268, 6420, "Pomodoro", "yes");
-		prodotti[127] = new ProdottoQuadrato(524, 6420, "Pomodoro", "yes");
-		prodotti[128] = new ProdottoQuadrato(780, 6420, "Pomodoro", "yes");
-		prodotti[129] = new ProdottoQuadrato(1036, 6420, "Pomodoro", "yes");
-		prodotti[130] = new ProdottoQuadrato(12, 6676, "Pomodoro", "yes");
-		prodotti[131] = new ProdottoQuadrato(268, 6676, "Pomodoro", "yes");
-		prodotti[132] = new ProdottoQuadrato(524, 6676, "Pomodoro", "yes");
-		prodotti[133] = new ProdottoQuadrato(780, 6676, "Pomodoro", "yes");
-		prodotti[134] = new ProdottoQuadrato(1036, 6676, "Pomodoro", "yes");
-		prodotti[135] = new ProdottoQuadrato(12, 6932, "Pomodoro", "yes");
-		prodotti[136] = new ProdottoQuadrato(268, 6932, "Pomodoro", "yes");
-		prodotti[137] = new ProdottoQuadrato(524, 6932, "Pomodoro", "yes");
-		prodotti[138] = new ProdottoQuadrato(780, 6932, "Pomodoro", "yes");
-		prodotti[139] = new ProdottoQuadrato(1036, 6932, "Pomodoro", "yes");
-		prodotti[140] = new ProdottoQuadrato(12, 7188, "Pomodoro", "yes");
-		prodotti[141] = new ProdottoQuadrato(268, 7188, "Pomodoro", "yes");
-		prodotti[142] = new ProdottoQuadrato(524, 7188, "Pomodoro", "yes");
-		prodotti[143] = new ProdottoQuadrato(780, 7188, "Pomodoro", "yes");
-		prodotti[144] = new ProdottoQuadrato(1036, 7188, "Pomodoro", "yes");
-		prodotti[145] = new ProdottoQuadrato(12, 7444, "Pomodoro", "yes");
-		prodotti[146] = new ProdottoQuadrato(268, 7444, "Pomodoro", "yes");
-		prodotti[147] = new ProdottoQuadrato(524, 7444, "Pomodoro", "yes");
-		prodotti[148] = new ProdottoQuadrato(780, 7444, "Pomodoro", "yes");
-		prodotti[149] = new ProdottoQuadrato(1036, 7444, "Pomodoro", "yes");
-		for(int c = 0; c<150; c++) {
+		for(int c = 0; c<70; c++) {
 			panelScrollCatalogo.add(prodotti[c]);
+			setPassToCarello(prodotti[c]);
 		}
 		//setto lo scrollpane con la grandezza da mostrare
 		scrollCatalogo = new JScrollPane(panelScrollCatalogo, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -350,12 +275,29 @@ public class Catalogo extends JPanel{
 		add(scrollCatalogo);
 	}
 	
+	//metodo da usare per settare il cambio schermata
 	public JButton getMagazzinoCat() {
 		return magazzinoCat;
 	}
 	
+	//metodo da usare per settare il cambio schermata
 	public JButton getCarrelloCat() {
 		return carrelloCat;
+	}
+	
+	//metodo per settare il passaggio dei prodotti acquistati al carrello
+	public void setPassToCarello(ProdottoQuadrato prodotto) {
+		prodotto.getBuyButton().addActionListener(e -> {
+			boolean giaPresente = false;
+			if(prodotto.getNAttuale()>0) {
+				if(prodottiNelCarrello.contains(prodotto.getNomeProdotto())) {
+					giaPresente = true;
+				}
+				if(!giaPresente) {
+					prodottiNelCarrello.add(prodotto.getNomeProdotto());
+				}
+			}
+		});
 	}
 
 }
