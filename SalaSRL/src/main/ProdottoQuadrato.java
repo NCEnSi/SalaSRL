@@ -3,6 +3,7 @@ package main;
 import java.awt.*;
 import javax.swing.*;
 import java.io.*;
+import java.util.ArrayList;
 
 public class ProdottoQuadrato extends JPanel{
 	
@@ -25,8 +26,11 @@ public class ProdottoQuadrato extends JPanel{
 	//string per tenere il nome del prodotto
 	private String nomeProdotto;
 	
+	private Catalogo catalogo;
+	
 	//costruttore, richiede (coordinata x, coordinata y, nome prodotto)
-	public ProdottoQuadrato(int prX, int prY, String nomeProdotto, String compra) {
+	public ProdottoQuadrato(int prX, int prY, String nomeProdotto, String compra, Catalogo catalogo) {
+		this.catalogo = catalogo;
 		this.nomeProdotto = nomeProdotto;
 		//setto il Panel
 		setLayout(null);
@@ -155,6 +159,23 @@ public class ProdottoQuadrato extends JPanel{
 	//metodo per sommare il numero di elementi comprati del prodotto
 	public void buy(String nomeProdotto) {
 		nAcquistati += nAttuale;
+		boolean giaPresente = false;
+		if(getNAttuale()>0) {
+			for(InformazioniDaPassare info : catalogo.getProdottiNelCarrello()) {
+				String nome = info.getNome();
+				if(nome.equals(getNomeProdotto())) {
+					giaPresente = true;
+					//aggiorno nAcquistati se no rimane uguale al primo acquisto
+					info.setQuantita(nAcquistati);
+					break;
+				}
+			}
+			if(!giaPresente) {
+				InformazioniDaPassare info = new InformazioniDaPassare(getNomeProdotto(), getNAcquistati());
+				catalogo.getProdottiNelCarrello().add(info);
+			}
+		}
+		
 		System.out.println("In totale hai comprato "+nAcquistati+" "+nomeProdotto);
 	}
 	

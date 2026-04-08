@@ -190,79 +190,78 @@ public class Catalogo extends JPanel{
 		panelScrollCatalogo.setLayout(null);
 		panelScrollCatalogo.setOpaque(false);
 		//creo 70 diversi prodotti
-		prodotti[0] = new ProdottoQuadrato(12, 20, "Pomodoro", "yes");
-		prodotti[1] = new ProdottoQuadrato(268, 20, "Mozzarella", "yes");
-		prodotti[2] = new ProdottoQuadrato(524, 20, "PastaRigatoni", "yes");
-		prodotti[3] = new ProdottoQuadrato(780, 20, "RisoBasmati", "yes");
-		prodotti[4] = new ProdottoQuadrato(1036, 20, "PaneIntegrale", "yes");
-		prodotti[5] = new ProdottoQuadrato(12, 276, "LatteParzialmenteScremato", "yes");
-		prodotti[6] = new ProdottoQuadrato(268, 276, "YogurtBianco", "yes");
-		prodotti[7] = new ProdottoQuadrato(524, 276, "Burro", "yes");
-		prodotti[8] = new ProdottoQuadrato(780, 276, "ParmigianoReggiano", "yes");
-		prodotti[9] = new ProdottoQuadrato(1036, 276, "ProsciuttoCotto", "yes");
-		prodotti[10] = new ProdottoQuadrato(12, 532, "ProsciuttoCrudo", "yes");
-		prodotti[11] = new ProdottoQuadrato(268, 532, "Bresaola", "yes");
-		prodotti[12] = new ProdottoQuadrato(524, 532, "SalameMilano", "yes");
-		prodotti[13] = new ProdottoQuadrato(780, 532, "PettoDiPollo", "yes");
-		prodotti[14] = new ProdottoQuadrato(1036, 532, "CarneTrita", "yes");
-		prodotti[15] = new ProdottoQuadrato(12, 788, "SalmoneAffumicato", "yes");
-		prodotti[16] = new ProdottoQuadrato(268, 788, "TonnoNaturale", "yes");
-		prodotti[17] = new ProdottoQuadrato(524, 788, "UovaFresche", "yes");
-		prodotti[18] = new ProdottoQuadrato(780, 788, "InsalataMista", "yes");
-		prodotti[19] = new ProdottoQuadrato(1036, 788, "Zucchine", "yes");
-		prodotti[20] = new ProdottoQuadrato(12, 1044, "Melanzane", "yes");
-		prodotti[21] = new ProdottoQuadrato(268, 1044, "Patate", "yes");
-		prodotti[22] = new ProdottoQuadrato(524, 1044, "Carote", "yes");
-		prodotti[23] = new ProdottoQuadrato(780, 1044, "CipolleDorate", "yes");
-		prodotti[24] = new ProdottoQuadrato(1036, 1044, "Aglio", "yes");
-		prodotti[25] = new ProdottoQuadrato(12, 1300, "Banane", "yes");
-		prodotti[26] = new ProdottoQuadrato(268, 1300, "MeleGolden", "yes");
-		prodotti[27] = new ProdottoQuadrato(524, 1300, "PereAbate", "yes");
-		prodotti[28] = new ProdottoQuadrato(780, 1300, "Arance", "yes");
-		prodotti[29] = new ProdottoQuadrato(1036, 1300, "Limoni", "yes");
-		prodotti[30] = new ProdottoQuadrato(12, 1556, "Fragole", "yes");
-		prodotti[31] = new ProdottoQuadrato(268, 1556, "Kiwi", "yes");
-		prodotti[32] = new ProdottoQuadrato(524, 1556, "UvaBianca", "yes");
-		prodotti[33] = new ProdottoQuadrato(780, 1556, "Pesche", "yes");
-		prodotti[34] = new ProdottoQuadrato(1036, 1556, "Albicocche", "yes");
-		prodotti[35] = new ProdottoQuadrato(12, 1812, "OlioExtravergine", "yes");
-		prodotti[36] = new ProdottoQuadrato(268, 1812, "AcetoDiVino", "yes");
-		prodotti[37] = new ProdottoQuadrato(524, 1812, "SaleFino", "yes");
-		prodotti[38] = new ProdottoQuadrato(780, 1812, "Zucchero", "yes");
-		prodotti[39] = new ProdottoQuadrato(1036, 1812, "Farina00", "yes");
-		prodotti[40] = new ProdottoQuadrato(12, 2068, "LievitoDiBirra", "yes");
-		prodotti[41] = new ProdottoQuadrato(268, 2068, "BiscottiIntegrali", "yes");
-		prodotti[42] = new ProdottoQuadrato(524, 2068, "FetteBiscottate", "yes");
-		prodotti[43] = new ProdottoQuadrato(780, 2068, "CornFlakes", "yes");
-		prodotti[44] = new ProdottoQuadrato(1036, 2068, "MarmellataDiFragole", "yes");
-		prodotti[45] = new ProdottoQuadrato(12, 2324, "Nutella", "yes");
-		prodotti[46] = new ProdottoQuadrato(268, 2324, "CioccolatoFondente", "yes");
-		prodotti[47] = new ProdottoQuadrato(524, 2324, "SuccoDiArancia", "yes");
-		prodotti[48] = new ProdottoQuadrato(780, 2324, "AcquaNaturale", "yes");
-		prodotti[49] = new ProdottoQuadrato(1036, 2324, "AcquaFrizzante", "yes");
-		prodotti[50] = new ProdottoQuadrato(12, 2580, "CocaCola", "yes");
-		prodotti[51] = new ProdottoQuadrato(268, 2580, "TheFreddo", "yes");
-		prodotti[52] = new ProdottoQuadrato(524, 2580, "CaffeMacinato", "yes");
-		prodotti[53] = new ProdottoQuadrato(780, 2580, "OrzoSolubile", "yes");
-		prodotti[54] = new ProdottoQuadrato(1036, 2580, "LegumiMisti", "yes");
-		prodotti[55] = new ProdottoQuadrato(12, 2836, "Lenticchie", "yes");
-		prodotti[56] = new ProdottoQuadrato(268, 2836, "FagioliBorlotti", "yes");
-		prodotti[57] = new ProdottoQuadrato(524, 2836, "Ceci", "yes");
-		prodotti[58] = new ProdottoQuadrato(780, 2836, "Piselli", "yes");
-		prodotti[59] = new ProdottoQuadrato(1036, 2836, "SpinaciSurgelati", "yes");
-		prodotti[60] = new ProdottoQuadrato(12, 3092, "PizzaMargherita", "yes");
-		prodotti[61] = new ProdottoQuadrato(268, 3092, "LasagneFresche", "yes");
-		prodotti[62] = new ProdottoQuadrato(524, 3092, "GnocchiDiPatate", "yes");
-		prodotti[63] = new ProdottoQuadrato(780, 3092, "RavioliRicottaESpinaci", "yes");
-		prodotti[64] = new ProdottoQuadrato(1036, 3092, "PiadinaRomagnola", "yes");
-		prodotti[65] = new ProdottoQuadrato(12, 3348, "HamburgerDiManzo", "yes");
-		prodotti[66] = new ProdottoQuadrato(268, 3348, "Salsiccia", "yes");
-		prodotti[67] = new ProdottoQuadrato(524, 3348, "FilettiDiMerluzzo", "yes");
-		prodotti[68] = new ProdottoQuadrato(780, 3348, "GelatoVaniglia", "yes");
-		prodotti[69] = new ProdottoQuadrato(1036, 3348, "Tiramisu", "yes");
+		prodotti[0] = new ProdottoQuadrato(12, 20, "Pomodoro", "yes", this);
+		prodotti[1] = new ProdottoQuadrato(268, 20, "Mozzarella", "yes", this);
+		prodotti[2] = new ProdottoQuadrato(524, 20, "PastaRigatoni", "yes", this);
+		prodotti[3] = new ProdottoQuadrato(780, 20, "RisoBasmati", "yes", this);
+		prodotti[4] = new ProdottoQuadrato(1036, 20, "PaneIntegrale", "yes", this);
+		prodotti[5] = new ProdottoQuadrato(12, 276, "LatteParzialmenteScremato", "yes", this);
+		prodotti[6] = new ProdottoQuadrato(268, 276, "YogurtBianco", "yes", this);
+		prodotti[7] = new ProdottoQuadrato(524, 276, "Burro", "yes", this);
+		prodotti[8] = new ProdottoQuadrato(780, 276, "ParmigianoReggiano", "yes", this);
+		prodotti[9] = new ProdottoQuadrato(1036, 276, "ProsciuttoCotto", "yes", this);
+		prodotti[10] = new ProdottoQuadrato(12, 532, "ProsciuttoCrudo", "yes", this);
+		prodotti[11] = new ProdottoQuadrato(268, 532, "Bresaola", "yes", this);
+		prodotti[12] = new ProdottoQuadrato(524, 532, "SalameMilano", "yes", this);
+		prodotti[13] = new ProdottoQuadrato(780, 532, "PettoDiPollo", "yes", this);
+		prodotti[14] = new ProdottoQuadrato(1036, 532, "CarneTrita", "yes", this);
+		prodotti[15] = new ProdottoQuadrato(12, 788, "SalmoneAffumicato", "yes", this);
+		prodotti[16] = new ProdottoQuadrato(268, 788, "TonnoNaturale", "yes", this);
+		prodotti[17] = new ProdottoQuadrato(524, 788, "UovaFresche", "yes", this);
+		prodotti[18] = new ProdottoQuadrato(780, 788, "InsalataMista", "yes", this);
+		prodotti[19] = new ProdottoQuadrato(1036, 788, "Zucchine", "yes", this);
+		prodotti[20] = new ProdottoQuadrato(12, 1044, "Melanzane", "yes", this);
+		prodotti[21] = new ProdottoQuadrato(268, 1044, "Patate", "yes", this);
+		prodotti[22] = new ProdottoQuadrato(524, 1044, "Carote", "yes", this);
+		prodotti[23] = new ProdottoQuadrato(780, 1044, "CipolleDorate", "yes", this);
+		prodotti[24] = new ProdottoQuadrato(1036, 1044, "Aglio", "yes", this);
+		prodotti[25] = new ProdottoQuadrato(12, 1300, "Banane", "yes", this);
+		prodotti[26] = new ProdottoQuadrato(268, 1300, "MeleGolden", "yes", this);
+		prodotti[27] = new ProdottoQuadrato(524, 1300, "PereAbate", "yes", this);
+		prodotti[28] = new ProdottoQuadrato(780, 1300, "Arance", "yes", this);
+		prodotti[29] = new ProdottoQuadrato(1036, 1300, "Limoni", "yes", this);
+		prodotti[30] = new ProdottoQuadrato(12, 1556, "Fragole", "yes", this);
+		prodotti[31] = new ProdottoQuadrato(268, 1556, "Kiwi", "yes", this);
+		prodotti[32] = new ProdottoQuadrato(524, 1556, "UvaBianca", "yes", this);
+		prodotti[33] = new ProdottoQuadrato(780, 1556, "Pesche", "yes", this);
+		prodotti[34] = new ProdottoQuadrato(1036, 1556, "Albicocche", "yes", this);
+		prodotti[35] = new ProdottoQuadrato(12, 1812, "OlioExtravergine", "yes", this);
+		prodotti[36] = new ProdottoQuadrato(268, 1812, "AcetoDiVino", "yes", this);
+		prodotti[37] = new ProdottoQuadrato(524, 1812, "SaleFino", "yes", this);
+		prodotti[38] = new ProdottoQuadrato(780, 1812, "Zucchero", "yes", this);
+		prodotti[39] = new ProdottoQuadrato(1036, 1812, "Farina00", "yes", this);
+		prodotti[40] = new ProdottoQuadrato(12, 2068, "LievitoDiBirra", "yes", this);
+		prodotti[41] = new ProdottoQuadrato(268, 2068, "BiscottiIntegrali", "yes", this);
+		prodotti[42] = new ProdottoQuadrato(524, 2068, "FetteBiscottate", "yes", this);
+		prodotti[43] = new ProdottoQuadrato(780, 2068, "CornFlakes", "yes", this);
+		prodotti[44] = new ProdottoQuadrato(1036, 2068, "MarmellataDiFragole", "yes", this);
+		prodotti[45] = new ProdottoQuadrato(12, 2324, "Nutella", "yes", this);
+		prodotti[46] = new ProdottoQuadrato(268, 2324, "CioccolatoFondente", "yes", this);
+		prodotti[47] = new ProdottoQuadrato(524, 2324, "SuccoDiArancia", "yes", this);
+		prodotti[48] = new ProdottoQuadrato(780, 2324, "AcquaNaturale", "yes", this);
+		prodotti[49] = new ProdottoQuadrato(1036, 2324, "AcquaFrizzante", "yes", this);
+		prodotti[50] = new ProdottoQuadrato(12, 2580, "CocaCola", "yes", this);
+		prodotti[51] = new ProdottoQuadrato(268, 2580, "TheFreddo", "yes", this);
+		prodotti[52] = new ProdottoQuadrato(524, 2580, "CaffeMacinato", "yes", this);
+		prodotti[53] = new ProdottoQuadrato(780, 2580, "OrzoSolubile", "yes", this);
+		prodotti[54] = new ProdottoQuadrato(1036, 2580, "LegumiMisti", "yes", this);
+		prodotti[55] = new ProdottoQuadrato(12, 2836, "Lenticchie", "yes", this);
+		prodotti[56] = new ProdottoQuadrato(268, 2836, "FagioliBorlotti", "yes", this);
+		prodotti[57] = new ProdottoQuadrato(524, 2836, "Ceci", "yes", this);
+		prodotti[58] = new ProdottoQuadrato(780, 2836, "Piselli", "yes", this);
+		prodotti[59] = new ProdottoQuadrato(1036, 2836, "SpinaciSurgelati", "yes", this);
+		prodotti[60] = new ProdottoQuadrato(12, 3092, "PizzaMargherita", "yes", this);
+		prodotti[61] = new ProdottoQuadrato(268, 3092, "LasagneFresche", "yes", this);
+		prodotti[62] = new ProdottoQuadrato(524, 3092, "GnocchiDiPatate", "yes", this);
+		prodotti[63] = new ProdottoQuadrato(780, 3092, "RavioliRicottaESpinaci", "yes", this);
+		prodotti[64] = new ProdottoQuadrato(1036, 3092, "PiadinaRomagnola", "yes", this);
+		prodotti[65] = new ProdottoQuadrato(12, 3348, "HamburgerDiManzo", "yes", this);
+		prodotti[66] = new ProdottoQuadrato(268, 3348, "Salsiccia", "yes", this);
+		prodotti[67] = new ProdottoQuadrato(524, 3348, "FilettiDiMerluzzo", "yes", this);
+		prodotti[68] = new ProdottoQuadrato(780, 3348, "GelatoVaniglia", "yes", this);
+		prodotti[69] = new ProdottoQuadrato(1036, 3348, "Tiramisu", "yes", this);
 		for(int c = 0; c<70; c++) {
 			panelScrollCatalogo.add(prodotti[c]);
-			setPassToCarello(prodotti[c]);
 		}
 		//setto lo scrollpane con la grandezza da mostrare
 		scrollCatalogo = new JScrollPane(panelScrollCatalogo, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -283,22 +282,6 @@ public class Catalogo extends JPanel{
 	//metodo da usare per settare il cambio schermata
 	public JButton getCarrelloCat() {
 		return carrelloCat;
-	}
-	
-	//metodo per settare il passaggio dei prodotti acquistati al carrello
-	public void setPassToCarello(ProdottoQuadrato prodotto) {
-		prodotto.getBuyButton().addActionListener(e -> {
-			boolean giaPresente = false;
-			if(prodotto.getNAttuale()>0) {
-				if(prodottiNelCarrello.contains(prodotto.getNomeProdotto())) {
-					giaPresente = true;
-				}
-				if(!giaPresente) {
-					InformazioniDaPassare info = new InformazioniDaPassare(prodotto.getNomeProdotto(), prodotto.getNAcquistati());
-					prodottiNelCarrello.add(info);
-				}
-			}
-		});
 	}
 	
 	//metodo per ottenere l'array list prodottiNelCarrello

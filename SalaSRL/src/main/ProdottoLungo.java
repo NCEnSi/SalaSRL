@@ -9,7 +9,7 @@ public class ProdottoLungo extends JPanel{
 	//Label per base del prodotto
 	private JLabel base = new JLabel();
 	//Label per numero quantità prodotto
-	private JLabel N = new JLabel("0");
+	private JLabel N = new JLabel();
 	//Button per aumentare N
 	private JButton piu = new JButton();
 	//Button per diminuire N
@@ -26,6 +26,8 @@ public class ProdottoLungo extends JPanel{
 	//costruttore, richiede (coordinata x, coordinata y, nome prodotto)
 	public ProdottoLungo(int prX, int prY, String nomeProdotto, int nAcquistati) {
 		this.nAcquistati = nAcquistati;
+		N.setText(""+nAcquistati);
+		nAttuale = nAcquistati;
 		//setto il Panel
 		setLayout(null);
 		setBounds(prX, prY, 788, 68);
@@ -123,8 +125,8 @@ public class ProdottoLungo extends JPanel{
 	public void piuUno(String nomeProdotto) {
 		nAttuale++;
 		//controllo che il numero non vada sopra il 9
-		if(nAttuale>9) {
-			nAttuale = 9;
+		if(nAttuale>nAcquistati) {
+			nAttuale = nAcquistati;
 		}
 		N.setText(""+nAttuale);
 		System.out.println("Stai eliminando "+nAttuale+" "+nomeProdotto);

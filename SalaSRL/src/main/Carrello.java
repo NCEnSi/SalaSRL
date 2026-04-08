@@ -192,9 +192,12 @@ public class Carrello extends JPanel{
 	
 	//metodo per generare i 70 prodotti nel catalogo
 	public void generaProdotti(ArrayList<InformazioniDaPassare> prodotti) {
+		this.prodotti.clear();
+		panelScrollCarrello.removeAll();
 		//genero i prodotti
 		int y = 10; 
 		for(InformazioniDaPassare info : prodotti) {
+			System.out.println(info.getNome()+" "+info.getQuantita());
 			this.prodotti.add(new ProdottoLungo(10, y, info.getNome(), info.getQuantita()));
 			y += 78;
 		}
@@ -209,9 +212,7 @@ public class Carrello extends JPanel{
 			panelScrollCarrello.add(prodotto);
 		}
 		//setto lo scrollpane con la grandezza da mostrare
-		scrollCarrello = new JScrollPane(panelScrollCarrello, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollCarrello.setBounds(42, 140, 804, 584);
-		add(scrollCarrello);
 	}
 	
 	//metodo per settare il panel scorriCatalogo
