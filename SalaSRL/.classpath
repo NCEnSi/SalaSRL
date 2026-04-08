@@ -11,5 +11,6 @@
 	<classpathentry kind="src" path="Login"/>
 	<classpathentry kind="src" path="LineaScorrimento"/>
 	<classpathentry kind="src" path="ProdottoLung"/>
+	<classpathentry kind="src" path="SfondiQuad"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
