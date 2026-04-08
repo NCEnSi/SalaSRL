@@ -290,8 +290,16 @@ public class Login extends JPanel{
 	}
 	//metodo per cambiare pannello da login a admin o utente
 	public void toAccount() throws IOException{
+		//ricavo la password dal jpasswordfield
+		String password = new String(passwordLogin.getPassword());
+		//controllo se sono stati inseriti tutti i campi richiesti
+		if(emailLogin.getText().equals("") || password.trim().isEmpty()) {
+			//messaggio d'errore e impedisco il passaggio alla pagina successiva
+			erroriLogin.setText("Riempire tutti i campi richiesti!");
+			return;
+		}
 		//controllo che esista l'account con le credenziali indicate
-		if(accessoAccount()) return;
+		if(accessoAccount(password)) return;
 		
 		//rendo invisibili entrambe le schermate
 		schermate[0].setVisible(false);
@@ -429,16 +437,8 @@ public class Login extends JPanel{
 		return ok;
 	}
 	//metodo per controllare se sono state inserite le credenziali giuste dell'account
-	public boolean accessoAccount() throws IOException{
+	public boolean accessoAccount(String password) throws IOException{
 		boolean ok = true;
-		//ricavo la password dal jpasswordfield
-		String password = new String(passwordLogin.getPassword());
-		//controllo se sono stati inseriti tutti i campi richiesti
-		if(emailLogin.getText().equals("") || password.trim().isEmpty()) {
-			//messaggio d'errore e impedisco il passaggio alla pagina successiva
-			erroriLogin.setText("Riempire tutti i campi richiesti!");
-			ok = false;
-		} else {
 			//variabile usata per salvarmi ogni riga del file txt
 			String riga = "";
 			//creo l'oggetto che legge il file txt
@@ -462,7 +462,7 @@ public class Login extends JPanel{
 				//messaggio d'errore e impedisco il passaggio alla pagina successiva
 				erroriLogin.setText("Email o password errati!");
 			}
-		}
+		
 		return ok;
 	}
 	//metodo per controllare se il formato dell'email è corretto
