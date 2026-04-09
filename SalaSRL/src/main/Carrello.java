@@ -156,7 +156,7 @@ public class Carrello extends JPanel{
 		icon = new ImageIcon(getClass().getClassLoader().getResource("ImmagineProfilo.png"));
 		immagineProfiloCar.setIcon(icon);
 		//aggiungo un actionlistener per aprire scheda profilo
-		//carrello.addActionListener(e -> piuUno(nomeProdotto));
+		immagineProfiloCar.addActionListener(e -> Collegamenti.fromOtherToLogout());
 		add(immagineProfiloCar);
 	}
 	

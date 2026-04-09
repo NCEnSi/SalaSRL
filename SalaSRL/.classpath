@@ -13,5 +13,6 @@
 	<classpathentry kind="src" path="ProdottoLung"/>
 	<classpathentry kind="src" path="SfondiQuad"/>
 	<classpathentry kind="src" path="SfondiLung"/>
+	<classpathentry kind="src" path="Logout"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

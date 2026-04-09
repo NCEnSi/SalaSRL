@@ -4,7 +4,22 @@ import javax.swing.*;
 
 public class Main {
 	public static void main(String[] nmf) throws IOException {
-		new Collegamenti();
+		//new Collegamenti();
+		
+		JFrame finestra = new JFrame();
+		
+		//impostazioni delle caratteristiche della finestra
+		finestra.setResizable(false);
+				//1331 e 807 sono le grandezze definitive (mangia rispettivamente 16 e 39 px)
+		finestra.setSize(1331, 807);
+		finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
+		finestra.setLayout(null);
+		
+		Logout logout = new Logout();
+		
+		finestra.add(logout);
+		finestra.setVisible(true);
+
 		
 		//CORREZIONI:
 		//sistemare grandezze e calcoli scrollbar

@@ -103,7 +103,7 @@ public class Catalogo extends JPanel{
 		icon = new ImageIcon(getClass().getClassLoader().getResource("ImmagineProfilo.png"));
 		immagineProfiloCat.setIcon(icon);
 		//aggiungo un actionlistener per aprire scheda profilo
-		//carrello.addActionListener(e -> piuUno(nomeProdotto));
+		immagineProfiloCat.addActionListener(e -> Collegamenti.fromOtherToLogout());
 		add(immagineProfiloCat);
 	}
 

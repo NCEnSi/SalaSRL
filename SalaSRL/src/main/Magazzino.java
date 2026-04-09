@@ -143,7 +143,7 @@ public class Magazzino extends JPanel{
 		icon = new ImageIcon(getClass().getClassLoader().getResource("ImmagineProfilo.png"));
 		immagineProfiloMag.setIcon(icon);
 		//aggiungo un actionlistener per aprire scheda profilo
-		//carrello.addActionListener(e -> piuUno(nomeProdotto));
+		immagineProfiloMag.addActionListener(e -> Collegamenti.fromOtherToLogout());
 		add(immagineProfiloMag);
 	}
 	
