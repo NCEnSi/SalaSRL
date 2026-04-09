@@ -17,7 +17,7 @@ public class Admin extends JPanel {
 		//creo le 3 schermate
 		creaCatalogo();
 		creaMagazzino();
-		creaCarrello();
+		creaCarrello(((Catalogo) schermate[1]));
 	}
 	
 	//metodo per creare la schermata del magazzino
@@ -41,8 +41,8 @@ public class Admin extends JPanel {
 	}
 	
 	//metodo per creare la schermata del carrello
-	public void creaCarrello() {
-		schermate[2] = new Carrello();
+	public void creaCarrello(Catalogo catalogo) {
+		schermate[2] = new Carrello(catalogo);
 		//aggiungo un actionlistener per cambiare schermata in magazzino
 		((Carrello) schermate[2]).getMagazzinoCar().addActionListener(e -> changeInMagazzino());
 		//aggiungo un actionlistener per cambiare schermata in catalogo
@@ -66,7 +66,7 @@ public class Admin extends JPanel {
 
 	//metodo per mostrare la schermata carrello
 	public void changeInCarrello(ArrayList<InformazioniDaPassare> prodotti) {
-		((Carrello) schermate[2]).generaProdotti(prodotti);
+		((Carrello) schermate[2]).generaProdotti(prodotti, "no");
 		schermate[0].setVisible(false);
 		schermate[1].setVisible(false);
 		schermate[2].setVisible(true);

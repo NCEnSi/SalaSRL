@@ -3,6 +3,7 @@ package main;
 import java.awt.*;
 import javax.swing.*;
 import java.io.*;
+import java.util.ArrayList;
 
 public class ProdottoLungo extends JPanel{
 	
@@ -22,10 +23,18 @@ public class ProdottoLungo extends JPanel{
 	//variabili per tenere traccia di N e di quanti elementi si ha già comprato del prodotto
 	private int nAttuale = 0;
 	private int nAcquistati = 10;
+	//copia del carrello in cui si trova
+	private Carrello carrello;
+	//stringa per tenere il nome del prodotto
+	private String nomeProdotto;
+	private Catalogo catalogo;
 	
 	//costruttore, richiede (coordinata x, coordinata y, nome prodotto)
-	public ProdottoLungo(int prX, int prY, String nomeProdotto, int nAcquistati) {
+	public ProdottoLungo(int prX, int prY, String nomeProdotto, int nAcquistati, Carrello carrello, ArrayList<InformazioniDaPassare> prodotti, Catalogo catalogo) {
+		this.catalogo = catalogo;
 		this.nAcquistati = nAcquistati;
+		this.carrello = carrello;
+		this.nomeProdotto = nomeProdotto;
 		N.setText(""+nAcquistati);
 		nAttuale = nAcquistati;
 		//setto il Panel
@@ -34,10 +43,10 @@ public class ProdottoLungo extends JPanel{
 		setOpaque(false);
 		//setto le varie Label e i vari Button
 		setN();
-		setPiu(nomeProdotto);
-		setMeno(nomeProdotto);
-		setBuy(nomeProdotto);
-		setSfondo(nomeProdotto);
+		setPiu(this.nomeProdotto);
+		setMeno(this.nomeProdotto);
+		setCanc(prodotti);
+		setSfondo(this.nomeProdotto);
 	}
 	
 	//metodo per settare la label base
@@ -102,7 +111,7 @@ public class ProdottoLungo extends JPanel{
 	}
 
 	//metodo per settare il bottone buy
-	public void setBuy(String nomeProdotto) {
+	public void setCanc(ArrayList<InformazioniDaPassare> prodotti) {
 		//imposto le caratteristiche del bottone	
 		canc.setContentAreaFilled(false);		
 		canc.setBorderPainted(false);
@@ -117,7 +126,7 @@ public class ProdottoLungo extends JPanel{
 		icon = new ImageIcon(iconScaled);
 		canc.setIcon(icon);
 		//aggiungo un actionlistener per acquistare il numero di elementi selezionato, e quindi sommare nAttuale a nAcquistati
-		canc.addActionListener(e -> canc(nomeProdotto));
+		canc.addActionListener(e -> canc(prodotti));
 		add(canc);
 	}
 
@@ -144,11 +153,41 @@ public class ProdottoLungo extends JPanel{
 	}
 
 	//metodo per sommare il numero di elementi comprati del prodotto
-	public void canc(String nomeProdotto) {
+	public void canc(ArrayList<InformazioniDaPassare> prodotti) {
 		nAcquistati -= nAttuale;
 		if(nAcquistati<0) {
 			nAcquistati = 0;
 		}
-		System.out.println("In totale hai comprato "+nAcquistati+" "+nomeProdotto);
+		if(nAcquistati == 0) {
+			ProdottoLungo prodDel = new ProdottoLungo(10, 10, "Piselli", 0, carrello, prodotti, catalogo);
+			for(ProdottoLungo prod : carrello.getProdottiNelCarrello()) {
+				if(this.nomeProdotto.equals(prod.nomeProdotto)) {
+					prodDel = prod;
+				}
+			}
+			carrello.getProdottiNelCarrello().remove(prodDel);
+			carrello.generaProdotti(prodotti, "yes");
+			carrello.repaint();
+			for(ProdottoQuadrato prod : catalogo.getProdotti()) {
+				if(prod.getNomeProdotto().equals(prodDel.nomeProdotto)) {
+					prod.resetNAcquistati();
+				}
+			}
+		} else {
+			int n = Integer.valueOf(N.getText());
+			if(n>nAcquistati) {
+				N.setText(""+nAcquistati);
+				nAttuale = nAcquistati;
+			}
+		}
+		System.out.println("In totale hai eliminato "+nAcquistati+" "+nomeProdotto);
+	}
+	
+	public String getNome() {
+		return nomeProdotto;
+	}
+	
+	public int getNAcquistati() {
+		return nAcquistati;
 	}
 }

@@ -8,11 +8,12 @@ public class Main {
 		
 		//CORREZIONI:
 		//sistemare grandezze e calcoli scrollbar
-		//mettere che se elimini tutti gli elementi di un prodotto dal carrello viene eliminato dal carrello
 		//mettere un massimo di (spazioLiberoMagazzino) nel carrello
 		
 		//MAGAZZINO:
 		
+		//LOGIN:
+		//dividere le due schermate in 2 classi
 		
 		//PRODOTTI:
 		//preparare tasti premuti
