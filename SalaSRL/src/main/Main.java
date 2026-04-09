@@ -4,44 +4,37 @@ import javax.swing.*;
 
 public class Main {
 	public static void main(String[] nmf) throws IOException {
-		//new Collegamenti();
-		
-	JFrame finestra = new JFrame();
-		
-		//impostazioni delle caratteristiche della finestra
-		finestra.setResizable(false);
-				//1331 e 807 sono le grandezze definitive (mangia rispettivamente 16 e 39 px)
-		finestra.setSize(1331, 807);
-		finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
-		finestra.setLayout(null);
-		
-		Logout logout = new Logout();
-		
-		finestra.add(logout);
-		finestra.setVisible(true);
-
+		new Collegamenti();
 		
 		//CORREZIONI:
-		//sistemare grandezze e calcoli scrollbar
-		//mettere un massimo di (spazioLiberoMagazzino) nel carrello
-		
-		//MAGAZZINO:
+		//sistemare grandezze e calcoli scrollbar in carrello e catalogo <--OPZIONALE
 		
 		//LOGIN:
-		//dividere le due schermate in 2 classi
+		//dividere le due schermate già esistenti in 2 classi <--OPZIONALE
+		//se premi invio passa al campo successivo, se si preme quando si è nel campo password è come premere invia <--OPZIONALE
+		//mettere un limite di caratteri per nome utente e email per non farli uscire dalla schermata di logout <--OPZIONALE
 		
-		//PRODOTTI:
-		//preparare tasti premuti
-		//preparare info di ogni prodotto
-		//grafica informazioni del carrelo
+		//MAGAZZINO:
+		//tutto <--DA FARE
+		
+		//CATALOGO:
+		//potremmo cambiare qualche prodotto tipo in vino e alcool <--OPZIONALE
+		
+		//CARRELLO:
+		//far funzionare il tasto conferma ordine <--DA FARE
+		//se schiacci su un prodotto far apparire le informazioni nella label apposita <--PARZIALMENTE OPZIONALE
+		//mettere un massimo di (spazioLiberoMagazzino) nel carrello <--PARZIALMENTE OPZIONALE
 		
 		//SCHERMATA GESTIONE UTENTI:
-		//creare una schermata per cambiare grado da utente ad admin e viceversa che possono vedere solo gli account "creatori"
-		
-		//PANNELLO DI LOGOUT:
-		//quando clicchi l'icona del profilo apre un mini pannello per fare il logout
+		//creare una schermata per cambiare grado da utente ad admin e viceversa che possono vedere solo gli account "creatori" <--PARZIALMENTE OPZIONALE
 		
 		//UTENTE:
+		//tutto <--DA FARE
+		
+		//PRODOTTI:
+		//preparare grafica tasti premuti del carrello admin <--OPZIONALE
+		//preparare info di ogni prodotto <--PARZIALMENTE OPZIONALE
+		//pensare alla grafica informazioni del carrello admin <--PARZIALMENTE OPZIONALE
 		
 	}
 }

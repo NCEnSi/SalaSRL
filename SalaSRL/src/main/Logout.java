@@ -12,30 +12,31 @@ public class Logout extends JPanel{
 	private JButton logout = new JButton();
 	//bottone per chiudere il pannello di logout
 	private JButton chiudiLogout = new JButton();
+	//label per inserire i dati dell'utente
+	private JLabel labelNomeUtente = new JLabel();
+	private JLabel labelPrivilegiUtente = new JLabel();
+	private JLabel labelEmailUtente = new JLabel();
 	//variabile usata come appoggio per poter caricare le immagini
 	private ImageIcon immagine;
 	private Image immScalata;
-	
-	
 	
 	//COSTRUTTORE
 	public Logout() {
 		//setto il Panel	
 		setLayout(null);
-		setBounds(937, 2, 391, 190);
-		
+		setOpaque(false);
+		setBounds(920, 2, 391, 190);
 		//imposto i bottoni del pannello
 		setBottoneChiudiLogout();
 		setBottoneLogout();
+		//imposto le scritte del pannello
+		setLabelNomeUtente();
+		setLabelPrivilegiUtente();
+		setLabelEmailUtente();
 		//imposto lo sfondo
 		setSchermataLogout();
 		
-		//imposto i campi dove inserisco le informazioni dell'account
-		
-		
 	}
-	
-	
 	
 	//METODI DI ISTANZA	
 	//metodo per impostare lo sfondo del pannello logout
@@ -63,7 +64,7 @@ public class Logout extends JPanel{
 		immagine = new ImageIcon(immScalata);
 		chiudiLogout.setPressedIcon(immagine);	
 		//aggiungo un actionlistener per cambiare pannello
-		chiudiLogout.addActionListener(e -> Collegamenti.fromLogoutToOther());
+		chiudiLogout.addActionListener(e -> Collegamenti.fromLogoutToOther(this));
 		add(chiudiLogout);
 	}
 	//metodo per impostare le caratteristiche del bottone per il logout
@@ -86,8 +87,40 @@ public class Logout extends JPanel{
 		add(logout);
 	}
 	
+	public void setLabelNomeUtente() {
+		//imposto coordinate e grandezza della label
+		labelNomeUtente.setBounds(0, 10, 391, 25);
+		//personalizzo la label e il suo testo
+		labelNomeUtente.setBackground(null);
+		labelNomeUtente.setFont(new Font("Arial", Font.BOLD, 26));
+		labelNomeUtente.setHorizontalAlignment(JLabel.CENTER);
+		add(labelNomeUtente);
+	}
 	
+	public void setLabelPrivilegiUtente() {
+		//imposto coordinate e grandezza della label
+		labelPrivilegiUtente.setBounds(0, 36, 391, 16);
+		//personalizzo la label e il suo testo
+		labelPrivilegiUtente.setBackground(null);
+		labelPrivilegiUtente.setFont(new Font("Arial", Font.BOLD, 17));
+		labelPrivilegiUtente.setHorizontalAlignment(JLabel.CENTER);
+		add(labelPrivilegiUtente);
+	}
 	
+	public void setLabelEmailUtente() {
+		//imposto coordinate e grandezza della label
+		labelEmailUtente.setBounds(151, 142, 221, 30);
+		//personalizzo la label e il suo testo
+		labelEmailUtente.setBackground(null);
+		labelEmailUtente.setFont(new Font("Arial", Font.BOLD, 20));
+		labelEmailUtente.setHorizontalAlignment(JLabel.RIGHT);
+		add(labelEmailUtente);
+	}
 	
+	public void setLabelTesto(String nomeUtente, String privilegi, String email) {
+		labelNomeUtente.setText(nomeUtente);
+		labelPrivilegiUtente.setText(privilegi);
+		labelEmailUtente.setText(email);
+	}
 	
 }
