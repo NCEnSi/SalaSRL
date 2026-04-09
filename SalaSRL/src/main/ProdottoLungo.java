@@ -154,12 +154,12 @@ public class ProdottoLungo extends JPanel{
 
 	//metodo per sommare il numero di elementi comprati del prodotto
 	public void canc(ArrayList<InformazioniDaPassare> prodotti) {
+		ProdottoLungo prodDel = new ProdottoLungo(10, 10, "Piselli", 0, carrello, prodotti, catalogo);
 		nAcquistati -= nAttuale;
 		if(nAcquistati<0) {
 			nAcquistati = 0;
 		}
 		if(nAcquistati == 0) {
-			ProdottoLungo prodDel = new ProdottoLungo(10, 10, "Piselli", 0, carrello, prodotti, catalogo);
 			for(ProdottoLungo prod : carrello.getProdottiNelCarrello()) {
 				if(this.nomeProdotto.equals(prod.nomeProdotto)) {
 					prodDel = prod;
@@ -174,13 +174,25 @@ public class ProdottoLungo extends JPanel{
 				}
 			}
 		} else {
-			int n = Integer.valueOf(N.getText());
-			if(n>nAcquistati) {
+			for(InformazioniDaPassare info : prodotti) {
+	            if(info.getNome().equals(nomeProdotto)) {
+	                info.setQuantita(nAcquistati);
+	                break;
+	            }
+	        }
+			for(ProdottoQuadrato prod : catalogo.getProdotti()) {
+				if(prod.getNomeProdotto().equals(nomeProdotto)) {
+					prod.delNAcquistati(nAttuale);
+	                break;
+				}
+			}
+			if(nAttuale>nAcquistati) {
 				N.setText(""+nAcquistati);
 				nAttuale = nAcquistati;
 			}
 		}
 		System.out.println("In totale hai eliminato "+nAcquistati+" "+nomeProdotto);
+		System.out.println(nAcquistati);
 	}
 	
 	public String getNome() {
