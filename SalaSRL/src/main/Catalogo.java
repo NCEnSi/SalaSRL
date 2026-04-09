@@ -288,5 +288,10 @@ public class Catalogo extends JPanel{
 	public ArrayList<InformazioniDaPassare> getProdottiNelCarrello() {
 		return prodottiNelCarrello;
 	}
+	
+	//metodo per ottenere l'array list prodottiNelCarrello
+	public ProdottoQuadrato[] getProdotti() {
+		return prodotti;
+	}
 
 }
