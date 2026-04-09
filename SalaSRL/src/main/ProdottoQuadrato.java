@@ -142,7 +142,6 @@ public class ProdottoQuadrato extends JPanel{
 			nAttuale = 9;
 		}
 		N.setText(""+nAttuale);
-		System.out.println("Stai comprando "+nAttuale+" "+nomeProdotto);
 	}
 	
 	//metodo per diminuire la variabile nAttuale in base al riferimento Label N
@@ -153,7 +152,6 @@ public class ProdottoQuadrato extends JPanel{
 			nAttuale = 0;
 		}
 		N.setText(""+nAttuale);
-		System.out.println("Stai comprando "+nAttuale+" "+nomeProdotto);
 	}
 
 	//metodo per sommare il numero di elementi comprati del prodotto
@@ -167,6 +165,9 @@ public class ProdottoQuadrato extends JPanel{
 					giaPresente = true;
 					//aggiorno nAcquistati se no rimane uguale al primo acquisto
 					info.setQuantita(nAcquistati);
+					if(info.getQuantita()>=99) {
+						info.setQuantita(99);
+					}
 					break;
 				}
 			}
@@ -175,8 +176,6 @@ public class ProdottoQuadrato extends JPanel{
 				catalogo.getProdottiNelCarrello().add(info);
 			}
 		}
-		
-		System.out.println("In totale hai comprato "+nAcquistati+" "+nomeProdotto);
 	}
 	
 	//metodo per resettare nAcquistati
