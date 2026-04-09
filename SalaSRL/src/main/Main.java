@@ -4,9 +4,9 @@ import javax.swing.*;
 
 public class Main {
 	public static void main(String[] nmf) throws IOException {
-		new Collegamenti();
+		//new Collegamenti();
 		
-/*		JFrame finestra = new JFrame();
+	JFrame finestra = new JFrame();
 		
 		//impostazioni delle caratteristiche della finestra
 		finestra.setResizable(false);
@@ -18,7 +18,7 @@ public class Main {
 		Logout logout = new Logout();
 		
 		finestra.add(logout);
-		finestra.setVisible(true);*/
+		finestra.setVisible(true);
 
 		
 		//CORREZIONI:
