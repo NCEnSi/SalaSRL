@@ -197,7 +197,6 @@ public class Carrello extends JPanel{
 		//genero i prodotti
 		int y = 10; 
 		for(InformazioniDaPassare info : prodotti) {
-			System.out.println(info.getNome()+" "+info.getQuantita());
 			this.prodotti.add(new ProdottoLungo(10, y, info.getNome(), info.getQuantita()));
 			y += 78;
 		}
