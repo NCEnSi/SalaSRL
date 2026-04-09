@@ -22,6 +22,9 @@ public class Main {
 		//SCHERMATA GESTIONE UTENTI:
 		//creare una schermata per cambiare grado da utente ad admin e viceversa che possono vedere solo gli account "creatori"
 		
+		//PANNELLO DI LOGOUT:
+		//quando clicchi l'icona del profilo apre un mini pannello per fare il logout
+		
 		//UTENTE:
 		
 	}
