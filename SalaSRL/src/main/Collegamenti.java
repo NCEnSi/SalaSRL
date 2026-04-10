@@ -49,7 +49,6 @@ public class Collegamenti extends JFrame {
 		((Admin) schermateCompl[1]).setLogouts(datiUtente);
 		schermateCompl[1].setVisible(true);
 		schermateCompl[2].setVisible(false);
-		
 	}
 	//metodo usato per passare dalla schermata di login alla pagina dedicata all'utente
 	public static void fromLoginToUtente(String datiUtente) {
@@ -65,7 +64,6 @@ public class Collegamenti extends JFrame {
 		schermateCompl[0].setVisible(true);
 		schermateCompl[1].setVisible(false);
 		schermateCompl[2].setVisible(false);
-		System.out.print(schermateCompl[0].isVisible());
 	}
 	
 	//metodo usato per passare dalla schermata di logout alla pagina admin o utente

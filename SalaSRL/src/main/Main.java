@@ -5,7 +5,7 @@ import javax.swing.*;
 public class Main {
 	public static void main(String[] nmf) throws IOException {
 		new Collegamenti();
-		
+				
 		//LOGIN:
 		//dividere le due schermate già esistenti in 2 classi <--OPZIONALE
 		//se premi invio passa al campo successivo, se si preme quando si è nel campo password è come premere invia <--OPZIONALE
