@@ -78,4 +78,16 @@ public class Admin extends JPanel {
 		((Carrello) schermate[2]).setLogout(datiUtente);
 	}
 	
+	public void showLogouts() {
+		((Magazzino) schermate[0]).getPanelLogout().setVisible(true);
+		((Catalogo) schermate[1]).getPanelLogout().setVisible(true);
+		((Carrello) schermate[2]).getPanelLogout().setVisible(true);
+	}
+	
+	public void unShowLogouts() {
+		((Magazzino) schermate[0]).getPanelLogout().setVisible(false);
+		((Catalogo) schermate[1]).getPanelLogout().setVisible(false);
+		((Carrello) schermate[2]).getPanelLogout().setVisible(false);
+	}
+	
 }
