@@ -68,14 +68,14 @@ public class Collegamenti extends JFrame {
 	}
 	
 	//metodo usato per passare dalla schermata di logout alla pagina admin o utente
-	public static void fromLogoutToOther(Logout logout) {
+	public static void fromLogoutToOther() {
 		//faccio in modo che si vedano solo le schermate admin e utente
-		logout.setVisible(false);
+		((Admin) schermateCompl[1]).unShowLogouts();
 	}
 	//metodo usato per passare dalla schermata di admin o utente alla pagina dedicata al logout
-	public static void fromOtherToLogout(Logout logout) {
+	public static void fromOtherToLogout() {
 		//faccio in modo che si vedano solo le schermate admin o utente e logout
-		logout.setVisible(true);
+		((Admin) schermateCompl[1]).showLogouts();
 	}
 	
 	

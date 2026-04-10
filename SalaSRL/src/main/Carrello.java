@@ -42,7 +42,6 @@ public class Carrello extends JPanel{
 	private Catalogo catalogo;
 	//aggiungo il panel per il logout
 	private Logout logout = new Logout();
-	
 
 	//costruttore per creare la schermata del carrello
 	public Carrello(Catalogo catalogo) {
@@ -162,8 +161,12 @@ public class Carrello extends JPanel{
 		icon = new ImageIcon(getClass().getClassLoader().getResource("ImmagineProfilo.png"));
 		immagineProfiloCar.setIcon(icon);
 		//aggiungo un actionlistener per aprire scheda profilo
-		immagineProfiloCar.addActionListener(e -> Collegamenti.fromOtherToLogout(logout));
+		immagineProfiloCar.addActionListener(e -> Collegamenti.fromOtherToLogout());
 		add(immagineProfiloCar);
+	}
+	
+	public Logout getPanelLogout() {
+		return logout;
 	}
 	
 	public void setPanelLogout() {
@@ -185,9 +188,6 @@ public class Carrello extends JPanel{
 	public JButton getCatalogoCar() {
 		return catalogoCar;
 	}
-	
-	//GENERA PRODOTTI DEVE RIATTIVARSI ANCHE QUANDO SI ELIMINA DEL TUTTO UN PRODOTTO DAL CARRELLO
-	//QUINDI AGGIUGERE ANCHE LE FUNZIONI DEI TASTI DEL PRODOTTOLUNGO
 	
 	//metodo per aggiungere subito questi due componenti se no vengono coperti
 	public void addComponentiScroll() {
