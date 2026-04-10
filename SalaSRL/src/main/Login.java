@@ -271,7 +271,7 @@ public class Login extends JPanel{
 			//ricavo la password dal jpasswordfield
 			String password = new String(passwordSignup.getPassword());			
 			//salvo le diverse informazioni sul file txt
-			String account = usernameSignup.getText() +";"+ emailSignup.getText() +";"+ password +";utente";
+			String account = usernameSignup.getText() +";"+ emailSignup.getText() +";"+ password +";Utente";
 			scrittura.newLine();
 			scrittura.write(account);
 			scrittura.close();
@@ -310,7 +310,7 @@ public class Login extends JPanel{
 		schermate[1].setVisible(false);
 		
 		//passo alla sezione admin o utente
-		if(account[2].equals("admin")) {
+		if(account[2].equals("Admin")) {
 			Collegamenti.fromLoginToAdmin(answer);
 		} else {
 			Collegamenti.fromLoginToUtente(answer);

@@ -65,6 +65,7 @@ public class Collegamenti extends JFrame {
 		schermateCompl[0].setVisible(true);
 		schermateCompl[1].setVisible(false);
 		schermateCompl[2].setVisible(false);
+		System.out.print(schermateCompl[0].isVisible());
 	}
 	
 	//metodo usato per passare dalla schermata di logout alla pagina admin o utente
