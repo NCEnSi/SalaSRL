@@ -64,7 +64,7 @@ public class Logout extends JPanel{
 		immagine = new ImageIcon(immScalata);
 		chiudiLogout.setPressedIcon(immagine);	
 		//aggiungo un actionlistener per cambiare pannello
-		chiudiLogout.addActionListener(e -> Collegamenti.fromLogoutToOther(this));
+		chiudiLogout.addActionListener(e -> Collegamenti.fromLogoutToOther());
 		add(chiudiLogout);
 	}
 	//metodo per impostare le caratteristiche del bottone per il logout

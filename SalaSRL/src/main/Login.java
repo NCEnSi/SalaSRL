@@ -305,10 +305,6 @@ public class Login extends JPanel{
 		String[] account = answer.split(";");
 		if(account[3].equals("vero")) return;
 		
-		//rendo invisibili entrambe le schermate
-		schermate[0].setVisible(false);
-		schermate[1].setVisible(false);
-		
 		//passo alla sezione admin o utente
 		if(account[2].equals("Admin")) {
 			Collegamenti.fromLoginToAdmin(answer);
@@ -316,6 +312,7 @@ public class Login extends JPanel{
 			Collegamenti.fromLoginToUtente(answer);
 		}
 	}
+	
 	//metodo per rendere invisibile la password e viceversa
 	public void toVisibilityPass() {
 		//controllo quale delle due scermate è visibile
@@ -557,7 +554,10 @@ public class Login extends JPanel{
 		return ok;
 	}
 	
-	
+	public void resetLoginLabel() {
+		passwordLogin.setText("");
+		emailLogin.setText("");
+	}
 	
 	
 	 

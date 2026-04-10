@@ -62,6 +62,8 @@ public class Collegamenti extends JFrame {
 	//metodo usato per passare dalla schermata di logout alla pagina dedicata al login
 	public static void fromLogoutToLogin() {
 		//faccio in modo che si vedano solo le schermate login
+		((Login) schermateCompl[0]).resetLoginLabel();
+		fromLogoutToOther();
 		schermateCompl[0].setVisible(true);
 		schermateCompl[1].setVisible(false);
 		schermateCompl[2].setVisible(false);
