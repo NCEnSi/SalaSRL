@@ -39,13 +39,19 @@ public class Carrello extends JPanel{
 	private int valore;
 	private int cellaScorrimento;
 	//label per contenere lo sfondo delle info dei prodotti nel carrello
+	private Catalogo catalogo;
+	//aggiungo il panel per il logout
+	private Logout logout = new Logout();
 	
 
 	//costruttore per creare la schermata del carrello
-	public Carrello() {
+	public Carrello(Catalogo catalogo) {
+		this.catalogo = catalogo;
 		//setto il Panel
 		setLayout(null);
 		setBounds(0, 0, 1331, 768);
+		//aggiungo il panel per il logout
+		setPanelLogout();
 		//aggingo i prodotti e la scrollbar personalizzata
 		addComponentiScroll();
 		setScorriCarrello();
@@ -156,8 +162,18 @@ public class Carrello extends JPanel{
 		icon = new ImageIcon(getClass().getClassLoader().getResource("ImmagineProfilo.png"));
 		immagineProfiloCar.setIcon(icon);
 		//aggiungo un actionlistener per aprire scheda profilo
-		immagineProfiloCar.addActionListener(e -> Collegamenti.fromOtherToLogout());
+		immagineProfiloCar.addActionListener(e -> Collegamenti.fromOtherToLogout(logout));
 		add(immagineProfiloCar);
+	}
+	
+	public void setPanelLogout() {
+		add(logout);
+		logout.setVisible(false);
+	}
+	
+	public void setLogout(String datiUtente) {
+		String[] account = datiUtente.split(";");
+		logout.setLabelTesto(account[0], account[2], account[1]);
 	}
 	
 	//metodo da usare per settare il cambio schermata
@@ -191,13 +207,19 @@ public class Carrello extends JPanel{
 	}
 	
 	//metodo per generare i 70 prodotti nel catalogo
-	public void generaProdotti(ArrayList<InformazioniDaPassare> prodotti) {
+	public void generaProdotti(ArrayList<InformazioniDaPassare> prodotti, String yes) {
+		if(yes.equals("yes")) {
+			prodotti.clear();
+			for(ProdottoLungo prod : this.prodotti) {
+				prodotti.add(new InformazioniDaPassare(prod.getNome(), prod.getNAcquistati()));
+			}
+		}
 		this.prodotti.clear();
 		panelScrollCarrello.removeAll();
 		//genero i prodotti
 		int y = 10; 
 		for(InformazioniDaPassare info : prodotti) {
-			this.prodotti.add(new ProdottoLungo(10, y, info.getNome(), info.getQuantita()));
+			this.prodotti.add(new ProdottoLungo(10, y, info.getNome(), info.getQuantita(), this, prodotti, catalogo));
 			y += 78;
 		}
 		//setto il panel con la grandezza totale che deve avere
@@ -278,6 +300,11 @@ public class Carrello extends JPanel{
 		icon = new ImageIcon(getClass().getClassLoader().getResource("ConfermaOrdineCarrello.png"));
 		confermaOrdine.setIcon(icon);
 		add(confermaOrdine);
+	}
+	
+	//metodo per ottenere l'array list prodottiNelCarrello
+	public ArrayList<ProdottoLungo> getProdottiNelCarrello() {
+		return prodotti;
 	}
 
 }

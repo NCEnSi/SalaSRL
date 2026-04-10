@@ -23,12 +23,16 @@ public class Magazzino extends JPanel{
 	//variabili usate per mettere le immagini
 	private ImageIcon icon;
 	private Image iconScaled;
+	//aggiungo il panel per il logout
+	private Logout logout = new Logout();
 
 	//costruttore per creare la schermata del magazzino
 	public Magazzino() {
 		//setto il Panel
 		setLayout(null);
 		setBounds(0, 0, 1331, 768);
+		//aggiungo il panel per il logout
+		setPanelLogout();
 		//setto i vari componenti
 		setImmagineProfiloMag();
 		setCopriLineaMagazzino();
@@ -143,8 +147,18 @@ public class Magazzino extends JPanel{
 		icon = new ImageIcon(getClass().getClassLoader().getResource("ImmagineProfilo.png"));
 		immagineProfiloMag.setIcon(icon);
 		//aggiungo un actionlistener per aprire scheda profilo
-		immagineProfiloMag.addActionListener(e -> Collegamenti.fromOtherToLogout());
+		immagineProfiloMag.addActionListener(e -> Collegamenti.fromOtherToLogout(logout));
 		add(immagineProfiloMag);
+	}
+	
+	public void setPanelLogout() {
+		add(logout);
+		logout.setVisible(false);
+	}
+	
+	public void setLogout(String datiUtente) {
+		String[] account = datiUtente.split(";");
+		logout.setLabelTesto(account[0], account[2], account[1]);
 	}
 	
 	//metodo da usare per settare il cambio schermata
