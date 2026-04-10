@@ -35,12 +35,16 @@ public class Catalogo extends JPanel{
 	//variabili usate per settare scrollCatalogo e scorriCatalogo
 	private int valore;
 	private int cellaScorrimento;
+	//aggiungo il panel per il logout
+	private Logout logout = new Logout();
 	
 	//costruttore per creare la schermata del catalogo
 	public Catalogo() {
 		//setto il Panel
 		setLayout(null);
 		setBounds(0, 0, 1331, 768);
+		//aggiungo il panel per il logout
+		setPanelLogout();
 		//aggingo i prodotti e la scrollbar personalizzata
 		generaProdotti();
 		setScorriCatalogo();
@@ -103,8 +107,22 @@ public class Catalogo extends JPanel{
 		icon = new ImageIcon(getClass().getClassLoader().getResource("ImmagineProfilo.png"));
 		immagineProfiloCat.setIcon(icon);
 		//aggiungo un actionlistener per aprire scheda profilo
-		immagineProfiloCat.addActionListener(e -> Collegamenti.fromOtherToLogout());
+		immagineProfiloCat.addActionListener(e -> Collegamenti.fromOtherToLogout() );
 		add(immagineProfiloCat);
+	}
+	
+	public Logout getPanelLogout() {
+		return logout;
+	}
+	
+	public void setPanelLogout() {
+		add(logout);
+		logout.setVisible(false);
+	}
+	
+	public void setLogout(String datiUtente) {
+		String[] account = datiUtente.split(";");
+		logout.setLabelTesto(account[0], account[2], account[1]);
 	}
 
 	//metodo per settare la label catalogoAttuale

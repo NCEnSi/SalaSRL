@@ -40,7 +40,8 @@ public class Carrello extends JPanel{
 	private int cellaScorrimento;
 	//label per contenere lo sfondo delle info dei prodotti nel carrello
 	private Catalogo catalogo;
-	
+	//aggiungo il panel per il logout
+	private Logout logout = new Logout();
 
 	//costruttore per creare la schermata del carrello
 	public Carrello(Catalogo catalogo) {
@@ -48,6 +49,8 @@ public class Carrello extends JPanel{
 		//setto il Panel
 		setLayout(null);
 		setBounds(0, 0, 1331, 768);
+		//aggiungo il panel per il logout
+		setPanelLogout();
 		//aggingo i prodotti e la scrollbar personalizzata
 		addComponentiScroll();
 		setScorriCarrello();
@@ -160,6 +163,20 @@ public class Carrello extends JPanel{
 		//aggiungo un actionlistener per aprire scheda profilo
 		immagineProfiloCar.addActionListener(e -> Collegamenti.fromOtherToLogout());
 		add(immagineProfiloCar);
+	}
+	
+	public Logout getPanelLogout() {
+		return logout;
+	}
+	
+	public void setPanelLogout() {
+		add(logout);
+		logout.setVisible(false);
+	}
+	
+	public void setLogout(String datiUtente) {
+		String[] account = datiUtente.split(";");
+		logout.setLabelTesto(account[0], account[2], account[1]);
 	}
 	
 	//metodo da usare per settare il cambio schermata

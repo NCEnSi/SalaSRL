@@ -6,9 +6,7 @@ public class Collegamenti extends JFrame {
 
 	//VARIABILI DI ISTANZA
 	//array che contiene tutte le schermate di cui è composto il progetto
-	static JPanel[] schermateCompl = new JPanel[4];
-	
-	
+	static JPanel[] schermateCompl = new JPanel[3];
 	
 	//COSTRUTTORE
 	public Collegamenti() throws IOException{
@@ -25,7 +23,6 @@ public class Collegamenti extends JFrame {
 		setVisible(true);
 	}
 	
-	
 	//METODI DI CLASSE
 	//metodo usato per inizializzare l'array con le schermate
 	public void creaSchermate() throws IOException{
@@ -33,30 +30,29 @@ public class Collegamenti extends JFrame {
 		schermateCompl[0] = new Login();
 		schermateCompl[1] = new Admin();
 		schermateCompl[2] = new Utente();
-		schermateCompl[3] = new Logout();
 		
 		//faccio vedere solo login
-		schermateCompl[0].setVisible(false);
-		schermateCompl[1].setVisible(true);
+		schermateCompl[0].setVisible(true);
+		schermateCompl[1].setVisible(false);
 		schermateCompl[2].setVisible(false);
-		schermateCompl[3].setVisible(false);
 		
 		//aggiungo le schermate alla finestra
 		add(schermateCompl[0]);
 		add(schermateCompl[1]);
 		add(schermateCompl[2]);
-		add(schermateCompl[3]);
 	}
 	
 	//metodo usato per passare dalla schermata di login alla pagina dedicata all'admin
-	public static void fromLoginToAdmin() {
+	public static void fromLoginToAdmin(String datiUtente) {
 		//faccio in modo che si vedano solo le schermate admin
 		schermateCompl[0].setVisible(false);
+		((Admin) schermateCompl[1]).setLogouts(datiUtente);
 		schermateCompl[1].setVisible(true);
 		schermateCompl[2].setVisible(false);
+		
 	}
 	//metodo usato per passare dalla schermata di login alla pagina dedicata all'utente
-	public static void fromLoginToUtente() {
+	public static void fromLoginToUtente(String datiUtente) {
 		//faccio in modo che si vedano solo le schermate utente
 		schermateCompl[0].setVisible(false);
 		schermateCompl[1].setVisible(false);
@@ -69,17 +65,18 @@ public class Collegamenti extends JFrame {
 		schermateCompl[0].setVisible(true);
 		schermateCompl[1].setVisible(false);
 		schermateCompl[2].setVisible(false);
-		schermateCompl[3].setVisible(false);
+		System.out.print(schermateCompl[0].isVisible());
 	}
+	
 	//metodo usato per passare dalla schermata di logout alla pagina admin o utente
 	public static void fromLogoutToOther() {
 		//faccio in modo che si vedano solo le schermate admin e utente
-		schermateCompl[3].setVisible(false);
+		((Admin) schermateCompl[1]).unShowLogouts();
 	}
 	//metodo usato per passare dalla schermata di admin o utente alla pagina dedicata al logout
 	public static void fromOtherToLogout() {
 		//faccio in modo che si vedano solo le schermate admin o utente e logout
-		schermateCompl[3].setVisible(true);
+		((Admin) schermateCompl[1]).showLogouts();
 	}
 	
 	

@@ -271,7 +271,7 @@ public class Login extends JPanel{
 			//ricavo la password dal jpasswordfield
 			String password = new String(passwordSignup.getPassword());			
 			//salvo le diverse informazioni sul file txt
-			String account = usernameSignup.getText() +";"+ emailSignup.getText() +";"+ password +";utente";
+			String account = usernameSignup.getText() +";"+ emailSignup.getText() +";"+ password +";Utente";
 			scrittura.newLine();
 			scrittura.write(account);
 			scrittura.close();
@@ -303,17 +303,17 @@ public class Login extends JPanel{
 		//controllo che esista l'account con le credenziali indicate
 		String answer = accessoAccount(password);
 		String[] account = answer.split(";");
-		if(account[1].equals("vero")) return;
+		if(account[3].equals("vero")) return;
 		
 		//rendo invisibili entrambe le schermate
 		schermate[0].setVisible(false);
 		schermate[1].setVisible(false);
 		
 		//passo alla sezione admin o utente
-		if(account[0].equals("admin")) {
-			Collegamenti.fromLoginToAdmin();
+		if(account[2].equals("Admin")) {
+			Collegamenti.fromLoginToAdmin(answer);
 		} else {
-			Collegamenti.fromLoginToUtente();
+			Collegamenti.fromLoginToUtente(answer);
 		}
 	}
 	//metodo per rendere invisibile la password e viceversa
@@ -462,7 +462,7 @@ public class Login extends JPanel{
 				if(password.trim().equals(credenziali[2])) {
 					ok = false;
 					//mi salvo se l'account è utente o admin
-					risultato = credenziali[3] +";";
+					risultato = credenziali[0]+";"+credenziali[1]+";"+credenziali[3] +";";
 				}
 			}
 		}

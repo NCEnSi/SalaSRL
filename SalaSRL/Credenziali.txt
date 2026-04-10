@@ -1,2 +1,4 @@
-Nicolò Carlini;nico@gmail.com;123456;admin
-marco morettini;moret@gmail.com;654321;utente
+Nicolò Carlini;nico@gmail.com;123456;Admin
+Nicolò Carlini;eeeeeee;1;Admin
+Nicolò Carlini;1;1;Admin
+marco morettini;moret@gmail.com;654321;Utente
