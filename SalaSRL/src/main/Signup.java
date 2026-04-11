@@ -232,19 +232,27 @@ public class Signup extends JPanel{
 				//impedisco che venga salvato l'account
 				ok = false;
 			} else {
-				//controllo che il formato della email inserita sia valido
-				if(checkFormatoEmail() == false) {
+				//controllo che non sia troppo lungo l'username
+				if(checkFormatoUsername()) {
 					//messaggio d'errore e impedisco il passaggio alla pagina successiva
-					erroriSignup.setText("Email non valida!");
+					erroriSignup.setText("Username troppo lungo!");
 					//impedisco che venga salvato l'account
 					ok = false;
 				} else {
-					//controllo che non esista già un account con la stessa email
-					if(checkPresenzaEmail()) {
+					//controllo che il formato della email inserita sia valido
+					if(checkFormatoEmail() == false) {
 						//messaggio d'errore e impedisco il passaggio alla pagina successiva
-						erroriSignup.setText("Account con questa email già esistente!");
+						erroriSignup.setText("Email non valida!");
 						//impedisco che venga salvato l'account
 						ok = false;
+					} else {
+						//controllo che non esista già un account con la stessa email
+						if(checkPresenzaEmail()) {
+							//messaggio d'errore e impedisco il passaggio alla pagina successiva
+							erroriSignup.setText("Account con questa email già esistente!");
+							//impedisco che venga salvato l'account
+							ok = false;
+						}
 					}
 				}
 			}
@@ -271,10 +279,18 @@ public class Signup extends JPanel{
 		} else {
 			ok = false;
 		}
-		
-		
 		return ok;
 	}
+	//metodo per controllare se la lunghezza dell'username è corretta
+	public boolean checkFormatoUsername() {
+		boolean ok = false;
+		//controllo che non superi 19 caratteri
+		if(usernameSignup.getText().length() > 19) {
+			ok = true;
+		}
+		return ok;
+	}
+	
 	//metodo per controllare se esiste già un account con quell'username
 	public boolean checkPresenzaUsername() throws IOException{
 		boolean ok = false;

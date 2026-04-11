@@ -16,7 +16,7 @@ public class Main {
 		
 		//LOGIN:
 		//se premi invio passa al campo successivo, se si preme quando si è nel campo password è come premere invia <--OPZIONALE
-		//mettere un limite di caratteri per nome utente e email per non farli uscire dalla schermata di logout <--OPZIONALE
+		//mettere un limite di caratteri per email per non farli uscire dalla schermata di logout <--OPZIONALE
 		
 		//MAGAZZINO:
 		//tutto <--DA FARE
