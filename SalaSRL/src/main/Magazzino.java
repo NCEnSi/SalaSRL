@@ -25,6 +25,9 @@ public class Magazzino extends JPanel{
 	private Image iconScaled;
 	//aggiungo il panel per il logout
 	private Logout logout = new Logout();
+	//bottone per passare alla schermata di elenco utenti
+	private JButton gestioneUtenti = new JButton();
+
 
 	//costruttore per creare la schermata del magazzino
 	public Magazzino() {
@@ -35,6 +38,7 @@ public class Magazzino extends JPanel{
 		setPanelLogout();
 		//setto i vari componenti
 		setImmagineProfiloMag();
+		setGestioneUtenti();
 		setCopriLineaMagazzino();
 		setLuogoProdotti();
 		setSpazioMagazzino();
@@ -151,15 +155,30 @@ public class Magazzino extends JPanel{
 		add(immagineProfiloMag);
 	}
 	
+	//metodo per settare il bottone elencoUtenti
+	public void setGestioneUtenti() {
+		//imposto le caratteristiche del bottone
+		gestioneUtenti.setContentAreaFilled(false);		
+		gestioneUtenti.setBorderPainted(false);
+		gestioneUtenti.setBounds(22, 14, 262, 32);			gestioneUtenti.setText("amministrazione");
+		//imposto l'immagine da dargli
+/*		icon = new ImageIcon(getClass().getClassLoader().getResource());
+		gestioneUtenti.setPressedIcon(icon);	
+		icon = new ImageIcon(getClass().getClassLoader().getResource());
+		gestioneUtenti.setIcon(icon);*/
+		//aggiungo un actionlistener per aprire scheda profilo
+		gestioneUtenti.addActionListener(e -> Collegamenti.fromAdminToGestioneUtenti());
+		add(gestioneUtenti);
+	}
+	
+	//metodi per gestire il pannello logout
 	public Logout getPanelLogout() {
 		return logout;
 	}
-	
 	public void setPanelLogout() {
 		add(logout);
 		logout.setVisible(false);
 	}
-	
 	public void setLogout(String datiUtente) {
 		String[] account = datiUtente.split(";");
 		logout.setLabelTesto(account[0], account[2], account[1]);

@@ -2,7 +2,6 @@ package main;
 
 import java.awt.*;
 import javax.swing.*;
-import java.io.*;
 import java.util.ArrayList;
 
 public class ProdottoLungo extends JPanel{
