@@ -15,7 +15,6 @@ public class Main {
 		//sistemare il fatto che, una volta effettuato il logout, tutti gli altri pannelli non vengono resettati <--DA FARE
 		
 		//LOGIN:
-		//dividere le due schermate già esistenti in 2 classi <--OPZIONALE
 		//se premi invio passa al campo successivo, se si preme quando si è nel campo password è come premere invia <--OPZIONALE
 		//mettere un limite di caratteri per nome utente e email per non farli uscire dalla schermata di logout <--OPZIONALE
 		//da aggiungere il campo creatore e adattare tutta la classe <--DA FARE
