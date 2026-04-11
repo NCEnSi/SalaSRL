@@ -175,14 +175,14 @@ public class Catalogo extends JPanel{
 					scorriCatalogo.setYTastoScorrimento(3, "no");
 				}
 			//se il valore è uguale alla y massima che può raggiungere il pane dentro lo scroll imposta lo scorriCatalogo automaticamente in fondo
-			} else if(valore == 7037) {
+			} else if(valore == 2941) {
 				//if per non far scattare lo scorriCatalogo
 				if(!scorriCatalogo.getStoScorrendo()) {
 					scorriCatalogo.setYTastoScorrimento(618, "no");
 				}
 			//se il valore non è 0 o 7037 calcola la cella in cui spostare lo scorriCatalogo
 			} else {
-				cellaScorrimento = valore / 70 - 1;
+				cellaScorrimento = valore / 29 - 1;
 				//if per non far scattare lo scorriCatalogo
 				if(!scorriCatalogo.getStoScorrendo()) {
 					scorriCatalogo.setYTastoScorrimento(cellaScorrimento, "yes");
@@ -207,12 +207,16 @@ public class Catalogo extends JPanel{
 		//imposto le caratteristiche del bottone
 		gestioneUtenti.setContentAreaFilled(false);		
 		gestioneUtenti.setBorderPainted(false);
-		gestioneUtenti.setBounds(22, 14, 262, 32);			gestioneUtenti.setText("amministrazione");
+		gestioneUtenti.setBounds(22, 14, 262, 32);
 		//imposto l'immagine da dargli
-/*		icon = new ImageIcon(getClass().getClassLoader().getResource());
+		icon = new ImageIcon(getClass().getClassLoader().getResource("ButtonAmministrazionePress.png"));
+		iconScaled = icon.getImage().getScaledInstance(262, 32, Image.SCALE_SMOOTH);
+		icon = new ImageIcon(iconScaled);
 		gestioneUtenti.setPressedIcon(icon);	
-		icon = new ImageIcon(getClass().getClassLoader().getResource());
-		gestioneUtenti.setIcon(icon);*/
+		icon = new ImageIcon(getClass().getClassLoader().getResource("ButtonAmministrazione.png"));
+		iconScaled = icon.getImage().getScaledInstance(262, 32, Image.SCALE_SMOOTH);
+		icon = new ImageIcon(iconScaled);
+		gestioneUtenti.setIcon(icon);
 		//aggiungo un actionlistener per aprire scheda profilo
 		gestioneUtenti.addActionListener(e -> Collegamenti.fromAdminToGestioneUtenti());
 		add(gestioneUtenti);
@@ -221,7 +225,7 @@ public class Catalogo extends JPanel{
 	//metodo per generare i 70 prodotti nel catalogo
 	public void generaProdotti() {
 		//setto il panel con la grandezza totale che deve avere
-		panelScrollCatalogo.setPreferredSize(new Dimension(1315, 7700));
+		panelScrollCatalogo.setPreferredSize(new Dimension(1315, 3604));
 		panelScrollCatalogo.setBackground(null);
 		panelScrollCatalogo.setLayout(null);
 		panelScrollCatalogo.setOpaque(false);

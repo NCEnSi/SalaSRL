@@ -87,7 +87,7 @@ public class GestioneUtenti extends JPanel{
 		immagine = new ImageIcon(getClass().getClassLoader().getResource("ImmagineProfilo.png"));
 		immagineProfiloGestUt.setIcon(immagine);
 		//aggiungo un actionlistener per aprire scheda profilo
-		immagineProfiloGestUt.addActionListener(e -> toLogout());
+		immagineProfiloGestUt.addActionListener(e -> Collegamenti.fromOtherToLogout());
 		add(immagineProfiloGestUt);
 	}
 	//metodo per settare il button immagineProfiloCar

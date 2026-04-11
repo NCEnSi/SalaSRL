@@ -11,7 +11,7 @@ public class Main {
 		finestra = new Collegamenti();
 		
 		//CORREZIONI:
-		//sistemare grandezze e calcoli scrollbar in carrello e catalogo e in gestione utenti<--OPZIONALE
+		//sistemare grandezze e calcoli scrollbar in carrello e in gestione utenti <--OPZIONALE
 		//sistemare il fatto che, una volta effettuato il logout, tutti gli altri pannelli non vengono resettati <--DA FARE
 		
 		//LOGIN:
@@ -28,6 +28,11 @@ public class Main {
 		//far funzionare il tasto conferma ordine <--DA FARE
 		//se schiacci su un prodotto far apparire le informazioni nella label apposita <--PARZIALMENTE OPZIONALE
 		//mettere un massimo di (spazioLiberoMagazzino) nel carrello <--PARZIALMENTE OPZIONALE
+		
+		//GESTIONE UTENTI:
+		//mettere che solo i creatori vedono il pulsante per andarci <--OPZIONALE
+		//il creatore che accede alla gestione utenti non può modificare il suo stato <--OPZIONALE
+		//i ruoli si aggiornano in tempo reale <--OPZIONALE
 				
 		//UTENTE:
 		//tutto <--DA FARE
