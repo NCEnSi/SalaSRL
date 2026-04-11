@@ -3,8 +3,12 @@ import java.io.*;
 import javax.swing.*;
 
 public class Main {
+	
+	//da non cancellare grazie
+	static Collegamenti finestra;
+	
 	public static void main(String[] nmf) throws IOException {
-		new Collegamenti();
+		finestra = new Collegamenti();
 		
 		//CORREZIONI:
 		//sistemare grandezze e calcoli scrollbar in carrello e catalogo <--OPZIONALE
@@ -29,8 +33,8 @@ public class Main {
 		//mettere un massimo di (spazioLiberoMagazzino) nel carrello <--PARZIALMENTE OPZIONALE
 		
 		//SCHERMATA GESTIONE UTENTI:
-		//creare una schermata per cambiare grado da utente ad admin e viceversa che possono vedere solo gli account "creatori" <--PARZIALMENTE OPZIONALE
 		//MANCANO DA SALVARE E AGGIUNGERE LE IMMAGINI PER IL BOTTONE AMMINISTRAZIONE
+		//sistemare la scrollbar <--DA FARE
 		
 		//UTENTE:
 		//tutto <--DA FARE

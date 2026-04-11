@@ -49,7 +49,8 @@ public class UtenteLungo extends JPanel{
 		username.setBounds(20, 5, 560, 50);
 		//caratteristiche della jlabel
 		username.setBackground(null);
-		username.setFont(new Font("Arial", Font.PLAIN, 20));
+		username.setFont(new Font("Open Sans", Font.BOLD, 31));
+		username.setForeground(Color.WHITE);
 		username.setHorizontalAlignment(JLabel.LEFT);
 		//assegno l'username
 		username.setText(nome);

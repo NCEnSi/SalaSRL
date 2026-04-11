@@ -110,4 +110,10 @@ public class Collegamenti extends JFrame {
 		schermateCompl[3].setVisible(false);
 	}
 	
+	//metodo per aggiornare la schermata gestione utenti
+	public void aggiornaGestioneUtenti() throws IOException {
+		
+		add(schermateCompl[3]);
+	}
+	
 }

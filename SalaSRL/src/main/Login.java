@@ -277,6 +277,9 @@ public class Login extends JPanel{
 			scrittura.close();
 			//invio un messaggio di conferma
 			erroriLogin.setText("Account creato con successo!");
+			//aggiorno la pagina di gestione utenti
+			Collegamenti.schermateCompl[3] = new GestioneUtenti();
+			Main.finestra.add(Collegamenti.schermateCompl[3]);
 		} else {
 			return;
 		}
@@ -469,7 +472,7 @@ public class Login extends JPanel{
 		if(ok) {
 			//messaggio d'errore e impedisco il passaggio alla pagina successiva
 			erroriLogin.setText("Email o password errati!");
-			risultato = "null;vero";
+			risultato = "null;null;null;vero";
 		} else {
 			risultato = risultato +"falso";
 		}
