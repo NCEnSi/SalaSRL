@@ -160,12 +160,16 @@ public class Magazzino extends JPanel{
 		//imposto le caratteristiche del bottone
 		gestioneUtenti.setContentAreaFilled(false);		
 		gestioneUtenti.setBorderPainted(false);
-		gestioneUtenti.setBounds(22, 14, 262, 32);			gestioneUtenti.setText("amministrazione");
+		gestioneUtenti.setBounds(22, 14, 262, 32);
 		//imposto l'immagine da dargli
-/*		icon = new ImageIcon(getClass().getClassLoader().getResource());
+		icon = new ImageIcon(getClass().getClassLoader().getResource("ButtonAmministrazionePress.png"));
+		iconScaled = icon.getImage().getScaledInstance(262, 32, Image.SCALE_SMOOTH);
+		icon = new ImageIcon(iconScaled);
 		gestioneUtenti.setPressedIcon(icon);	
-		icon = new ImageIcon(getClass().getClassLoader().getResource());
-		gestioneUtenti.setIcon(icon);*/
+		icon = new ImageIcon(getClass().getClassLoader().getResource("ButtonAmministrazione.png"));
+		iconScaled = icon.getImage().getScaledInstance(262, 32, Image.SCALE_SMOOTH);
+		icon = new ImageIcon(iconScaled);
+		gestioneUtenti.setIcon(icon);
 		//aggiungo un actionlistener per aprire scheda profilo
 		gestioneUtenti.addActionListener(e -> Collegamenti.fromAdminToGestioneUtenti());
 		add(gestioneUtenti);

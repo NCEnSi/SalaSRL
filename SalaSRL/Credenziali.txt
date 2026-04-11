@@ -1,4 +1,4 @@
 Nicolò Carlini;nico@gmail.com;123456;Creatore
-Nicolò;eeeeeee;1;Admin
-Carlini;1;1;Admin
-Marco Morettini;moret@gmail.com;654321;Utente
+Nicolò;eeeeeee;1;Creatore
+Carlini;1;1;Creatore
+Marco Morettini;moret@gmail.com;654321;Creatore
