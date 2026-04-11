@@ -30,7 +30,7 @@ public class Collegamenti extends JFrame {
 		schermateCompl[0] = new Login();
 		schermateCompl[1] = new Admin();
 		schermateCompl[2] = new Utente();
-		schermateCompl[3] = new GestioneUtenti();
+		schermateCompl[3] = new GestioneUtenti("admin");
 		
 		//faccio vedere solo login
 		schermateCompl[0].setVisible(true);
@@ -46,14 +46,14 @@ public class Collegamenti extends JFrame {
 	}
 	
 	//metodo usato per passare dalla schermata di login alla pagina dedicata all'admin
-	public static void fromLoginToAdmin(String datiUtente) {
+	public static void fromLoginToCreatore(String datiUtente) {
 		//faccio in modo che si vedano solo le schermate admin
 		schermateCompl[0].setVisible(false);
-		((Admin) schermateCompl[1]).setLogouts(datiUtente);
+		((Admin) schermateCompl[1]).setLogouts(datiUtente);		
 		schermateCompl[1].setVisible(true);
 		schermateCompl[2].setVisible(false);
-		schermateCompl[3].setVisible(false);
 		((GestioneUtenti) schermateCompl[3]).setLogout(datiUtente);
+		schermateCompl[3].setVisible(false);
 	}
 	//metodo usato per passare dalla schermata di login alla pagina dedicata all'utente
 	public static void fromLoginToUtente(String datiUtente) {

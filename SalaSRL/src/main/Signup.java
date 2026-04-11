@@ -148,9 +148,6 @@ public class Signup extends JPanel{
 			scrittura.close();
 			//invio un messaggio di conferma
 			Login.setTestoErroriLogin("Account creato con successo!");
-			//aggiorno la pagina di gestione utenti
-			Collegamenti.schermateCompl[3] = new GestioneUtenti();
-			Main.finestra.add(Collegamenti.schermateCompl[3]);
 		} else {
 			return;
 		}

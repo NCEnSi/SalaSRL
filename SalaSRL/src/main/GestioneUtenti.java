@@ -18,7 +18,6 @@ public class GestioneUtenti extends JPanel{
 	private Logout logout = new Logout();
 	//variabile usata come appoggio per poter caricare le immagini sui bottoni
 	private ImageIcon immagine;
-	private Image immScalata;
 	//JPanel usata per scorrere i prodotti nel catalogo
 	private LineaScorrimento scorriGestioneUtenti;
 	//jscroll e panel per contenere gli utenti dell'elenco
@@ -29,10 +28,14 @@ public class GestioneUtenti extends JPanel{
 	private int cellaScorrimento;
 	//creo la variabile per gli oggetti per interagire con il file txt
 	private BufferedReader lettura;
+	//variabile per capire i privilegi di chi accede a questa schermata
+	private String privilegi;
 	
 	
 	//COSTRUTTORE
-	public GestioneUtenti() throws IOException {
+	public GestioneUtenti(String priv) throws IOException {
+		privilegi = priv;
+		
 		//imposto le dimensioni del pannello "schermo"
 		setLayout(null);
 		setBounds(0, 0, 1331, 768);
@@ -58,10 +61,18 @@ public class GestioneUtenti extends JPanel{
 	//METODI DI ISTANZA
 	//metodo per impostare lo sfondo del pannello gestione utenti
 	public void setSchermataGestioneUtenti() {
-		//imposto lo sfondo
-		schermataGestioneUtenti.setBounds(0, 0, 1331, 768);
-		immagine = new ImageIcon(getClass().getClassLoader().getResource("SfondoElencoUtenti.png"));
-		schermataGestioneUtenti.setIcon(immagine);
+		//controllo quale sfondo deve essere caricato
+		if(privilegi.equals("Admin")) {
+			//imposto lo sfondo
+			schermataGestioneUtenti.setBounds(0, 0, 1331, 768);
+			immagine = new ImageIcon(getClass().getClassLoader().getResource("SfondoElencoUtentiAdmin.png"));
+			schermataGestioneUtenti.setIcon(immagine);
+		}else {
+			//imposto lo sfondo
+			schermataGestioneUtenti.setBounds(0, 0, 1331, 768);
+			immagine = new ImageIcon(getClass().getClassLoader().getResource("SfondoElencoUtentiCreatore.png"));
+			schermataGestioneUtenti.setIcon(immagine);
+		}
 		add(schermataGestioneUtenti);
 	}
 	//metodo per settare il button immagineProfiloCar
@@ -176,7 +187,7 @@ public class GestioneUtenti extends JPanel{
 			//per ogni componente dell'arraylist ricavo nome e privilegio
 			nomeANDpriv = elencoUtenti.get(i);
 			//creo l'oggetto utente lungo
-			panelScrollGestUt.add(new UtenteLungo(prY, nomeANDpriv[0], nomeANDpriv[1]));
+			panelScrollGestUt.add(new UtenteLungo(prY, nomeANDpriv[0], nomeANDpriv[1], privilegi));
 			prY += 65;
 		}		
 				
@@ -190,6 +201,7 @@ public class GestioneUtenti extends JPanel{
 		scrollGestUt.getVerticalScrollBar().setUnitIncrement(20);
 		add(scrollGestUt);
 	}
+	
 	
 	
 }

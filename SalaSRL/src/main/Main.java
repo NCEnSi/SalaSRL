@@ -11,30 +11,24 @@ public class Main {
 		finestra = new Collegamenti();
 		
 		//CORREZIONI:
-		//sistemare grandezze e calcoli scrollbar in carrello e catalogo <--OPZIONALE
+		//sistemare grandezze e calcoli scrollbar in carrello e catalogo e in gestione utenti<--OPZIONALE
 		//sistemare il fatto che, una volta effettuato il logout, tutti gli altri pannelli non vengono resettati <--DA FARE
 		
 		//LOGIN:
 		//se premi invio passa al campo successivo, se si preme quando si è nel campo password è come premere invia <--OPZIONALE
 		//mettere un limite di caratteri per nome utente e email per non farli uscire dalla schermata di logout <--OPZIONALE
-		//da aggiungere il campo creatore e adattare tutta la classe <--DA FARE
 		
 		//MAGAZZINO:
 		//tutto <--DA FARE
 		
 		//CATALOGO:
 		//potremmo cambiare qualche prodotto tipo in vino e alcool <--OPZIONALE
-		//sistemare grandezze e calcoli scrollbar in carrello e catalogo <--OPZIONALE
 		
 		//CARRELLO:
 		//far funzionare il tasto conferma ordine <--DA FARE
 		//se schiacci su un prodotto far apparire le informazioni nella label apposita <--PARZIALMENTE OPZIONALE
 		//mettere un massimo di (spazioLiberoMagazzino) nel carrello <--PARZIALMENTE OPZIONALE
-		
-		//SCHERMATA GESTIONE UTENTI:
-		//MANCANO DA SALVARE E AGGIUNGERE LE IMMAGINI PER IL BOTTONE AMMINISTRAZIONE
-		//sistemare la scrollbar <--DA FARE
-		
+				
 		//UTENTE:
 		//tutto <--DA FARE
 		

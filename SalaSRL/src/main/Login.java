@@ -198,10 +198,14 @@ public class Login extends JPanel{
 		String[] account = answer.split(";");
 		if(account[3].equals("vero")) return;
 		
-		//passo alla sezione admin o utente
-		if(account[2].equals("Admin")) {
-			Collegamenti.fromLoginToAdmin(answer);
-		} else {
+		//aggiorno la pagina di gestione utenti
+		Collegamenti.schermateCompl[3] = new GestioneUtenti(account[2]);
+		Main.finestra.add(Collegamenti.schermateCompl[3]);
+		
+		//passo alla sezione admin o utente o creatore
+		if(account[2].equals("Creatore") || account[2].equals("Admin")) {
+			Collegamenti.fromLoginToCreatore(answer);
+		} else if(account[2].equals("Utente")) {
 			Collegamenti.fromLoginToUtente(answer);
 		}
 	}
@@ -289,6 +293,7 @@ public class Login extends JPanel{
 	public void resetLoginLabel() {
 		passwordLogin.setText("");
 		emailLogin.setText("");
+		erroriLogin.setText("");
 	}
 	
 	//metodo per restituire il jlabel degli errori
