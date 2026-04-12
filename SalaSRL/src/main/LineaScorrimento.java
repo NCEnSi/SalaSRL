@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class LineaScorrimento extends JPanel{
 	
-	//panel per contenere il tasto
+	/*//panel per contenere il tasto
 	private JLabel base = new JLabel();
 	//tasto per scorrere un JScrollPane
 	private JLabel tastoScorrimento = new JLabel();
@@ -122,6 +122,6 @@ public class LineaScorrimento extends JPanel{
 	//metodo per ottenere il valore di stoScorrendo
 	public boolean getStoScorrendo() {
 		return stoScorrendo;
-	}
+	}*/
 	
 }

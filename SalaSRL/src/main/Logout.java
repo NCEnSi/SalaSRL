@@ -19,6 +19,8 @@ public class Logout extends JPanel{
 	//variabile usata come appoggio per poter caricare le immagini
 	private ImageIcon immagine;
 	private Image immScalata;
+	//array che contiene il nome dei prodotti messi nel carrello
+	private ArrayList<InformazioniDaPassare> resetProdottiNelCarrello = new ArrayList<>();
 	
 	//COSTRUTTORE
 	public Logout() {
@@ -81,9 +83,7 @@ public class Logout extends JPanel{
 		immagine = new ImageIcon(getClass().getClassLoader().getResource("TastoLogoutPress.png"));
 		immScalata = immagine.getImage().getScaledInstance(128, 37, Image.SCALE_SMOOTH);
 		immagine = new ImageIcon(immScalata);
-		logout.setPressedIcon(immagine);	
-		//aggiungo un actionlistener per cambiare pannello
-		logout.addActionListener(e -> Collegamenti.fromLogoutToLogin());
+		logout.setPressedIcon(immagine);
 		add(logout);
 	}
 	
@@ -121,6 +121,15 @@ public class Logout extends JPanel{
 		labelNomeUtente.setText(nomeUtente);
 		labelPrivilegiUtente.setText(privilegi);
 		labelEmailUtente.setText(email);
+	}
+	
+	public JButton getLogout() {
+		return logout;
+	}
+	
+	public void resetProdottiCarrello(ArrayList<InformazioniDaPassare> prodottiNelCarrello, JPanel panel) {
+		prodottiNelCarrello.clear();
+		panel.removeAll();
 	}
 	
 }

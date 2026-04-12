@@ -180,6 +180,8 @@ public class Magazzino extends JPanel{
 		return logout;
 	}
 	public void setPanelLogout() {
+		//aggiungo un actionlistener per cambiare pannello
+		logout.getLogout().addActionListener(e -> Collegamenti.fromLogoutToLogin());
 		add(logout);
 		logout.setVisible(false);
 	}

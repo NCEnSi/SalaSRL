@@ -29,15 +29,11 @@ public class Carrello extends JPanel{
 	private JLabel sfondoProdotti = new JLabel();
 	private JLabel informazioni = new JLabel();
 	//jscroll e panel per contenere i prodotti del carrello
-	private int altezzaPanelScrollCarrello, yMax;
+	private int altezzaPanelScrollCarrello;
 	private JPanel panelScrollCarrello = new JPanel();
 	private JScrollPane scrollCarrello;
-	//JPanel usata per scorrere i prodotti nel carrello
-	private LineaScorrimento scorriCarrello;
 	//array che contiene prodotti in catalogo
 	private ArrayList<ProdottoLungo> prodotti = new ArrayList<>();
-	private int valore;
-	private int cellaScorrimento;
 	//label per contenere lo sfondo delle info dei prodotti nel carrello
 	private Catalogo catalogo;
 	//aggiungo il panel per il logout
@@ -55,7 +51,6 @@ public class Carrello extends JPanel{
 		setPanelLogout();
 		//aggingo i prodotti e la scrollbar personalizzata
 		addComponentiScroll();
-		setScorriCarrello();
 		//setto i vari componenti
 		setImmagineProfiloCar();
 		if(privilegi.equals("Creatore")) setGestioneUtenti();
@@ -193,6 +188,8 @@ public class Carrello extends JPanel{
 		return logout;
 	}
 	public void setPanelLogout() {
+		//aggiungo un actionlistener per cambiare pannello
+		logout.getLogout().addActionListener(e -> Collegamenti.fromLogoutToLogin());
 		add(logout);
 		logout.setVisible(false);
 	}
@@ -256,40 +253,6 @@ public class Carrello extends JPanel{
 		}
 		//setto lo scrollpane con la grandezza da mostrare
 		scrollCarrello.setBounds(42, 140, 804, 584);
-	}
-	
-	//metodo per settare il panel scorriCatalogo
-	public void setScorriCarrello() {
-		//setto la posizione di scorriCarrello, il JScrollPane associato e il tipo di LineaScorrimento che deve essere
-		scorriCarrello = new LineaScorrimento(850, 148, scrollCarrello, "AdminCarrello");
-		//aggiungo un changelistener per spostare il bottone di scorrimento laterale se non si usa quello ma la rotellina del mouse
-		scrollCarrello.getViewport().addChangeListener(e -> {
-			valore = (int) scrollCarrello.getVerticalScrollBar().getValue();
-			//se il valore è 0 imposta lo scorriCatalogo automaticamente in cima
-			if(valore == 0) {
-				//if per non far scattare lo scorriCatalogo
-				if(!scorriCarrello.getStoScorrendo()) {
-					scorriCarrello.setYTastoScorrimento(3, "no");
-				}
-			//se il valore è uguale alla y massima che può raggiungere il pane dentro lo scroll imposta lo scorriCatalogo automaticamente in fondo
-				yMax = altezzaPanelScrollCarrello - 584;
-			} else if(valore == yMax) {
-				//if per non far scattare lo scorriCatalogo
-				if(yMax>0) {
-					if(!scorriCarrello.getStoScorrendo()) {
-						scorriCarrello.setYTastoScorrimento(525, "no");
-					}
-				}
-			//se il valore non è 0 o 11126 calcola la cella in cui spostare lo scorriCatalogo
-			} else {
-				cellaScorrimento = valore / 111;
-				//if per non far scattare lo scorriCatalogo
-				if(!scorriCarrello.getStoScorrendo()) {
-					scorriCarrello.setYTastoScorrimento(cellaScorrimento, "yes");
-				}
-			}
-		});
-		add(scorriCarrello);
 	}
 	
 	//metodo per settare la label strisciaSuperioreCar

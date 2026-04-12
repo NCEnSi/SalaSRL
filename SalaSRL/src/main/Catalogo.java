@@ -49,7 +49,6 @@ public class Catalogo extends JPanel{
 		setPanelLogout();
 		//aggingo i prodotti e la scrollbar personalizzata
 		generaProdotti();
-		setScorriCatalogo();
 		//setto i vari componenti
 		setImmagineProfiloCat();
 		if(privilegi.equals("Creatore")) setGestioneUtenti();
@@ -119,6 +118,11 @@ public class Catalogo extends JPanel{
 		return logout;
 	}
 	public void setPanelLogout() {
+		//aggiungo un actionlistener per cambiare pannello
+		logout.getLogout().addActionListener(e -> {
+			Collegamenti.fromLogoutToLogin();
+			logout.resetProdottiCarrello(prodottiNelCarrello, panelScrollCatalogo);
+		});
 		add(logout);
 		logout.setVisible(false);
 	}
@@ -159,37 +163,6 @@ public class Catalogo extends JPanel{
 		icon = new ImageIcon(iconScaled);
 		copriLineaCat.setIcon(icon);
 		add(copriLineaCat);
-	}
-
-	//metodo per settare il panel scorriCatalogo
-	public void setScorriCatalogo() {
-		//setto la posizione di scorriCatalogo, il JScrollPane associato e il tipo di LineaScorrimento che deve essere
-		scorriCatalogo = new LineaScorrimento(1284, 102, scrollCatalogo, "AdminCatalogo");
-		//aggiungo un changelistener per spostare il bottone di scorrimento laterale se non si usa quello ma la rotellina del mouse
-		scrollCatalogo.getViewport().addChangeListener(e -> {
-			valore = (int) scrollCatalogo.getVerticalScrollBar().getValue();
-			//se il valore è 0 imposta lo scorriCatalogo automaticamente in cima
-			if(valore == 0) {
-				//if per non far scattare lo scorriCatalogo
-				if(!scorriCatalogo.getStoScorrendo()) {
-					scorriCatalogo.setYTastoScorrimento(3, "no");
-				}
-			//se il valore è uguale alla y massima che può raggiungere il pane dentro lo scroll imposta lo scorriCatalogo automaticamente in fondo
-			} else if(valore == 2941) {
-				//if per non far scattare lo scorriCatalogo
-				if(!scorriCatalogo.getStoScorrendo()) {
-					scorriCatalogo.setYTastoScorrimento(618, "no");
-				}
-			//se il valore non è 0 o 7037 calcola la cella in cui spostare lo scorriCatalogo
-			} else {
-				cellaScorrimento = valore / 29 - 1;
-				//if per non far scattare lo scorriCatalogo
-				if(!scorriCatalogo.getStoScorrendo()) {
-					scorriCatalogo.setYTastoScorrimento(cellaScorrimento, "yes");
-				}
-			}
-		});
-		add(scorriCatalogo);
 	}
 
 	//metodo per settare la label baseCatalogo

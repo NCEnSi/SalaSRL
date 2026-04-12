@@ -28,6 +28,8 @@ public class GestioneUtenti extends JPanel{
 	private int cellaScorrimento;
 	//creo la variabile per gli oggetti per interagire con il file txt
 	private BufferedReader lettura;
+	//jscroll e panel per contenere i prodotti del carrello
+	private int altezzaPanelScrollCarrello, yMax;
 	
 	
 	//COSTRUTTORE
@@ -40,8 +42,6 @@ public class GestioneUtenti extends JPanel{
 		setPanelLogout();
 		//creo la lista degli utenti
 		generaElencoUtenti(nome);
-		//aggiungo la scrollbar personalizzata
-		setScorriGestioneUtenti();
 		//imposto il bottone per le informazioni del profilo
 		setImmagineProfiloGestUt();
 		//imposto il bottone per tornare indietro
@@ -93,36 +93,6 @@ public class GestioneUtenti extends JPanel{
 		freccetta.addActionListener(e -> Collegamenti.fromGestioneUtentiToAdmin());
 		add(freccetta);
 	}
-	//metodo per settare il panel scorriCatalogo
-	public void setScorriGestioneUtenti() {
-		//setto la posizione di scorriCatalogo, il JScrollPane associato e il tipo di LineaScorrimento che deve essere
-		scorriGestioneUtenti = new LineaScorrimento(1284, 102, scrollGestUt, "AdminCatalogo");
-		//aggiungo un changelistener per spostare il bottone di scorrimento laterale se non si usa quello ma la rotellina del mouse
-		scrollGestUt.getViewport().addChangeListener(e -> {
-			valore = (int) scrollGestUt.getVerticalScrollBar().getValue();
-			//se il valore è 0 imposta lo scorriCatalogo automaticamente in cima
-			if(valore == 0) {
-				//if per non far scattare lo scorriCatalogo
-				if(!scorriGestioneUtenti.getStoScorrendo()) {
-					scorriGestioneUtenti.setYTastoScorrimento(3, "no");
-				}
-			//se il valore è uguale alla y massima che può raggiungere il pane dentro lo scroll imposta lo scorriCatalogo automaticamente in fondo
-			} else if(valore == 7037) {
-				//if per non far scattare lo scorriCatalogo
-				if(!scorriGestioneUtenti.getStoScorrendo()) {
-					scorriGestioneUtenti.setYTastoScorrimento(618, "no");
-				}
-			//se il valore non è 0 o 7037 calcola la cella in cui spostare lo scorriCatalogo
-			} else {
-				cellaScorrimento = valore / 70 - 1;
-				//if per non far scattare lo scorriCatalogo
-				if(!scorriGestioneUtenti.getStoScorrendo()) {
-					scorriGestioneUtenti.setYTastoScorrimento(cellaScorrimento, "yes");
-				}
-			}
-		});
-		add(scorriGestioneUtenti);
-	}
 	
 	//metodi per gestire il pannello logout
 	public Logout getPanelLogout() {
@@ -143,7 +113,6 @@ public class GestioneUtenti extends JPanel{
 	//metodo per creare l'elenco degli utenti
 	public void generaElencoUtenti(String nomeLogin) throws IOException {
 		//setto il panel con la grandezza totale che deve avere
-		panelScrollGestUt.setPreferredSize(new Dimension(1315, 7700));
 		panelScrollGestUt.setBackground(null);
 		panelScrollGestUt.setLayout(null);
 		panelScrollGestUt.setOpaque(false);
@@ -184,7 +153,11 @@ public class GestioneUtenti extends JPanel{
 			panelScrollGestUt.add(new UtenteLungo(prY, nomeANDpriv[0], nomeANDpriv[1], attivo));
 			prY += 65;
 		}		
-				
+		
+		//setto la grandezza giusta del pane che contiene gli utenti
+		altezzaPanelScrollCarrello = 45+65*elencoUtenti.size();
+		panelScrollGestUt.setPreferredSize(new Dimension(1315, altezzaPanelScrollCarrello));
+		
 		//setto lo scrollpane con la grandezza da mostrare
 		scrollGestUt = new JScrollPane(panelScrollGestUt, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollGestUt.setBounds(0, 100, 1279, 663);
