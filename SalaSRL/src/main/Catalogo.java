@@ -41,7 +41,7 @@ public class Catalogo extends JPanel{
 	private JButton gestioneUtenti = new JButton();
 	
 	//costruttore per creare la schermata del catalogo
-	public Catalogo() {
+	public Catalogo(String privilegi) {
 		//setto il Panel
 		setLayout(null);
 		setBounds(0, 0, 1331, 768);
@@ -52,7 +52,7 @@ public class Catalogo extends JPanel{
 		setScorriCatalogo();
 		//setto i vari componenti
 		setImmagineProfiloCat();
-		setGestioneUtenti();
+		if(privilegi.equals("Creatore")) setGestioneUtenti();
 		setCopriLineaCatalogo();
 		setBaseCatalogo();
 		setMagazzinoCat();

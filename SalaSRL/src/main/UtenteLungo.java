@@ -24,19 +24,10 @@ public class UtenteLungo extends JPanel{
 	//creo le variabili per poter gli oggetti per interagire con il file txt
 	private BufferedWriter scrittura;
 	private BufferedReader lettura;
-	//variabile per capire se è possibile utilizzare i bottoni oppure no
-	private boolean attivi;
 	
 	
 	//COSTRUTTORE
-	public UtenteLungo(int prY, String nome, String priv, String attivo) {
-		//imposto se i bottoni saranno utilizzabili oppure no
-		if(attivo.equals("Creatore")) {
-			attivi = true;
-		} else {
-			attivi = false;
-		}
-		
+	public UtenteLungo(int prY, String nome, String priv) {	
 		//setto il Panel
 		setLayout(null);
 		setBounds(0, prY, 1249, 60);
@@ -92,11 +83,8 @@ public class UtenteLungo extends JPanel{
 		
 		utente.addActionListener(e -> {
 			try {
-				//controllo se i bottoni sono cliccabili oppure no in base all'account usato
-				if(attivi) {
-					//prima controllo se il bottone è abilitato o no
-					if(utenteEnabled) modifyInUtente();
-				}
+				//prima controllo se il bottone è abilitato o no
+				if(utenteEnabled) modifyInUtente();
 			}catch(IOException ioe) {
 				System.out.println("boh non so che mettere tanto non serve");
 			}
@@ -129,11 +117,8 @@ public class UtenteLungo extends JPanel{
 		
 		admin.addActionListener(e -> {
 			try {
-				//controllo se i bottoni sono cliccabili oppure no in base all'account usato
-				if(attivi) {
-					//prima controllo se il bottone è abilitato o no
-					if(adminEnabled) modifyInAdmin();
-				}
+				//prima controllo se il bottone è abilitato o no
+				if(adminEnabled) modifyInAdmin();
 			}catch(IOException ioe) {
 				System.out.println("boh non so che mettere tanto non serve");
 			}
@@ -166,11 +151,8 @@ public class UtenteLungo extends JPanel{
 		
 		creatore.addActionListener(e -> {
 			try {
-				//controllo se i bottoni sono cliccabili oppure no in base all'account usato
-				if(attivi) {
-					//prima controllo se il bottone è abilitato o no
-					if(creatoreEnabled) modifyInCreatore();
-				}				
+				//prima controllo se il bottone è abilitato o no
+				if(creatoreEnabled) modifyInCreatore();		
 			}catch(IOException ioe) {
 				System.out.println("boh non so che mettere tanto non serve");
 			}

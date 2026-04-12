@@ -28,14 +28,10 @@ public class GestioneUtenti extends JPanel{
 	private int cellaScorrimento;
 	//creo la variabile per gli oggetti per interagire con il file txt
 	private BufferedReader lettura;
-	//variabile per capire i privilegi di chi accede a questa schermata
-	private String privilegi;
 	
 	
 	//COSTRUTTORE
-	public GestioneUtenti(String priv) throws IOException {
-		privilegi = priv;
-		
+	public GestioneUtenti() throws IOException {
 		//imposto le dimensioni del pannello "schermo"
 		setLayout(null);
 		setBounds(0, 0, 1331, 768);
@@ -61,18 +57,10 @@ public class GestioneUtenti extends JPanel{
 	//METODI DI ISTANZA
 	//metodo per impostare lo sfondo del pannello gestione utenti
 	public void setSchermataGestioneUtenti() {
-		//controllo quale sfondo deve essere caricato
-		if(privilegi.equals("Admin")) {
-			//imposto lo sfondo
-			schermataGestioneUtenti.setBounds(0, 0, 1331, 768);
-			immagine = new ImageIcon(getClass().getClassLoader().getResource("SfondoElencoUtentiAdmin.png"));
-			schermataGestioneUtenti.setIcon(immagine);
-		}else {
-			//imposto lo sfondo
-			schermataGestioneUtenti.setBounds(0, 0, 1331, 768);
-			immagine = new ImageIcon(getClass().getClassLoader().getResource("SfondoElencoUtentiCreatore.png"));
-			schermataGestioneUtenti.setIcon(immagine);
-		}
+		//imposto lo sfondo
+		schermataGestioneUtenti.setBounds(0, 0, 1331, 768);
+		immagine = new ImageIcon(getClass().getClassLoader().getResource("SfondoElencoUtentiCreatore.png"));
+		schermataGestioneUtenti.setIcon(immagine);
 		add(schermataGestioneUtenti);
 	}
 	//metodo per settare il button immagineProfiloCar
@@ -187,7 +175,7 @@ public class GestioneUtenti extends JPanel{
 			//per ogni componente dell'arraylist ricavo nome e privilegio
 			nomeANDpriv = elencoUtenti.get(i);
 			//creo l'oggetto utente lungo
-			panelScrollGestUt.add(new UtenteLungo(prY, nomeANDpriv[0], nomeANDpriv[1], privilegi));
+			panelScrollGestUt.add(new UtenteLungo(prY, nomeANDpriv[0], nomeANDpriv[1]));
 			prY += 65;
 		}		
 				

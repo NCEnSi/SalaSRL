@@ -46,7 +46,7 @@ public class Carrello extends JPanel{
 	private JButton gestioneUtenti = new JButton();
 
 	//costruttore per creare la schermata del carrello
-	public Carrello(Catalogo catalogo) {
+	public Carrello(Catalogo catalogo, String privilegi) {
 		this.catalogo = catalogo;
 		//setto il Panel
 		setLayout(null);
@@ -58,7 +58,7 @@ public class Carrello extends JPanel{
 		setScorriCarrello();
 		//setto i vari componenti
 		setImmagineProfiloCar();
-		setGestioneUtenti();
+		if(privilegi.equals("Creatore")) setGestioneUtenti();
 		setCopriLineaCarrello();
 		setSfondoProdotti();
 		setInformazioni();

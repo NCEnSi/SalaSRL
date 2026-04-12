@@ -198,13 +198,13 @@ public class Login extends JPanel{
 		String[] account = answer.split(";");
 		if(account[3].equals("vero")) return;
 		
-		//aggiorno la pagina di gestione utenti
-		Collegamenti.schermateCompl[3] = new GestioneUtenti(account[2]);
-		Main.finestra.add(Collegamenti.schermateCompl[3]);
-		
 		//passo alla sezione admin o utente o creatore
 		if(account[2].equals("Creatore") || account[2].equals("Admin")) {
-			Collegamenti.fromLoginToCreatore(answer);
+			//creo la nuova schermata admin o creatore in base al privilegio che ha l'account
+			Collegamenti.schermateCompl[1] = new Admin(account[2]);
+			Main.finestra.add(Collegamenti.schermateCompl[1]);
+			//passo alla schermata admin o creatore
+			Collegamenti.fromLoginToCreatoreAdmin(answer);
 		} else if(account[2].equals("Utente")) {
 			Collegamenti.fromLoginToUtente(answer);
 		}

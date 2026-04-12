@@ -30,7 +30,7 @@ public class Magazzino extends JPanel{
 
 
 	//costruttore per creare la schermata del magazzino
-	public Magazzino() {
+	public Magazzino(String privilegi) {
 		//setto il Panel
 		setLayout(null);
 		setBounds(0, 0, 1331, 768);
@@ -38,7 +38,7 @@ public class Magazzino extends JPanel{
 		setPanelLogout();
 		//setto i vari componenti
 		setImmagineProfiloMag();
-		setGestioneUtenti();
+		if(privilegi.equals("Creatore")) setGestioneUtenti();
 		setCopriLineaMagazzino();
 		setLuogoProdotti();
 		setSpazioMagazzino();
