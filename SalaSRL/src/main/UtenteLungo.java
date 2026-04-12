@@ -20,14 +20,13 @@ public class UtenteLungo extends JPanel{
 	private boolean creatoreEnabled;
 	//variabile usata come appoggio per poter caricare le immagini sui bottoni
 	private ImageIcon immagine;
-	private Image immScalata;
 	//creo le variabili per poter gli oggetti per interagire con il file txt
 	private BufferedWriter scrittura;
 	private BufferedReader lettura;
 	
 	
 	//COSTRUTTORE
-	public UtenteLungo(int prY, String nome, String priv) {	
+	public UtenteLungo(int prY, String nome, String priv, boolean attivo) {	
 		//setto il Panel
 		setLayout(null);
 		setBounds(0, prY, 1249, 60);
@@ -36,9 +35,9 @@ public class UtenteLungo extends JPanel{
 		//imposto la scitta del nome dell'account
 		setUsername(nome);
 		//imposto i bottoni utente, admin e creatore
-		setBottoneUtente(priv);
-		setBottoneAdmin(priv);
-		setBottoneCreatore(priv);
+		setBottoneUtente(priv, attivo);
+		setBottoneAdmin(priv, attivo);
+		setBottoneCreatore(priv, attivo);
 	}
 	
 	
@@ -58,7 +57,7 @@ public class UtenteLungo extends JPanel{
 		add(username);
 	}
 	//metodo per impostare il bottone utente
-	public void setBottoneUtente(String priv) {
+	public void setBottoneUtente(String priv, boolean attivo) {
 		//imposto le caratteristiche del bottone
 		utente.setContentAreaFilled(false);
 		utente.setBorderPainted(false);
@@ -83,8 +82,11 @@ public class UtenteLungo extends JPanel{
 		
 		utente.addActionListener(e -> {
 			try {
-				//prima controllo se il bottone è abilitato o no
-				if(utenteEnabled) modifyInUtente();
+				//controllo se l'account sta provando a modificare il suo stesso privilegio
+				if(attivo) {
+					//prima controllo se il bottone è abilitato o no
+					if(utenteEnabled) modifyInUtente();
+				}
 			}catch(IOException ioe) {
 				System.out.println("boh non so che mettere tanto non serve");
 			}
@@ -92,7 +94,7 @@ public class UtenteLungo extends JPanel{
 		add(utente);
 	}
 	//metodo per impostare il bottone admin
-	public void setBottoneAdmin(String priv) {
+	public void setBottoneAdmin(String priv, boolean attivo) {
 		//imposto le caratteristiche del bottone
 		admin.setContentAreaFilled(false);
 		admin.setBorderPainted(false);
@@ -117,8 +119,11 @@ public class UtenteLungo extends JPanel{
 		
 		admin.addActionListener(e -> {
 			try {
-				//prima controllo se il bottone è abilitato o no
-				if(adminEnabled) modifyInAdmin();
+				//controllo se l'account sta provando a modificare il suo stesso privilegio
+				if(attivo) {
+					//prima controllo se il bottone è abilitato o no
+					if(adminEnabled) modifyInAdmin();
+				}
 			}catch(IOException ioe) {
 				System.out.println("boh non so che mettere tanto non serve");
 			}
@@ -126,7 +131,7 @@ public class UtenteLungo extends JPanel{
 		add(admin);
 	}
 	//metodo per impostare il bottone creatore
-	public void setBottoneCreatore(String priv) {
+	public void setBottoneCreatore(String priv, boolean attivo) {
 		//imposto le caratteristiche del bottone
 		creatore.setContentAreaFilled(false);
 		creatore.setBorderPainted(false);
@@ -151,8 +156,11 @@ public class UtenteLungo extends JPanel{
 		
 		creatore.addActionListener(e -> {
 			try {
-				//prima controllo se il bottone è abilitato o no
-				if(creatoreEnabled) modifyInCreatore();		
+				//controllo se l'account sta provando a modificare il suo stesso privilegio
+				if(attivo) {
+					//prima controllo se il bottone è abilitato o no
+					if(creatoreEnabled) modifyInCreatore();	
+				}
 			}catch(IOException ioe) {
 				System.out.println("boh non so che mettere tanto non serve");
 			}

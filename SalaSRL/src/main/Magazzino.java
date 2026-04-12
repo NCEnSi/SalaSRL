@@ -171,7 +171,7 @@ public class Magazzino extends JPanel{
 		icon = new ImageIcon(iconScaled);
 		gestioneUtenti.setIcon(icon);
 		//aggiungo un actionlistener per aprire scheda profilo
-		gestioneUtenti.addActionListener(e -> Collegamenti.fromAdminToGestioneUtenti());
+		gestioneUtenti.addActionListener(e -> Collegamenti.fromCreatoreToGestioneUtenti());
 		add(gestioneUtenti);
 	}
 	

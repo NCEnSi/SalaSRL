@@ -30,7 +30,6 @@ public class Main {
 		//mettere un massimo di (spazioLiberoMagazzino) nel carrello <--PARZIALMENTE OPZIONALE
 		
 		//GESTIONE UTENTI:
-		//il creatore che accede alla gestione utenti non può modificare il suo stato <--OPZIONALE
 		//i ruoli si aggiornano in tempo reale <--OPZIONALE
 				
 		//UTENTE:

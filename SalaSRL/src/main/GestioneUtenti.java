@@ -31,7 +31,7 @@ public class GestioneUtenti extends JPanel{
 	
 	
 	//COSTRUTTORE
-	public GestioneUtenti() throws IOException {
+	public GestioneUtenti(String nome) throws IOException {
 		//imposto le dimensioni del pannello "schermo"
 		setLayout(null);
 		setBounds(0, 0, 1331, 768);
@@ -39,7 +39,7 @@ public class GestioneUtenti extends JPanel{
 		//aggiungo il panel per il logout
 		setPanelLogout();
 		//creo la lista degli utenti
-		generaElencoUtenti();
+		generaElencoUtenti(nome);
 		//aggiungo la scrollbar personalizzata
 		setScorriGestioneUtenti();
 		//imposto il bottone per le informazioni del profilo
@@ -141,7 +141,7 @@ public class GestioneUtenti extends JPanel{
 	}
 	
 	//metodo per creare l'elenco degli utenti
-	public void generaElencoUtenti() throws IOException {
+	public void generaElencoUtenti(String nomeLogin) throws IOException {
 		//setto il panel con la grandezza totale che deve avere
 		panelScrollGestUt.setPreferredSize(new Dimension(1315, 7700));
 		panelScrollGestUt.setBackground(null);
@@ -170,12 +170,18 @@ public class GestioneUtenti extends JPanel{
 		lettura.close();
 		//variabile per impostare la coordinata y dei diversi pannelli utenti
 		int prY = 40;
+		//variabile per capire quale oggetto utenteLungo corrisponde all'utente loggato
+		boolean attivo;
 		//creo l'elenco utenti lungo
 		for(int i = 0; i < elencoUtenti.size(); i++) {
+			//rendo a prescindere i bottoni utenteLungo utilizzabili
+			attivo = true;
 			//per ogni componente dell'arraylist ricavo nome e privilegio
 			nomeANDpriv = elencoUtenti.get(i);
+			//controllo se l'account corrisponde a quello con cui è stato effettuato il login
+			if(nomeANDpriv[0].equals(nomeLogin)) attivo = false;
 			//creo l'oggetto utente lungo
-			panelScrollGestUt.add(new UtenteLungo(prY, nomeANDpriv[0], nomeANDpriv[1]));
+			panelScrollGestUt.add(new UtenteLungo(prY, nomeANDpriv[0], nomeANDpriv[1], attivo));
 			prY += 65;
 		}		
 				
