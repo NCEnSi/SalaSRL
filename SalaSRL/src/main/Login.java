@@ -122,11 +122,11 @@ public class Login extends JPanel{
 		signup.setBorderPainted(false);
 		signup.setBounds(534, 496, 67, 31);
 		//imposto l'immagine da dargli
-		immagine = new ImageIcon(getClass().getClassLoader().getResource("Signin.png"));
+		immagine = new ImageIcon(getClass().getClassLoader().getResource("Signup.png"));
 		immScalata = immagine.getImage().getScaledInstance(67, 31, Image.SCALE_SMOOTH);
 		immagine = new ImageIcon(immScalata);
 		signup.setIcon(immagine);
-		immagine = new ImageIcon(getClass().getClassLoader().getResource("SigninPress.png"));
+		immagine = new ImageIcon(getClass().getClassLoader().getResource("SignupPress.png"));
 		immScalata = immagine.getImage().getScaledInstance(67, 31, Image.SCALE_SMOOTH);
 		immagine = new ImageIcon(immScalata);
 		signup.setPressedIcon(immagine);	

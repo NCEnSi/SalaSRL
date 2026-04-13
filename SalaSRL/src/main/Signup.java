@@ -17,6 +17,8 @@ public class Signup extends JPanel{
 	private JTextField usernameSignup = new JTextField();
 	private JTextField emailSignup = new JTextField();
 	private JPasswordField passwordSignup = new JPasswordField();
+	//jbutton per tornare alla schermata di login
+	private JButton indietroSignup = new JButton();
 	//immagini del bottone per nascondere la password
 	private ImageIcon nascosta;
 	private ImageIcon visibile;
@@ -58,6 +60,7 @@ public class Signup extends JPanel{
 		setErroriSignup();
 		//imposto i bottoni		
 		setBottoneConfermaToLogin();
+		setBottoneIndietro();
 		setBottonePasswordSignup();
 		//imposto i diversi campi dove inserire i dati richiesti
 		setUsernameSignup();
@@ -75,7 +78,7 @@ public class Signup extends JPanel{
 	public void setSchermataSignup() {
 		//imposto lo sfondo
 		schermataSignup.setBounds(0, 0, 1331, 768);
-		immagine = new ImageIcon(getClass().getClassLoader().getResource("SchermataSignin.png"));
+		immagine = new ImageIcon(getClass().getClassLoader().getResource("SchermataSignup.png"));
 		schermataSignup.setIcon(immagine);
 		add(schermataSignup);
 	}	
@@ -119,6 +122,26 @@ public class Signup extends JPanel{
 		});
 		schermataSignup.add(confermaSignup);
 	}
+	//metodo per impostare il bottone per tornare alla schermata di login
+	public void setBottoneIndietro() {
+		//imposto le caratteristiche del bottone
+		indietroSignup.setContentAreaFilled(false);
+		indietroSignup.setBorderPainted(false);
+		indietroSignup.setBorder(null);
+		indietroSignup.setBounds(534, 587, 77, 31);
+		//imposto l'immagine da dargli
+		immagine = new ImageIcon(getClass().getClassLoader().getResource("Indietro.png"));
+		immScalata = immagine.getImage().getScaledInstance(77, 31, Image.SCALE_SMOOTH);
+		immagine = new ImageIcon(immScalata);
+		indietroSignup.setIcon(immagine);
+		immagine = new ImageIcon(getClass().getClassLoader().getResource("IndietroPress.png"));
+		immScalata = immagine.getImage().getScaledInstance(77, 31, Image.SCALE_SMOOTH);
+		immagine = new ImageIcon(immScalata);
+		indietroSignup.setPressedIcon(immagine);
+		//aggiungo un actionlistener per cambiare pannello
+		indietroSignup.addActionListener(e -> backToLogin());
+		schermataSignup.add(indietroSignup);
+	}
 	//metodo per impostare il bottone della visibilità della password
 	public void setBottonePasswordSignup() {
 		//imposto le caratteristiche del bottone
@@ -133,7 +156,19 @@ public class Signup extends JPanel{
 		schermataSignup.add(passwordVisibleSignup);
 	}
 	
-	//metodo per cambiare pannello da signup a login
+	//metodo per cambiare pannello da signup a login 
+	public void backToLogin() {
+		//faccio in modo che si vedi solo la schermata di login
+		schermate[0].setVisible(true);
+		schermate[1].setVisible(false);
+		
+		//svuoto tutte le caselle di testo della schermata di signup
+		usernameSignup.setText("");
+		emailSignup.setText("");
+		passwordSignup.setText("");
+		erroriSignup.setText("");
+	}
+	//metodo per cambiare pannello da signup a login quando crei un account
 	public void toLogin() throws IOException{
 		//controllo se è possibile salvare o no l'account
 		if(creaAccount()) {
@@ -155,7 +190,7 @@ public class Signup extends JPanel{
 		//rendo visibile solo la schermata di login
 		schermate[0].setVisible(true);
 		schermate[1].setVisible(false);
-		//svuoto tutte le caselle di testo della schermata di login
+		//svuoto tutte le caselle di testo della schermata di signup
 		usernameSignup.setText("");
 		emailSignup.setText("");
 		passwordSignup.setText("");
