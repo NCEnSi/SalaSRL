@@ -284,6 +284,13 @@ public class Carrello extends JPanel{
 		confermaOrdine.setPressedIcon(icon);	
 		icon = new ImageIcon(getClass().getClassLoader().getResource("ConfermaOrdineCarrello.png"));
 		confermaOrdine.setIcon(icon);
+		confermaOrdine.addActionListener(e -> {
+			Collegamenti.generaProdottiMag();
+			prodotti.clear();
+			panelScrollCarrello.removeAll();
+			panelScrollCarrello.revalidate();
+			panelScrollCarrello.repaint();
+		});
 		add(confermaOrdine);
 	}
 	

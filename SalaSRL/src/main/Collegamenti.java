@@ -1,6 +1,7 @@
 package main;
 import javax.swing.*;
 import java.io.*;
+import java.util.ArrayList;
 
 public class Collegamenti extends JFrame {
 
@@ -109,6 +110,14 @@ public class Collegamenti extends JFrame {
 	public void aggiornaGestioneUtenti() throws IOException {
 		
 		add(schermateCompl[3]);
+	}
+	
+	public static ArrayList<ProdottoLungo> getProdottiCarrelloAdmin() {
+		return ((Admin) schermateCompl[1]).getCarrello().getProdottiNelCarrello();
+	}
+	
+	public static void generaProdottiMag() {
+		((Admin) schermateCompl[1]).getMagazzino().generaProdotti();
 	}
 	
 }

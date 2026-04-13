@@ -1,6 +1,8 @@
 package main;
 
 import java.awt.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 public class Magazzino extends JPanel{
@@ -27,7 +29,16 @@ public class Magazzino extends JPanel{
 	private Logout logout = new Logout();
 	//bottone per passare alla schermata di elenco utenti
 	private JButton gestioneUtenti = new JButton();
-
+	//jscroll e panel per contenere i prodotti del catalogo
+	private JPanel panelScrollMagazzino = new JPanel();
+	private JScrollPane scrollMagazzino;
+	//array che contiene il nome dei prodotti messi nel magazzino
+	private ArrayList<ProdottoQuadrato> prodottiNelMagazzino = new ArrayList<>();
+	//jscroll e panel per contenere i prodotti del magazzino
+	private int altezzaPanelScrollMagazzinoInt;
+	private double altezzaPanelScrollMagazzinoDouble;
+	//variabile catalogo per creare prodotti ma non utilizzata
+	private Catalogo catalogo;
 
 	//costruttore per creare la schermata del magazzino
 	public Magazzino(String privilegi) {
@@ -39,6 +50,7 @@ public class Magazzino extends JPanel{
 		//setto i vari componenti
 		setImmagineProfiloMag();
 		if(privilegi.equals("Creatore")) setGestioneUtenti();
+		addComponentiScroll();
 		setCopriLineaMagazzino();
 		setLuogoProdotti();
 		setSpazioMagazzino();
@@ -129,6 +141,22 @@ public class Magazzino extends JPanel{
 		add(copriLineaMag);
 	}
 	
+	public void addComponentiScroll() {
+		panelScrollMagazzino.setPreferredSize(new Dimension(804, 584));
+		panelScrollMagazzino.setBackground(null);
+		panelScrollMagazzino.setLayout(null);
+		panelScrollMagazzino.setOpaque(false);
+		scrollMagazzino = new JScrollPane(panelScrollMagazzino, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollMagazzino.setBounds(0, 155, 1279, 608);
+		scrollMagazzino.setBackground(null);
+		scrollMagazzino.setOpaque(false);
+		scrollMagazzino.getViewport().setOpaque(false);
+		scrollMagazzino.setBorder(null);
+		scrollMagazzino.getVerticalScrollBar().setUnitIncrement(20);
+		altezzaPanelScrollMagazzinoInt = 0;
+		add(scrollMagazzino);
+	}
+	
 	//metodo per settare la label strisciaSuperioreMag
 	public void setStrisciaSuperioreMag() {
 		//imposto coordinate e grandezza della label
@@ -198,5 +226,62 @@ public class Magazzino extends JPanel{
 	//metodo da usare per settare il cambio schermata
 	public JButton getCarrellooMag() {
 		return carrelloMag;
+	}
+	
+	//metodo per generare i 70 prodotti nel magazzino
+	public void generaProdotti() {
+		panelScrollMagazzino.removeAll();
+		prodottiNelMagazzino.clear();
+		int i = 0;
+		int x = 0, y = 10;
+		for(ProdottoLungo prodotto : Collegamenti.getProdottiCarrelloAdmin()) {
+			i++;
+			switch(i) {
+			case 1:
+				x = 12;
+				break;
+
+			case 2:
+				x = 268;
+				break;
+
+			case 3:
+				x = 524;
+				break;
+
+			case 4:
+				x = 780;
+				break;
+
+			case 5:
+				x = 1036;
+				break;
+			}
+			prodottiNelMagazzino.add(new ProdottoQuadrato(x, y, prodotto.getNome(), "no", catalogo, prodotto.getNAcquistati()));
+			if(i==5) {
+				i = 0;
+				y += 256;
+			}
+		}
+		for(ProdottoQuadrato prodotto : prodottiNelMagazzino) {
+			panelScrollMagazzino.add(prodotto);
+		}
+		panelScrollMagazzino.setPreferredSize(new Dimension(1315, calcolaAltezzaPanel()));
+		panelScrollMagazzino.revalidate();
+	    panelScrollMagazzino.repaint();
+	}
+	
+	public int calcolaAltezzaPanel() {
+		if(prodottiNelMagazzino.size() % 5 == 0) {
+			altezzaPanelScrollMagazzinoDouble = prodottiNelMagazzino.size() / 5;
+		} else {
+			altezzaPanelScrollMagazzinoDouble = prodottiNelMagazzino.size() / 5 + 1;
+		}
+		altezzaPanelScrollMagazzinoDouble = altezzaPanelScrollMagazzinoDouble * 256 + 20;
+		altezzaPanelScrollMagazzinoInt = (int) altezzaPanelScrollMagazzinoDouble;
+		if(altezzaPanelScrollMagazzinoInt<altezzaPanelScrollMagazzinoDouble) {
+			altezzaPanelScrollMagazzinoInt++;
+		}
+		return altezzaPanelScrollMagazzinoInt;
 	}
 }

@@ -90,4 +90,12 @@ public class Admin extends JPanel {
 		((Carrello) schermate[2]).getPanelLogout().setVisible(false);
 	}
 	
+	public Carrello getCarrello() {
+		return ((Carrello) schermate[2]);
+	}
+	
+	public Magazzino getMagazzino() {
+		return ((Magazzino) schermate[0]);
+	}
+	
 }

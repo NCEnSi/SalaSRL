@@ -29,7 +29,7 @@ public class ProdottoQuadrato extends JPanel{
 	private Catalogo catalogo;
 	
 	//costruttore, richiede (coordinata x, coordinata y, nome prodotto)
-	public ProdottoQuadrato(int prX, int prY, String nomeProdotto, String compra, Catalogo catalogo) {
+	public ProdottoQuadrato(int prX, int prY, String nomeProdotto, String compra, Catalogo catalogo, int acquistatiMag) {
 		this.catalogo = catalogo;
 		this.nomeProdotto = nomeProdotto;
 		//setto il Panel
@@ -39,7 +39,7 @@ public class ProdottoQuadrato extends JPanel{
 		//setto le varie Label e i vari Button
 		switch(compra) {
 		case "yes":
-			setN();
+			setNCatalogo();
 			setPiu(nomeProdotto);
 			setMeno(nomeProdotto);
 			setBuy(nomeProdotto);
@@ -47,6 +47,7 @@ public class ProdottoQuadrato extends JPanel{
 			break;
 			
 		case "no":
+			setNMagazzino(acquistatiMag);
 			setSfondo(nomeProdotto);
 			break;
 		}
@@ -63,14 +64,26 @@ public class ProdottoQuadrato extends JPanel{
 		add(base);
 	}
 
-	//metodo per settare la label N
-	public void setN() {
+	//metodo per settare la label N nel catalogo
+	public void setNCatalogo() {
 		//imposto coordinate e grandezza della label
 		N.setBounds(139, 185, 37, 37);
 		//personalizzo la label e il suo testo
 		N.setBackground(null);
 		N.setFont(new Font("Arial", Font.PLAIN, 24));
 		N.setHorizontalAlignment(JLabel.CENTER);
+		add(N);
+	}
+	
+	//metodo per settare la label N nel magazzino
+	public void setNMagazzino(int nAcquistati) {
+		//imposto coordinate e grandezza della label
+		N.setBounds(139, 185, 37, 37);
+		//personalizzo la label e il suo testo
+		N.setBackground(null);
+		N.setFont(new Font("Arial", Font.PLAIN, 24));
+		N.setHorizontalAlignment(JLabel.CENTER);
+		N.setText(""+nAcquistati);
 		add(N);
 	}
 

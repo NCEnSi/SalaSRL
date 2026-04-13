@@ -21,13 +21,14 @@ public class Main {
 		//mettere un limite di caratteri per email per non farli uscire dalla schermata di logout <--OPZIONALE
 		
 		//MAGAZZINO:
-		//tutto <--DA FARE
+		//se si cambia account il magazzino rimane <--DA FARE chiedere a marco cosa cambia quando fai il logout
+		//se riaggiungo lo stesso prodotto al carrello non si resetta il numero <--PARZIALMENTE OPZIONALE
+		//se si comprano gli stessi prodotti le quantità si sommano <--DA FARE
 		
 		//CATALOGO:
 		//potremmo cambiare qualche prodotto tipo in vino e alcool <--OPZIONALE
 		
 		//CARRELLO:
-		//far funzionare il tasto conferma ordine <--DA FARE
 		//se schiacci su un prodotto far apparire le informazioni nella label apposita <--PARZIALMENTE OPZIONALE
 		//mettere un massimo di (spazioLiberoMagazzino) nel carrello <--PARZIALMENTE OPZIONALE
 				
