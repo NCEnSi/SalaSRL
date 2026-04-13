@@ -15,7 +15,6 @@ public class Main {
 		//aggiungerla a catalogo, carrello e gestione utenti <--OPZIONALE
 		
 		//LOGIN:
-		//aggiungere tasto per passare dalla schermata registrazione a quella accesso senza l'obbligo di creare un account <--PARZIALMENTE OPZIONALE
 		//suddividere per bene la schermata di login/signup <--OPZIONALE
 		//se premi invio passa al campo successivo, se si preme quando si è nel campo password è come premere invia <--OPZIONALE
 		//mettere un limite di caratteri per email per non farli uscire dalla schermata di logout <--OPZIONALE
