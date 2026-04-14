@@ -31,6 +31,9 @@ public class Main {
 		//se schiacci su un prodotto far apparire le informazioni nella label apposita <--PARZIALMENTE OPZIONALE
 		//mettere un massimo di (spazioLiberoMagazzino) nel carrello <--PARZIALMENTE OPZIONALE
 				
+		//GESTIONE UTENTI:
+		//il logout non rimanda alla schermata di login <--PARZIALMENTE OPZIONALE
+		
 		//UTENTE:
 		//tutto <--DA FARE
 		

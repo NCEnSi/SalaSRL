@@ -33,7 +33,8 @@ public class Magazzino extends JPanel{
 	private JPanel panelScrollMagazzino = new JPanel();
 	private JScrollPane scrollMagazzino;
 	//array che contiene il nome dei prodotti messi nel magazzino
-	private ArrayList<ProdottoQuadrato> prodottiNelMagazzino = new ArrayList<>();
+	private ArrayList<ProdottoQuadrato> nuoviProdottiNelMagazzino = new ArrayList<>();
+	private ArrayList<ProdottoQuadrato> presentiProdottiNelMagazzino = new ArrayList<>();
 	//jscroll e panel per contenere i prodotti del magazzino
 	private int altezzaPanelScrollMagazzinoInt;
 	private double altezzaPanelScrollMagazzinoDouble;
@@ -231,7 +232,7 @@ public class Magazzino extends JPanel{
 	//metodo per generare i 70 prodotti nel magazzino
 	public void generaProdotti() {
 		panelScrollMagazzino.removeAll();
-		prodottiNelMagazzino.clear();
+		nuoviProdottiNelMagazzino.clear();
 		int i = 0;
 		int x = 0, y = 10;
 		for(ProdottoLungo prodotto : Collegamenti.getProdottiCarrelloAdmin()) {
@@ -257,27 +258,42 @@ public class Magazzino extends JPanel{
 				x = 1036;
 				break;
 			}
-			prodottiNelMagazzino.add(new ProdottoQuadrato(x, y, prodotto.getNome(), "no", catalogo, prodotto.getNAcquistati()));
+
+			boolean aggiungiProd = true;
+			System.out.println( presentiProdottiNelMagazzino.size());
+			for(ProdottoQuadrato prodottoPres : presentiProdottiNelMagazzino) {
+				if(prodottoPres.getNomeProdotto().equals(prodotto.getNome())) {
+					prodottoPres.addNAcquistati(prodotto.getNAcquistati());
+					aggiungiProd = false;
+				}
+			}
+			if(aggiungiProd) {
+				nuoviProdottiNelMagazzino.add(new ProdottoQuadrato(x, y, prodotto.getNome(), "no", catalogo, prodotto.getNAcquistati()));
+			}
 			if(i==5) {
 				i = 0;
 				y += 256;
 			}
 		}
-		for(ProdottoQuadrato prodotto : prodottiNelMagazzino) {
+		for(ProdottoQuadrato prodotto : presentiProdottiNelMagazzino) {
 			panelScrollMagazzino.add(prodotto);
 		}
+		for(ProdottoQuadrato prodotto : nuoviProdottiNelMagazzino) {
+			panelScrollMagazzino.add(prodotto);
+		}
+		presentiProdottiNelMagazzino.addAll(nuoviProdottiNelMagazzino);
+		System.out.println(presentiProdottiNelMagazzino.size());
 		panelScrollMagazzino.setPreferredSize(new Dimension(1315, calcolaAltezzaPanel()));
 		panelScrollMagazzino.revalidate();
 	    panelScrollMagazzino.repaint();
 	}
 	
 	public int calcolaAltezzaPanel() {
-		if(prodottiNelMagazzino.size() % 5 == 0) {
-			altezzaPanelScrollMagazzinoDouble = prodottiNelMagazzino.size() / 5;
+		if(nuoviProdottiNelMagazzino.size() % 5 == 0) {
+			altezzaPanelScrollMagazzinoDouble = ((nuoviProdottiNelMagazzino.size()+presentiProdottiNelMagazzino.size()) / 5) * 256 + 20;
 		} else {
-			altezzaPanelScrollMagazzinoDouble = prodottiNelMagazzino.size() / 5 + 1;
+			altezzaPanelScrollMagazzinoDouble = ((nuoviProdottiNelMagazzino.size()+presentiProdottiNelMagazzino.size()) / 5 + 1) * 256 + 20;
 		}
-		altezzaPanelScrollMagazzinoDouble = altezzaPanelScrollMagazzinoDouble * 256 + 20;
 		altezzaPanelScrollMagazzinoInt = (int) altezzaPanelScrollMagazzinoDouble;
 		if(altezzaPanelScrollMagazzinoInt<altezzaPanelScrollMagazzinoDouble) {
 			altezzaPanelScrollMagazzinoInt++;
