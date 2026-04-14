@@ -169,6 +169,7 @@ public class ProdottoQuadrato extends JPanel{
 
 	//metodo per sommare il numero di elementi comprati del prodotto
 	public void buy(String nomeProdotto) {
+		//DOPO SISTEMARE SE NO SOMMA SEMPRE NEL CARRELLO
 		nAcquistati += nAttuale;
 		boolean giaPresente = false;
 		if(getNAttuale()>0) {
@@ -177,7 +178,12 @@ public class ProdottoQuadrato extends JPanel{
 				if(nome.equals(getNomeProdotto())) {
 					giaPresente = true;
 					//aggiorno nAcquistati se no rimane uguale al primo acquisto
-					info.setQuantita(nAcquistati);
+					for(InformazioniDaPassare e : catalogo.getProdottiNelCarrello()) {
+						if(info.getNome().equals(e.getNome())) {
+							info.setQuantita(nAcquistati);
+							break;
+						}
+					}
 					if(info.getQuantita()>=99) {
 						info.setQuantita(99);
 					}

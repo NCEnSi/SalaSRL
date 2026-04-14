@@ -98,4 +98,7 @@ public class Admin extends JPanel {
 		return ((Magazzino) schermate[0]);
 	}
 	
+	public Catalogo getCatalogo() {
+		return ((Catalogo) schermate[1]);
+	}
 }

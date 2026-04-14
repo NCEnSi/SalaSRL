@@ -287,6 +287,8 @@ public class Carrello extends JPanel{
 		confermaOrdine.addActionListener(e -> {
 			Collegamenti.generaProdottiMag();
 			prodotti.clear();
+			Collegamenti.getProdottiNelCarrello().clear();
+			System.out.println(prodotti.size());
 			panelScrollCarrello.removeAll();
 			panelScrollCarrello.revalidate();
 			panelScrollCarrello.repaint();

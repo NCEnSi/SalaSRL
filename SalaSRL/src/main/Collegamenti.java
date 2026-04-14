@@ -34,8 +34,8 @@ public class Collegamenti extends JFrame {
 		schermateCompl[3] = new GestioneUtenti("Nicolò");
 		
 		//faccio vedere solo login
-		schermateCompl[0].setVisible(true);
-		schermateCompl[1].setVisible(false);
+		schermateCompl[0].setVisible(false);
+		schermateCompl[1].setVisible(true);
 		schermateCompl[2].setVisible(false);
 		schermateCompl[3].setVisible(false);
 		
@@ -118,6 +118,10 @@ public class Collegamenti extends JFrame {
 	
 	public static void generaProdottiMag() {
 		((Admin) schermateCompl[1]).getMagazzino().generaProdotti();
+	}
+	
+	public static ArrayList<InformazioniDaPassare> getProdottiNelCarrello() {
+		return ((Admin) schermateCompl[1]).getCatalogo().getProdottiNelCarrello();
 	}
 	
 }
