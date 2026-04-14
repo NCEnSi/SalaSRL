@@ -12,7 +12,7 @@ public class Magazzino extends JPanel{
 	private JButton carrelloMag = new JButton();
 	//button per aprire info profilo
 	private JButton immagineProfiloMag = new JButton();
-	//label per evidenziare schermata attuale
+	//label per evidenziare schermata attuale	
 	private JLabel magazzinoAttuale = new JLabel();
 	//label per coprire
 	private JLabel copriLineaMag = new JLabel();
@@ -230,7 +230,7 @@ public class Magazzino extends JPanel{
 	}
 	
 	//metodo per generare i 70 prodotti nel magazzino
-	public void generaProdotti() {
+	public void generaProdotti() { 
 		panelScrollMagazzino.removeAll();
 		nuoviProdottiNelMagazzino.clear();
 		int i = 0;
@@ -260,10 +260,10 @@ public class Magazzino extends JPanel{
 			}
 
 			boolean aggiungiProd = true;
-			System.out.println( presentiProdottiNelMagazzino.size());
 			for(ProdottoQuadrato prodottoPres : presentiProdottiNelMagazzino) {
-				if(prodottoPres.getNomeProdotto().equals(prodotto.getNome())) {
+				 if(prodottoPres.getNomeProdotto().equals(prodotto.getNome())) {
 					prodottoPres.addNAcquistati(prodotto.getNAcquistati());
+					prodottoPres.aggiornaN();
 					aggiungiProd = false;
 				}
 			}
@@ -282,7 +282,6 @@ public class Magazzino extends JPanel{
 			panelScrollMagazzino.add(prodotto);
 		}
 		presentiProdottiNelMagazzino.addAll(nuoviProdottiNelMagazzino);
-		System.out.println(presentiProdottiNelMagazzino.size());
 		panelScrollMagazzino.setPreferredSize(new Dimension(1315, calcolaAltezzaPanel()));
 		panelScrollMagazzino.revalidate();
 	    panelScrollMagazzino.repaint();

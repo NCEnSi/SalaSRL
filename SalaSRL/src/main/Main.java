@@ -20,9 +20,8 @@ public class Main {
 		//mettere un limite di caratteri per email per non farli uscire dalla schermata di logout <--OPZIONALE
 		
 		//MAGAZZINO:
-		//se si cambia account il magazzino rimane <--DA FARE chiedere a marco cosa cambia quando fai il logout
-		//se riaggiungo lo stesso prodotto al carrello non si resetta il numero <--PARZIALMENTE OPZIONALE
-		//se si comprano gli stessi prodotti le quantità si sommano <--DA FARE
+		//se si cambia account o si chiude il programma il magazzino rimane <--DA FARE chiedere a marco cosa cambia quando fai il logout
+		//aggiungere i tasti per eliminare i prodotti dal magazzino <--OPZIONALE
 		
 		//CATALOGO:
 		//potremmo cambiare qualche prodotto tipo in vino e alcool <--OPZIONALE
@@ -38,7 +37,6 @@ public class Main {
 		//tutto <--DA FARE
 		
 		//PRODOTTI:
-		//sistemare posizioni bottoni (solo modficare x, y) <--OPZIONALE
 		//preparare grafica tasti premuti del carrello admin <--OPZIONALE
 		//preparare info di ogni prodotto <--PARZIALMENTE OPZIONALE
 		//pensare alla grafica informazioni del carrello admin <--PARZIALMENTE OPZIONALE

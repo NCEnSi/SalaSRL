@@ -67,7 +67,7 @@ public class ProdottoQuadrato extends JPanel{
 	//metodo per settare la label N nel catalogo
 	public void setNCatalogo() {
 		//imposto coordinate e grandezza della label
-		N.setBounds(139, 185, 37, 37);
+		N.setBounds(141, 185, 37, 37);
 		//personalizzo la label e il suo testo
 		N.setBackground(null);
 		N.setFont(new Font("Arial", Font.PLAIN, 24));
@@ -77,8 +77,9 @@ public class ProdottoQuadrato extends JPanel{
 	
 	//metodo per settare la label N nel magazzino
 	public void setNMagazzino(int nAcquistati) {
+		this.nAcquistati = nAcquistati;
 		//imposto coordinate e grandezza della label
-		N.setBounds(139, 185, 37, 37);
+		N.setBounds(141, 185, 37, 37);
 		//personalizzo la label e il suo testo
 		N.setBackground(null);
 		N.setFont(new Font("Arial", Font.PLAIN, 24));
@@ -112,7 +113,7 @@ public class ProdottoQuadrato extends JPanel{
 		//imposto le caratteristiche del bottone
 		meno.setContentAreaFilled(false);		
 		meno.setBorderPainted(false);
-		meno.setBounds(99, 185, 37, 37);
+		meno.setBounds(104, 185, 37, 37);
 		//imposto l'immagine da dargli
 		icon = new ImageIcon(getClass().getClassLoader().getResource("MenoProdottoQuadPress.png"));
 		iconScaled = icon.getImage().getScaledInstance(37, 37, Image.SCALE_SMOOTH);
@@ -132,7 +133,7 @@ public class ProdottoQuadrato extends JPanel{
 		//imposto le caratteristiche del bottone	
 		buy.setContentAreaFilled(false);		
 		buy.setBorderPainted(false);
-		buy.setBounds(20, 185, 37, 37);
+		buy.setBounds(25, 185, 37, 37);
 		//imposto l'immagine da dargli
 		icon = new ImageIcon(getClass().getClassLoader().getResource("BuyProdottoQuadPress.png"));
 		iconScaled = icon.getImage().getScaledInstance(37, 37, Image.SCALE_SMOOTH);
@@ -178,12 +179,7 @@ public class ProdottoQuadrato extends JPanel{
 				if(nome.equals(getNomeProdotto())) {
 					giaPresente = true;
 					//aggiorno nAcquistati se no rimane uguale al primo acquisto
-					for(InformazioniDaPassare e : catalogo.getProdottiNelCarrello()) {
-						if(info.getNome().equals(e.getNome())) {
-							info.setQuantita(nAcquistati);
-							break;
-						}
-					}
+					info.setQuantita(nAcquistati);
 					if(info.getQuantita()>=99) {
 						info.setQuantita(99);
 					}
@@ -230,5 +226,11 @@ public class ProdottoQuadrato extends JPanel{
 	//metodo per ottenere il tasto buy
 	public JButton getBuyButton() {
 		return buy;
+	}
+	
+	public void aggiornaN() {
+	    N.setText(""+nAcquistati);
+	    N.revalidate();
+	    N.repaint();
 	}
 }

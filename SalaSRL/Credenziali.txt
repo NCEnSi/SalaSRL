@@ -2,3 +2,4 @@ Nicolò Carlini;nico@gmail.com;123456;Creatore
 Nicolò;eeeeeee;1;Creatore
 Carlini;1;1;Creatore
 Marco Morettini;moret@gmail.com;654321;Creatore
+CosmoUniverso;suckaniggadih@gmail.com;aaaaaaaa;Utente

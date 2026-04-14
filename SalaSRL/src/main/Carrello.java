@@ -227,7 +227,8 @@ public class Carrello extends JPanel{
 	
 	//metodo per generare i 70 prodotti nel catalogo
 	public void generaProdotti(ArrayList<InformazioniDaPassare> prodotti, String yes) {
-		if(yes.equals("yes")) {
+		ArrayList<InformazioniDaPassare> copia = new ArrayList<>(prodotti);
+	    if(yes.equals("yes")) {
 			prodotti.clear();
 			for(ProdottoLungo prod : this.prodotti) {
 				prodotti.add(new InformazioniDaPassare(prod.getNome(), prod.getNAcquistati()));
@@ -241,7 +242,7 @@ public class Carrello extends JPanel{
 			this.prodotti.add(new ProdottoLungo(10, y, info.getNome(), info.getQuantita(), this, prodotti, catalogo));
 			y += 78;
 		}
-		prodotti.clear();
+		
 		//setto il panel con la grandezza totale che deve avere
 		if(this.prodotti.size()==0) {
 			altezzaPanelScrollCarrello = 0;
@@ -287,9 +288,11 @@ public class Carrello extends JPanel{
 		confermaOrdine.setIcon(icon);
 		confermaOrdine.addActionListener(e -> {
 			Collegamenti.generaProdottiMag();
-			prodotti.clear();
-			Collegamenti.getProdottiNelCarrello().clear();
-			System.out.println(prodotti.size());
+		    prodotti.clear();
+		    Collegamenti. getProdottiNelCarrello().clear();
+			for(ProdottoQuadrato prod : catalogo.getProdotti()) {
+				prod.resetNAcquistati();
+		    }
 			panelScrollCarrello.removeAll();
 			panelScrollCarrello.revalidate();
 			panelScrollCarrello.repaint();
