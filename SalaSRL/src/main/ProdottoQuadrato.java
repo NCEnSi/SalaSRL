@@ -217,6 +217,11 @@ public class ProdottoQuadrato extends JPanel{
 		return nAcquistati;
 	}
 	
+	//metodo per ottenere nAcquistati
+	public void addNAcquistati(int n) {
+		nAcquistati += n;
+	}
+	
 	//metodo per ottenere il nome del prodotto
 	public String getNomeProdotto() {
 		return nomeProdotto;

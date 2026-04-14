@@ -241,6 +241,7 @@ public class Carrello extends JPanel{
 			this.prodotti.add(new ProdottoLungo(10, y, info.getNome(), info.getQuantita(), this, prodotti, catalogo));
 			y += 78;
 		}
+		prodotti.clear();
 		//setto il panel con la grandezza totale che deve avere
 		if(this.prodotti.size()==0) {
 			altezzaPanelScrollCarrello = 0;
