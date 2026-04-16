@@ -1,6 +1,11 @@
 package main;
 
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -38,8 +43,13 @@ public class Magazzino extends JPanel{
 	//jscroll e panel per contenere i prodotti del magazzino
 	private int altezzaPanelScrollMagazzinoInt;
 	private double altezzaPanelScrollMagazzinoDouble;
-	//variabile catalogo per creare prodotti ma non utilizzata
-	private Catalogo catalogo;
+	//creo le variabili per gli oggetti per interagire con il file txt
+	private BufferedWriter scrittura;
+	private BufferedReader lettura;
+	
+	//variabili usate per aggiungere i prodotti nel magazzino
+	private int i = 0;
+	private int x = 0, y = 10;
 
 	//costruttore per creare la schermata del magazzino
 	public Magazzino(String privilegi) {
@@ -51,7 +61,6 @@ public class Magazzino extends JPanel{
 		//setto i vari componenti
 		setImmagineProfiloMag();
 		if(privilegi.equals("Creatore")) setGestioneUtenti();
-		addComponentiScroll();
 		setCopriLineaMagazzino();
 		setLuogoProdotti();
 		setSpazioMagazzino();
@@ -230,13 +239,12 @@ public class Magazzino extends JPanel{
 	}
 	
 	//metodo per generare i 70 prodotti nel magazzino
-	public void generaProdotti() { 
+	public void generaProdotti() throws IOException { 
 		panelScrollMagazzino.removeAll();
 		nuoviProdottiNelMagazzino.clear();
-		int i = 0;
-		int x = 0, y = 10;
 		for(ProdottoLungo prodotto : Collegamenti.getProdottiCarrelloAdmin()) {
 			i++;
+			System.out.println(i);
 			switch(i) {
 			case 1:
 				x = 12;
@@ -268,7 +276,11 @@ public class Magazzino extends JPanel{
 				}
 			}
 			if(aggiungiProd) {
-				nuoviProdottiNelMagazzino.add(new ProdottoQuadrato(x, y, prodotto.getNome(), "no", catalogo, prodotto.getNAcquistati()));
+				nuoviProdottiNelMagazzino.add(new ProdottoQuadrato(x, y, prodotto.getNome(), "no", prodotto.getNAcquistati()));
+
+				System.out.println(y);
+			} else {
+				i--;
 			}
 			if(i==5) {
 				i = 0;
@@ -282,6 +294,7 @@ public class Magazzino extends JPanel{
 			panelScrollMagazzino.add(prodotto);
 		}
 		presentiProdottiNelMagazzino.addAll(nuoviProdottiNelMagazzino);
+		addProdottiAlFile(presentiProdottiNelMagazzino);
 		panelScrollMagazzino.setPreferredSize(new Dimension(1315, calcolaAltezzaPanel()));
 		panelScrollMagazzino.revalidate();
 	    panelScrollMagazzino.repaint();
@@ -298,5 +311,72 @@ public class Magazzino extends JPanel{
 			altezzaPanelScrollMagazzinoInt++;
 		}
 		return altezzaPanelScrollMagazzinoInt;
+	}
+	
+	//metodo per cambiare pannello da signup a login quando crei un account
+	public void addProdottiAlFile( ArrayList<ProdottoQuadrato> presentiProdottiNelMagazzino) throws IOException{
+		FileWriter fw = new FileWriter("Magazzino.txt");
+		fw.write("");
+		fw.close();
+		for(ProdottoQuadrato prod : presentiProdottiNelMagazzino) {
+			//creo l'oggetto usato per salvare le diverse informazioni degli account
+			scrittura = new BufferedWriter(new FileWriter("Magazzino.txt", true));		
+			//salvo le diverse informazioni sul file txt
+			String prodotto = prod.getNAcquistati()+";"+prod.getNomeProdotto();
+			scrittura.write(prodotto);
+			scrittura.newLine();
+			scrittura.close();
+		}
+	}
+
+	public void generaMagazzino() throws IOException{
+		addComponentiScroll();
+		//variabile usata per salvarmi ogni riga del file txt
+		String riga = "";
+		//creo l'oggetto che legge il file txt
+		lettura = new BufferedReader(new FileReader("Magazzino.txt"));
+		//controllo ogni riga del file txt
+		while ((riga = lettura.readLine()) != null) {
+			i++;
+			switch(i) {
+			case 1:
+				x = 12;
+				break;
+
+			case 2:
+				x = 268;
+				break;
+
+			case 3:
+				x = 524;
+				break;
+
+			case 4:
+				x = 780;
+				break;
+
+			case 5:
+				x = 1036;
+				break;
+			}
+			if(i==5) {
+				i = 0;
+				y += 256;
+			}
+			//creo un array dove ogni componente contiene un'informazione del prodotto sapendo le loro posizioni
+			String[] datiProdotto = riga.split(";");
+			presentiProdottiNelMagazzino.add(new ProdottoQuadrato(x, y, datiProdotto[1], "no", Integer.valueOf(datiProdotto[0])));
+		
+		}
+		for(ProdottoQuadrato prodotto : presentiProdottiNelMagazzino) {
+			panelScrollMagazzino.add(prodotto);
+		}
+		panelScrollMagazzino.setPreferredSize(new Dimension(1315, calcolaAltezzaPanel()));
+		panelScrollMagazzino.revalidate();
+	    panelScrollMagazzino.repaint();
+		//chiudo la lettura
+		lettura.close();
+		//se vale false significa che l'account non esiste oppure o la password o l'email sono sbagliati
+		
 	}
 }

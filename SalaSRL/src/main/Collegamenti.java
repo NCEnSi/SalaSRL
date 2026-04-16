@@ -30,12 +30,13 @@ public class Collegamenti extends JFrame {
 		//creo le tre schermate
 		schermateCompl[0] = new Login();
 		schermateCompl[1] = new Admin("ciao;ciao;Admin;ciao");
+		generaMagazzino();
 		schermateCompl[2] = new Utente();
 		schermateCompl[3] = new GestioneUtenti("Nicolò");
 		
 		//faccio vedere solo login
-		schermateCompl[0].setVisible(false);
-		schermateCompl[1].setVisible(true);
+		schermateCompl[0].setVisible(true);
+		schermateCompl[1].setVisible(false);
 		schermateCompl[2].setVisible(false);
 		schermateCompl[3].setVisible(false);
 		
@@ -116,12 +117,16 @@ public class Collegamenti extends JFrame {
 		return ((Admin) schermateCompl[1]).getCarrello().getProdottiNelCarrello();
 	}
 	
-	public static void generaProdottiMag() {
+	public static void generaProdottiMag() throws IOException {
 		((Admin) schermateCompl[1]).getMagazzino().generaProdotti();
 	}
 	
 	public static ArrayList<InformazioniDaPassare> getProdottiNelCarrello() {
 		return ((Admin) schermateCompl[1]).getCatalogo().getProdottiNelCarrello();
+	}
+	
+	public static void generaMagazzino() throws IOException {
+		((Admin) schermateCompl[1]).getMagazzino().generaMagazzino();
 	}
 	
 }

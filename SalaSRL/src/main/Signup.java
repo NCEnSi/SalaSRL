@@ -174,6 +174,7 @@ public class Signup extends JPanel implements KeyListener{
 		passwordSignup.setText("");
 		erroriSignup.setText("");
 	}
+	
 	//metodo per cambiare pannello da signup a login quando crei un account
 	public void toLogin() throws IOException{
 		//controllo se è possibile salvare o no l'account
@@ -202,6 +203,7 @@ public class Signup extends JPanel implements KeyListener{
 		passwordSignup.setText("");
 		erroriSignup.setText("");
 	}
+	
 	//metodo per rendere invisibile la password e viceversa
 	public void toVisibilityPassSignup() {
 		//controllo se la password attualmente è nascosta oppure no

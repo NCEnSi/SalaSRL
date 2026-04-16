@@ -24,6 +24,7 @@ public class Main {
 		//aggiungere i tasti per eliminare i prodotti dal magazzino <--OPZIONALE
 		
 		//CATALOGO:
+		//dare possibilità di decidere quantità prodotti da comprare
 		//potremmo cambiare qualche prodotto tipo in vino e alcool <--OPZIONALE
 		
 		//CARRELLO:

@@ -2,7 +2,7 @@ package main;
 
 import java.awt.*;
 import java.util.ArrayList;
-
+import java.io.*;
 import javax.swing.*;
 
 public class Carrello extends JPanel{
@@ -287,7 +287,11 @@ public class Carrello extends JPanel{
 		icon = new ImageIcon(getClass().getClassLoader().getResource("ConfermaOrdineCarrello.png"));
 		confermaOrdine.setIcon(icon);
 		confermaOrdine.addActionListener(e -> {
-			Collegamenti.generaProdottiMag();
+			try {
+				Collegamenti.generaProdottiMag();
+			}catch(IOException y) {
+				System.out.println("error");
+			}
 		    prodotti.clear();
 		    Collegamenti. getProdottiNelCarrello().clear();
 			for(ProdottoQuadrato prod : catalogo.getProdotti()) {
