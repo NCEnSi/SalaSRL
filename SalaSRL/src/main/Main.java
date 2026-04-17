@@ -22,6 +22,7 @@ public class Main {
 		//MAGAZZINO:
 		//se si cambia account o si chiude il programma il magazzino rimane <--DA FARE chiedere a marco cosa cambia quando fai il logout
 		//aggiungere i tasti per eliminare i prodotti dal magazzino <--OPZIONALE
+		//riga 236 <--DA FARE
 		
 		//CATALOGO:
 		//potremmo cambiare qualche prodotto tipo in vino e alcool <--OPZIONALE
