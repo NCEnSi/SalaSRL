@@ -34,8 +34,8 @@ public class Collegamenti extends JFrame {
 		schermateCompl[3] = new GestioneUtenti("Nicolò");
 		
 		//faccio vedere solo login
-		schermateCompl[0].setVisible(false);
-		schermateCompl[1].setVisible(true);
+		schermateCompl[0].setVisible(true);
+		schermateCompl[1].setVisible(false);
 		schermateCompl[2].setVisible(false);
 		schermateCompl[3].setVisible(false);
 		
@@ -44,6 +44,8 @@ public class Collegamenti extends JFrame {
 		add(schermateCompl[1]);
 		add(schermateCompl[2]);
 		add(schermateCompl[3]);
+
+		generaMagazzino();
 	}
 	
 	//metodo usato per passare dalla schermata di login alla pagina dedicata all'admin
@@ -116,12 +118,16 @@ public class Collegamenti extends JFrame {
 		return ((Admin) schermateCompl[1]).getCarrello().getProdottiNelCarrello();
 	}
 	
-	public static void generaProdottiMag() {
+	public static void generaProdottiMag() throws IOException {
 		((Admin) schermateCompl[1]).getMagazzino().generaProdotti();
 	}
 	
 	public static ArrayList<InformazioniDaPassare> getProdottiNelCarrello() {
 		return ((Admin) schermateCompl[1]).getCatalogo().getProdottiNelCarrello();
+	}
+	
+	public static void generaMagazzino() throws IOException {
+		((Admin) schermateCompl[1]).getMagazzino().generaMagazzino();
 	}
 	
 }

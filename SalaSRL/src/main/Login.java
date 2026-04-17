@@ -190,6 +190,7 @@ public class Login extends JPanel implements KeyListener{
 		passwordLogin.setText("");
 		erroriLogin.setText("");
 	}
+	
 	//metodo per cambiare pannello da login a admin o utente
 	public void toAccount() throws IOException{
 		//ricavo la password dal jpasswordfield
@@ -220,6 +221,7 @@ public class Login extends JPanel implements KeyListener{
 			Collegamenti.fromLoginToUtente(answer);
 		}
 	}
+	
 	//metodo per rendere invisibile la password e viceversa
 	public void toVisibilityPassLogin() {
 		//controllo se la password attualmente è nascosta oppure no

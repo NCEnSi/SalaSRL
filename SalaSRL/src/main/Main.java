@@ -25,6 +25,7 @@ public class Main {
 		//riga 236 <--DA FARE
 		
 		//CATALOGO:
+		//dare possibilità di decidere quantità prodotti da comprare
 		//potremmo cambiare qualche prodotto tipo in vino e alcool <--OPZIONALE
 		
 		//CARRELLO:
