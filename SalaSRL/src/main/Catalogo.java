@@ -121,6 +121,7 @@ public class Catalogo extends JPanel{
 		add(logout);
 		logout.setVisible(false);
 	}
+	
 	public void setLogout(String datiUtente) {
 		String[] account = datiUtente.split(";");
 		logout.setLabelTesto(account[0], account[2], account[1]);

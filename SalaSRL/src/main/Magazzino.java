@@ -133,7 +133,7 @@ public class Magazzino extends JPanel{
 	//metodo per settare la label luogoProdotti
 	public void setLuogoProdotti() {
 		//imposto coordinate e grandezza della label
-		luogoProdotti.setBounds(0, 152, 1315, 619);
+		luogoProdotti.setBounds(0, 152, 1315, 616);
 		//imposto l'immagine da dargli
 		icon = new ImageIcon(getClass().getClassLoader().getResource("LuogoProdotti.png"));
 		luogoProdotti.setIcon(icon);
@@ -218,12 +218,14 @@ public class Magazzino extends JPanel{
 	public Logout getPanelLogout() {
 		return logout;
 	}
+	
 	public void setPanelLogout() {
 		//aggiungo un actionlistener per cambiare pannello
 		logout.getLogout().addActionListener(e -> Collegamenti.fromLogoutToLogin());
 		add(logout);
 		logout.setVisible(false);
 	}
+	
 	public void setLogout(String datiUtente) {
 		String[] account = datiUtente.split(";");
 		logout.setLabelTesto(account[0], account[2], account[1]);
@@ -269,7 +271,7 @@ public class Magazzino extends JPanel{
 			}
 
 			boolean aggiungiProd = true;
-			for(ProdottoQuadrato prodottoPres : presentiProdottiNelMagazzino) {
+			for(ProdottoQuadrato prodottoPres : getPresentiProdottiNelMagazzino()) {
 				 if(prodottoPres.getNomeProdotto().equals(prodotto.getNome())) {
 					prodottoPres.addNAcquistati(prodotto.getNAcquistati());
 					prodottoPres.aggiornaN();
@@ -289,24 +291,24 @@ public class Magazzino extends JPanel{
 				y += 256;
 			}
 		}
-		for(ProdottoQuadrato prodotto : presentiProdottiNelMagazzino) {
+		for(ProdottoQuadrato prodotto : getPresentiProdottiNelMagazzino()) {
 			panelScrollMagazzino.add(prodotto);
 		}
 		for(ProdottoQuadrato prodotto : nuoviProdottiNelMagazzino) {
 			panelScrollMagazzino.add(prodotto);
 		}
-		presentiProdottiNelMagazzino.addAll(nuoviProdottiNelMagazzino);
-		addProdottiAlFile(presentiProdottiNelMagazzino);
+		getPresentiProdottiNelMagazzino().addAll(nuoviProdottiNelMagazzino);
+		addProdottiAlFile(getPresentiProdottiNelMagazzino());
 		panelScrollMagazzino.setPreferredSize(new Dimension(1315, calcolaAltezzaPanel()));
 		panelScrollMagazzino.revalidate();
 	    panelScrollMagazzino.repaint();
 	}
 	
 	public int calcolaAltezzaPanel() {
-		if(presentiProdottiNelMagazzino.size() % 5 == 0) {
-			altezzaPanelScrollMagazzinoDouble = presentiProdottiNelMagazzino.size() / 5 * 256 + 20;
+		if(getPresentiProdottiNelMagazzino().size() % 5 == 0) {
+			altezzaPanelScrollMagazzinoDouble = getPresentiProdottiNelMagazzino().size() / 5 * 256 + 10;
 		} else {
-			altezzaPanelScrollMagazzinoDouble = (presentiProdottiNelMagazzino.size() / 5 + 1) * 256 + 20;
+			altezzaPanelScrollMagazzinoDouble = (getPresentiProdottiNelMagazzino().size() / 5 + 1) * 256 + 10;
 		}
 		altezzaPanelScrollMagazzinoInt = (int) altezzaPanelScrollMagazzinoDouble;
 		if(altezzaPanelScrollMagazzinoInt<altezzaPanelScrollMagazzinoDouble) {
@@ -360,18 +362,19 @@ public class Magazzino extends JPanel{
 				x = 1036;
 				break;
 			}
-			if(i==5) {
-				i = 0;
-				y += 256;
-			}
 			//creo un array dove ogni componente contiene un'informazione del prodotto sapendo le loro posizioni
 			String[] datiProdotto = riga.split(";");
 
 			System.out.println(x+ " "+y);
-			presentiProdottiNelMagazzino.add(new ProdottoQuadrato(x, y, datiProdotto[1], "no", Integer.valueOf(datiProdotto[0])));
-		
+			getPresentiProdottiNelMagazzino().add(new ProdottoQuadrato(x, y, datiProdotto[1], "no", Integer.valueOf(datiProdotto[0])));
+
+			if(i==5) {
+				i = 0;
+				y += 256;
+			}
 		}
-		for(ProdottoQuadrato prodotto : presentiProdottiNelMagazzino) {
+		
+		for(ProdottoQuadrato prodotto : getPresentiProdottiNelMagazzino()) {
 			panelScrollMagazzino.add(prodotto);
 		}
 		panelScrollMagazzino.setPreferredSize(new Dimension(1315, calcolaAltezzaPanel()));
@@ -379,7 +382,13 @@ public class Magazzino extends JPanel{
 	    panelScrollMagazzino.repaint();
 		//chiudo la lettura
 		lettura.close();
-		//se vale false significa che l'account non esiste oppure o la password o l'email sono sbagliati
-		
+	}
+
+	public ArrayList<ProdottoQuadrato> getPresentiProdottiNelMagazzino() {
+		return presentiProdottiNelMagazzino;
+	}
+
+	public void setPresentiProdottiNelMagazzino(ArrayList<ProdottoQuadrato> presentiProdottiNelMagazzino) {
+		this.presentiProdottiNelMagazzino = presentiProdottiNelMagazzino;
 	}
 }

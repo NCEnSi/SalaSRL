@@ -215,7 +215,8 @@ public class Login extends JPanel implements KeyListener{
 			//creo la nuova schermata admin o creatore in base al privilegio che ha l'account
 			Collegamenti.schermateCompl[1] = new Admin(account[2]);
 			Main.finestra.add(Collegamenti.schermateCompl[1]);
-			//passo alla schermata admin o creatore
+			//aggiungo i prodotti già presenti dallo scorso log nel magazzino
+			Collegamenti.generaMagazzino();
 			Collegamenti.fromLoginToCreatoreAdmin(answer);
 		} else if(account[2].equals("Utente")) {
 			Collegamenti.fromLoginToUtente(answer);

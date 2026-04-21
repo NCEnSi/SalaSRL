@@ -1,3 +1,12 @@
+1;Mozzarella
 2;PastaRigatoni
-1;RisoBasmati
-1;PaneIntegrale
+2;RisoBasmati
+4;PaneIntegrale
+1;ProsciuttoCotto
+1;ParmigianoReggiano
+1;Burro
+1;CarneTrita
+1;PettoDiPollo
+1;SalameMilano
+1;Bresaola
+1;ProsciuttoCrudo

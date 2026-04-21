@@ -63,6 +63,7 @@ public class GestioneUtenti extends JPanel{
 		schermataGestioneUtenti.setIcon(immagine);
 		add(schermataGestioneUtenti);
 	}
+	
 	//metodo per settare il button immagineProfiloCar
 	public void setImmagineProfiloGestUt() {
 		//imposto le caratteristiche del bottone
@@ -78,6 +79,7 @@ public class GestioneUtenti extends JPanel{
 		immagineProfiloGestUt.addActionListener(e -> Collegamenti.fromOtherToLogout());
 		add(immagineProfiloGestUt);
 	}
+	
 	//metodo per settare il button immagineProfiloCar
 	public void setImmagineFreccetta() {
 		//imposto le caratteristiche del bottone
@@ -98,16 +100,23 @@ public class GestioneUtenti extends JPanel{
 	public Logout getPanelLogout() {
 		return logout;
 	}
+	
 	public void setPanelLogout() {
 		add(logout);
 		logout.setVisible(false);
 	}
+	
 	public void setLogout(String datiUtente) {
 		String[] account = datiUtente.split(";");
 		logout.setLabelTesto(account[0], account[2], account[1]);
 	}
-	public void toLogout() {
+	
+	public void showLogouts() {
 		logout.setVisible(true);
+	}
+	
+	public void unShowLogouts() {
+		logout.setVisible(false);
 	}
 	
 	//metodo per creare l'elenco degli utenti

@@ -15,5 +15,8 @@
 	<classpathentry kind="src" path="SfondiLung"/>
 	<classpathentry kind="src" path="Logout"/>
 	<classpathentry kind="src" path="ElencoUtenti"/>
+	<classpathentry kind="src" path="Utente"/>
+	<classpathentry kind="src" path="SfondiLungMini"/>
+	<classpathentry kind="src" path="SfondiQuadMini"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

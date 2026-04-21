@@ -20,12 +20,9 @@ public class Main {
 		//mettere un limite di caratteri per email per non farli uscire dalla schermata di logout <--OPZIONALE
 		
 		//MAGAZZINO:
-		//se si cambia account o si chiude il programma il magazzino rimane <--DA FARE chiedere a marco cosa cambia quando fai il logout
 		//aggiungere i tasti per eliminare i prodotti dal magazzino <--OPZIONALE
-		//riga 236 <--DA FARE
 		
 		//CATALOGO:
-		//dare possibilità di decidere quantità prodotti da comprare
 		//potremmo cambiare qualche prodotto tipo in vino e alcool <--OPZIONALE
 		
 		//CARRELLO:
