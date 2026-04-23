@@ -12,7 +12,7 @@ public class Main {
 		
 		//ScrollPersonalizzata:
 		//rifarla da capo <--PARZIALMENTE OPZIONALE
-		//aggiungerla a catalogo, carrello e gestione utenti <--OPZIONALE
+		//aggiungerla a catalogo, carrello e gestione utenti, utente <--OPZIONALE
 		
 		//LOGIN:
 		//suddividere per bene la schermata di login/signup <--OPZIONALE
@@ -33,7 +33,9 @@ public class Main {
 		//il logout non rimanda alla schermata di login <--PARZIALMENTE OPZIONALE
 		
 		//UTENTE:
-		//tutto <--DA FARE
+		//implementare il buy <--DA FARE
+		//se completo l'ordine modifica il file e il catalogo utente <--DA FARE
+		//se compri tutto un prodotto lo elimina dal file e dal catalogo utente <--DA FARE
 		
 		//PRODOTTI:
 		//preparare grafica tasti premuti del carrello admin <--OPZIONALE

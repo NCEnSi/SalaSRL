@@ -227,7 +227,6 @@ public class Carrello extends JPanel{
 	
 	//metodo per generare i 70 prodotti nel catalogo
 	public void generaProdotti(ArrayList<InformazioniDaPassare> prodotti, String yes) {
-		ArrayList<InformazioniDaPassare> copia = new ArrayList<>(prodotti);
 	    if(yes.equals("yes")) {
 			prodotti.clear();
 			for(ProdottoLungo prod : this.prodotti) {

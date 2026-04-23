@@ -55,29 +55,29 @@ public class ProdottoQuadrato extends JPanel{
 	}
 	
 	//costruttore, richiede (coordinata x, coordinata y, nome prodotto)
-		public ProdottoQuadrato(int prX, int prY, String nomeProdotto, String compra, int acquistatiMag) {
-			this.nomeProdotto = nomeProdotto;
-			//setto il Panel
-			setLayout(null);
-			setBounds(prX, prY, 236, 236);
-			setOpaque(false);
-			//setto le varie Label e i vari Button
-			switch(compra) {
-			case "yes":
-				setNCatalogo();
-				setPiu(nomeProdotto);
-				setMeno(nomeProdotto);
-				setBuy(nomeProdotto);
-				setSfondo(nomeProdotto);
-				break;
-				
-			case "no":
-				setNMagazzino(acquistatiMag);
-				setSfondo(nomeProdotto);
-				break;
-			}
+	public ProdottoQuadrato(int prX, int prY, String nomeProdotto, String compra, int acquistatiMag) {
+		this.nomeProdotto = nomeProdotto;
+		//setto il Panel
+		setLayout(null);
+		setBounds(prX, prY, 236, 236);
+		setOpaque(false);
+		//setto le varie Label e i vari Button
+		switch(compra) {
+		case "yes":
+			setNCatalogo();
+			setPiu(nomeProdotto);
+			setMeno(nomeProdotto);
+			setBuy(nomeProdotto);
+			setSfondo(nomeProdotto);
+			break;
 			
+		case "no":
+			setNMagazzino(acquistatiMag);
+			setSfondo(nomeProdotto);
+			break;
 		}
+		
+	}
 	
 	//metodo per settare la label base
 	public void setSfondo(String nomeProdotto) {

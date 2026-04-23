@@ -1,10 +1,12 @@
 package main;
-import java.awt.Image;
+
+import java.awt.*;
+import java.io.*;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
 public class Utente extends JPanel{
-	
 	
 	private JLabel sfondoBase = new JLabel();
 	private JLabel strisciaSuperiore = new JLabel();
@@ -17,7 +19,25 @@ public class Utente extends JPanel{
 	private Logout logout = new Logout();
 	//variabili usate per mettere le immagini
 	private ImageIcon icon;
-	private Image iconScaled;
+	//jscroll e panel per contenere i prodotti del carrello utente
+	private int altezzaPanelScrollCatalogoUtenteInt;
+	private int altezzaPanelScrollCatalogoUtenteDouble;
+	private JPanel panelScrollCatalogoUtente = new JPanel();
+	private JScrollPane scrollCatalogoUtente;
+	//jscroll e panel per contenere i prodotti del carrello utente
+	private int altezzaPanelScrollCarrelloUtenteInt;
+	private int altezzaPanelScrollCarrelloUtenteDouble;
+	private JPanel panelScrollCarrelloUtente = new JPanel();
+	private JScrollPane scrollCarrelloUtente;
+	//variabili usate per aggiungere i prodotti nel magazzino
+	private int i = 0;
+	private int x = 0, y = 10;
+	//creo le variabili per gli oggetti per interagire con il file txt
+	private BufferedWriter scrittura;
+	private BufferedReader lettura;
+	//array che contiene il nome dei prodotti messi nel magazzino
+	private ArrayList<ProdottoQuadratoMini> prodottiInCatalogoUtente = new ArrayList<>();
+	private ArrayList<ProdottoQuadratoMini> prodottiInCarrelloUtente = new ArrayList<>();
 
 	//costruttore
 	public Utente() {
@@ -27,6 +47,7 @@ public class Utente extends JPanel{
 		//aggiungo il panel per il logout
 		setPanelLogout();
 		//setto i vari componenti
+		addComponentiScroll();
 		setImmagineProfiloMag();
 		setConfermaOrdine();
 		setStrisciaSuperiore();
@@ -126,4 +147,89 @@ public class Utente extends JPanel{
 	public void unShowLogouts() {
 		logout.setVisible(false);
 	}
+	
+	//metodo per aggiungere subito questi due componenti se no vengono coperti
+	public void addComponentiScroll() {
+		panelScrollCatalogoUtente.setPreferredSize(new Dimension(808, 650));
+		panelScrollCatalogoUtente.setBackground(null);
+		panelScrollCatalogoUtente.setLayout(null);
+		panelScrollCatalogoUtente.setOpaque(false);
+		scrollCatalogoUtente = new JScrollPane(panelScrollCatalogoUtente, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollCatalogoUtente.setBounds(42, 91, 808, 646);
+		scrollCatalogoUtente.setBackground(null);
+		scrollCatalogoUtente.setOpaque(false);
+		scrollCatalogoUtente.getViewport().setOpaque(false);
+		scrollCatalogoUtente.setBorder(null);
+		scrollCatalogoUtente.getVerticalScrollBar().setUnitIncrement(20);
+		add(scrollCatalogoUtente);
+	}
+
+	public void generaProdotti() throws IOException{
+		panelScrollCatalogoUtente.removeAll();
+		prodottiInCatalogoUtente.clear();
+		//variabile usata per salvarmi ogni riga del file txt
+		String riga = "";
+		//creo l'oggetto che legge il file txt
+		lettura = new BufferedReader(new FileReader("Magazzino.txt"));
+		//controllo ogni riga del file txt
+		i = 0;
+		y = 10;
+		while ((riga = lettura.readLine()) != null) {
+			i++;
+			switch(i) {
+			case 1:
+				x = 10;
+				break;
+
+			case 2:
+				x = 170;
+				break;
+
+			case 3:
+				x = 330;
+				break;
+
+			case 4:
+				x = 490;
+				break;
+
+			case 5:
+				x = 650;
+				break;
+			}
+			//creo un array dove ogni componente contiene un'informazione del prodotto sapendo le loro posizioni
+			String[] datiProdotto = riga.split(";");
+			prodottiInCatalogoUtente.add(new ProdottoQuadratoMini(x, y, datiProdotto[1], Integer.valueOf(datiProdotto[0])));
+
+			if(i==5) {
+				i = 0;
+				y += 158;
+			}
+		}
+		for(ProdottoQuadratoMini prodotto : prodottiInCatalogoUtente) {
+			panelScrollCatalogoUtente.add(prodotto);
+		}
+		panelScrollCatalogoUtente.setPreferredSize(new Dimension(808, calcolaAltezzaPanel()));
+		System.out.println(calcolaAltezzaPanel());
+		panelScrollCatalogoUtente.revalidate();
+		panelScrollCatalogoUtente.repaint();
+		//chiudo la lettura
+		lettura.close();
+		scrollCatalogoUtente.getVerticalScrollBar().setValue(0);
+	}
+	
+	public int calcolaAltezzaPanel() {
+		if(prodottiInCatalogoUtente.size() % 5 == 0) {
+			altezzaPanelScrollCatalogoUtenteDouble = prodottiInCatalogoUtente.size() / 5 * 158 + 10;
+		} else {
+			altezzaPanelScrollCatalogoUtenteDouble = (prodottiInCatalogoUtente.size() / 5 + 1) * 158 + 10;
+		}
+		altezzaPanelScrollCatalogoUtenteInt = (int) altezzaPanelScrollCatalogoUtenteDouble;
+		if(altezzaPanelScrollCatalogoUtenteInt<altezzaPanelScrollCatalogoUtenteDouble) {
+			altezzaPanelScrollCatalogoUtenteInt++;
+		}
+		return altezzaPanelScrollCatalogoUtenteInt;
+	}
+	
+	
 }

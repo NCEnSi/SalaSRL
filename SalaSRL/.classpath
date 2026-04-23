@@ -18,5 +18,7 @@
 	<classpathentry kind="src" path="Utente"/>
 	<classpathentry kind="src" path="SfondiLungMini"/>
 	<classpathentry kind="src" path="SfondiQuadMini"/>
+	<classpathentry kind="src" path="ProdottoLungMini"/>
+	<classpathentry kind="src" path="ProdottoQuadMini"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -57,12 +57,13 @@ public class Collegamenti extends JFrame {
 		schermateCompl[3].setVisible(false);
 	}
 	//metodo usato per passare dalla schermata di login alla pagina dedicata all'utente
-	public static void fromLoginToUtente(String datiUtente) {
+	public static void fromLoginToUtente(String datiUtente) throws IOException{
 		//faccio in modo che si vedano solo le schermate utente
 		schermateCompl[0].setVisible(false);
 		schermateCompl[1].setVisible(false);
+		((Utente) schermateCompl[2]).setLogout(datiUtente);
+		((Utente) schermateCompl[2]).generaProdotti();
 		schermateCompl[2].setVisible(true);
-		((Utente) schermateCompl[2]).setLogout(datiUtente);	
 		schermateCompl[3].setVisible(false);
 	}
 	
@@ -118,7 +119,6 @@ public class Collegamenti extends JFrame {
 	
 	//metodo per aggiornare la schermata gestione utenti
 	public void aggiornaGestioneUtenti() throws IOException {
-		
 		add(schermateCompl[3]);
 	}
 	
