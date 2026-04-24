@@ -37,10 +37,12 @@ public class Utente extends JPanel{
 	private BufferedReader lettura;
 	//array che contiene il nome dei prodotti messi nel magazzino
 	private ArrayList<ProdottoQuadratoMini> prodottiInCatalogoUtente = new ArrayList<>();
-	private ArrayList<ProdottoQuadratoMini> prodottiInCarrelloUtente = new ArrayList<>();
+	private ArrayList<ProdottoLungoMini> prodottiInCarrelloUtente = new ArrayList<>();
 
+	private ArrayList<InformazioniDaPassare> info = new ArrayList<>();
+	
 	//costruttore
-	public Utente() {
+	public Utente() throws IOException{
 		//setto il Panel
 		setLayout(null);
 		setBounds(0, 0, 1331, 768);
@@ -73,7 +75,7 @@ public class Utente extends JPanel{
 	}
 	
 	//metodo per settare il button immagineProfiloMag
-	public void setConfermaOrdine() {
+	public void setConfermaOrdine() throws IOException{
 		//imposto le caratteristiche del bottone
 		confermaOrdine.setContentAreaFilled(false);		
 		confermaOrdine.setBorderPainted(false);
@@ -84,7 +86,13 @@ public class Utente extends JPanel{
 		icon = new ImageIcon(getClass().getClassLoader().getResource("ConfermaOrdineUtente.png"));
 		confermaOrdine.setIcon(icon);
 		//aggiungo un actionlistener per aprire scheda profilo
-		//confermaOrdine.addActionListener(e -> Collegamenti.fromOtherToLogout());
+		confermaOrdine.addActionListener(e -> {
+		try{
+			confermaOrdine();
+		} catch(Exception i) {
+			System.out.println("Error");
+		}
+		});
 		add(confermaOrdine);
 	}
 	
@@ -162,6 +170,18 @@ public class Utente extends JPanel{
 		scrollCatalogoUtente.setBorder(null);
 		scrollCatalogoUtente.getVerticalScrollBar().setUnitIncrement(20);
 		add(scrollCatalogoUtente);
+		panelScrollCarrelloUtente.setPreferredSize(new Dimension(345, 524));
+		panelScrollCarrelloUtente.setBackground(null);
+		panelScrollCarrelloUtente.setLayout(null);
+		panelScrollCarrelloUtente.setOpaque(false);
+		scrollCarrelloUtente = new JScrollPane(panelScrollCarrelloUtente, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollCarrelloUtente.setBounds(928, 91, 345, 520);
+		scrollCarrelloUtente.setBackground(null);
+		scrollCarrelloUtente.setOpaque(false);
+		scrollCarrelloUtente.getViewport().setOpaque(false);
+		scrollCarrelloUtente.setBorder(null);
+		scrollCarrelloUtente.getVerticalScrollBar().setUnitIncrement(20);
+		add(scrollCarrelloUtente);
 	}
 
 	public void generaProdotti() throws IOException{
@@ -199,7 +219,7 @@ public class Utente extends JPanel{
 			}
 			//creo un array dove ogni componente contiene un'informazione del prodotto sapendo le loro posizioni
 			String[] datiProdotto = riga.split(";");
-			prodottiInCatalogoUtente.add(new ProdottoQuadratoMini(x, y, datiProdotto[1], Integer.valueOf(datiProdotto[0])));
+			prodottiInCatalogoUtente.add(new ProdottoQuadratoMini(x, y, datiProdotto[1], Integer.valueOf(datiProdotto[0]), this));
 
 			if(i==5) {
 				i = 0;
@@ -209,8 +229,8 @@ public class Utente extends JPanel{
 		for(ProdottoQuadratoMini prodotto : prodottiInCatalogoUtente) {
 			panelScrollCatalogoUtente.add(prodotto);
 		}
-		panelScrollCatalogoUtente.setPreferredSize(new Dimension(808, calcolaAltezzaPanel()));
-		System.out.println(calcolaAltezzaPanel());
+		panelScrollCatalogoUtente.setPreferredSize(new Dimension(808, calcolaAltezzaPanelCatalogo()));
+		System.out.println(calcolaAltezzaPanelCatalogo());
 		panelScrollCatalogoUtente.revalidate();
 		panelScrollCatalogoUtente.repaint();
 		//chiudo la lettura
@@ -218,7 +238,7 @@ public class Utente extends JPanel{
 		scrollCatalogoUtente.getVerticalScrollBar().setValue(0);
 	}
 	
-	public int calcolaAltezzaPanel() {
+	public int calcolaAltezzaPanelCatalogo() {
 		if(prodottiInCatalogoUtente.size() % 5 == 0) {
 			altezzaPanelScrollCatalogoUtenteDouble = prodottiInCatalogoUtente.size() / 5 * 158 + 10;
 		} else {
@@ -231,5 +251,43 @@ public class Utente extends JPanel{
 		return altezzaPanelScrollCatalogoUtenteInt;
 	}
 	
+	public int calcolaAltezzaPanelCarrello() {
+		if(prodottiInCarrelloUtente.size() % 5 == 0) {
+			altezzaPanelScrollCarrelloUtenteDouble = prodottiInCarrelloUtente.size() / 5 * 158 + 10;
+		} else {
+			altezzaPanelScrollCarrelloUtenteDouble = (prodottiInCarrelloUtente.size() / 5 + 1) * 158 + 10;
+		}
+		altezzaPanelScrollCarrelloUtenteInt = (int) altezzaPanelScrollCarrelloUtenteDouble;
+		if(altezzaPanelScrollCarrelloUtenteInt<altezzaPanelScrollCarrelloUtenteDouble) {
+			altezzaPanelScrollCarrelloUtenteInt++;
+		}
+		return altezzaPanelScrollCarrelloUtenteInt;
+	}
 	
+	public ArrayList<InformazioniDaPassare> getArrayInfo() {
+		return info;
+	}
+	
+	public void generaCarrello() {
+		panelScrollCarrelloUtente.removeAll();
+		prodottiInCarrelloUtente.clear();
+		x = 10;
+		y = 10;
+		for(InformazioniDaPassare control : info) {
+			prodottiInCarrelloUtente.add(new ProdottoLungoMini(x, y, control.getNome(), control.getQuantita()));
+			y += 78;
+		}
+		for(ProdottoLungoMini prod : prodottiInCarrelloUtente) {
+			panelScrollCarrelloUtente.add(prod);
+		}
+		panelScrollCarrelloUtente.setPreferredSize(new Dimension(345, calcolaAltezzaPanelCarrello()));
+		System.out.println(calcolaAltezzaPanelCarrello());
+		panelScrollCarrelloUtente.revalidate();
+		panelScrollCarrelloUtente.repaint();
+		scrollCarrelloUtente.getVerticalScrollBar().setValue(0);
+	}
+	
+	public void confermaOrdine() throws IOException{
+		generaProdotti();
+	}
 }

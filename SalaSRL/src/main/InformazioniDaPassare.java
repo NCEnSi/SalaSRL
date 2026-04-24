@@ -18,6 +18,10 @@ public class InformazioniDaPassare {
 		this.quantita = quantita;
 	}
 	
+	public void addQuantita(int quantita) {
+		this.quantita += quantita;
+	}
+	
 	public String getNome() {
 		return nome;
 	}

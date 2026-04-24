@@ -23,14 +23,18 @@ public class ProdottoQuadratoMini extends JPanel{
 	//variabili per tenere traccia di N e di quanti elementi si ha già comprato del prodotto
 	private int nAttuale = 0;
 	private int nAcquistati = 0;
+	
+	private Utente utente;
 	//string per tenere il nome del prodotto
-	//private String nomeProdotto;
+	private String nomeProdotto;
 	//private Catalogo catalogo;
 	
 	//costruttore, richiede (coordinata x, coordinata y, nome prodotto)
-	public ProdottoQuadratoMini(int prX, int prY, String nomeProdotto, int acquistatiMag) {
+	public ProdottoQuadratoMini(int prX, int prY, String nomeProdotto, int acquistatiMag, Utente utente) {
 		nAcquistati = acquistatiMag;
 		nAttuale = acquistatiMag;
+		this.utente = utente;
+		this.nomeProdotto = nomeProdotto;
 		//setto il Panel
 		setLayout(null);
 		setBounds(prX, prY, 236, 236);
@@ -94,7 +98,7 @@ public class ProdottoQuadratoMini extends JPanel{
 		meno.setBorderPainted(false);
 		meno.setBounds(65, 116, 23, 23);
 		//imposto l'immagine da dargli
-		icon = new ImageIcon(getClass().getClassLoader().getResource("ButtonMenoQuadUtente.png"));
+		icon = new ImageIcon(getClass().getClassLoader().getResource("ButtonMenoQuadUtentePress.png"));
 		iconScaled = icon.getImage().getScaledInstance(23, 23, Image.SCALE_SMOOTH);
 		icon = new ImageIcon(iconScaled);
 		meno.setPressedIcon(icon);	
@@ -129,27 +133,50 @@ public class ProdottoQuadratoMini extends JPanel{
 
 	//metodo per aumentare la variabile nAttuale in base al riferimento Label N
 	public void piuUno() {
-		nAttuale++;
-		//controllo che il numero non vada sopra il 9
-		if(nAttuale>9) {
-			nAttuale = 9;
+		if(nAcquistati != 0) {
+			nAttuale++;
+			//controllo che il numero non vada sopra il 9
+			if(nAttuale>nAcquistati) {
+				nAttuale = nAcquistati;
+			}
+			N.setText(""+nAttuale);
 		}
-		N.setText(""+nAttuale);
 	}
 	
 	//metodo per diminuire la variabile nAttuale in base al riferimento Label N
 	public void menoUno() {
-		nAttuale--;
-		//controllo che il numero non vada sotto lo 0
-		if(nAttuale<0) {
-			nAttuale = 0;
+		if(nAcquistati != 0) {
+			nAttuale--;
+			//controllo che il numero non vada sotto lo 0
+			if(nAttuale<0) {
+				nAttuale = 0;
+			}
+			N.setText(""+nAttuale);
 		}
-		N.setText(""+nAttuale);
 	}
 
 	//metodo per sommare il numero di elementi comprati del prodotto
 	public void buy() {
-		
+		if(nAcquistati != 0) {
+			boolean nonTrovato = true;
+			for(InformazioniDaPassare control : utente.getArrayInfo()) {
+				if(control.getNome().equals(nomeProdotto)) {
+					control.addQuantita(nAttuale);
+					nAcquistati -= nAttuale;
+					N.setText(""+nAcquistati);
+					nAttuale = nAcquistati;
+					nonTrovato = false;
+					break;
+				}
+			}
+			if(nonTrovato) {
+				utente.getArrayInfo().add(new InformazioniDaPassare(nomeProdotto, nAttuale));
+				nAcquistati -= nAttuale;
+				N.setText(""+nAcquistati);
+				nAttuale = nAcquistati;
+			}
+			utente.generaCarrello();
+		}
 	}
 	
 	//metodo per resettare nAcquistati
