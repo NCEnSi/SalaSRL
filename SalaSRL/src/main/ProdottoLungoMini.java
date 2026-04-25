@@ -1,9 +1,9 @@
 package main;
 
+import java.io.*;
 import java.awt.*;
 import javax.swing.*;
-import java.util.ArrayList;
-
+//COMMENTATO INTERAMENTE
 public class ProdottoLungoMini extends JPanel{
 	
 	//Label per base del prodotto
@@ -19,20 +19,21 @@ public class ProdottoLungoMini extends JPanel{
 	//variabili per inserire le immagini
 	private ImageIcon icon;
 	private Image iconScaled;
-	//variabili per tenere traccia di N e di quanti elementi si ha già comprato del prodotto
+	//variabili per tenere traccia di N e di quanti elementi si ha nel carrello
 	private int nAttuale = 0;
-	private int nAcquistati = 10;
+	private int nAcquistati = 0;
 	//stringa per tenere il nome del prodotto
 	private String nomeProdotto;
-	//private Catalogo catalogo;
+	//variabile per contenere la classe utente in cui viene creato
+	private Utente utente;
 	
 	//costruttore, richiede (coordinata x, coordinata y, nome prodotto)
-	public ProdottoLungoMini(int prX, int prY, String nomeProdotto, int nAcquistati) {
+	public ProdottoLungoMini(int prX, int prY, String nomeProdotto, int nAcquistati, Utente utente) throws IOException{
+		//setto le varie variabili
+		this.utente = utente;
 		this.nAcquistati = nAcquistati;
 		nAttuale = nAcquistati;
 		this.nomeProdotto = nomeProdotto;
-		N.setText(""+nAttuale);
-		//nAttuale = nAcquistati;
 		//setto il Panel
 		setLayout(null);
 		setBounds(prX, prY, 303, 68);
@@ -58,9 +59,10 @@ public class ProdottoLungoMini extends JPanel{
 	//metodo per settare la label N
 	public void setN() {
 		//imposto coordinate e grandezza della label
-		N.setBounds(210, 20, 20, 20);
+		N.setBounds(211, 24, 20, 20);
 		//personalizzo la label e il suo testo
 		N.setBackground(null);
+		N.setText(""+nAttuale);
 		N.setFont(new Font("Arial", Font.PLAIN, 20));
 		N.setHorizontalAlignment(JLabel.CENTER);
 		add(N);
@@ -71,7 +73,7 @@ public class ProdottoLungoMini extends JPanel{
 		//imposto le caratteristiche del bottone
 		piu.setContentAreaFilled(false);		
 		piu.setBorderPainted(false);
-		piu.setBounds(230, 20, 20, 20);
+		piu.setBounds(233, 24, 20, 20);
 		//imposto l'immagine da dargli
 		icon = new ImageIcon(getClass().getClassLoader().getResource("ButtonPiuLungUtentePress.png"));
 		iconScaled = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
@@ -91,7 +93,7 @@ public class ProdottoLungoMini extends JPanel{
 		//imposto le caratteristiche del bottone
 		meno.setContentAreaFilled(false);		
 		meno.setBorderPainted(false);
-		meno.setBounds(190, 20, 20, 20);
+		meno.setBounds(191, 24, 20, 20);
 		//imposto l'immagine da dargli
 		icon = new ImageIcon(getClass().getClassLoader().getResource("ButtonMenoLungUtentePress.png"));
 		iconScaled = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
@@ -106,12 +108,12 @@ public class ProdottoLungoMini extends JPanel{
 		add(meno);
 	}
 
-	//metodo per settare il bottone buy
-	public void setCanc() {
+	//metodo per settare il bottone canc
+	public void setCanc() throws IOException{
 		//imposto le caratteristiche del bottone	
 		canc.setContentAreaFilled(false);		
 		canc.setBorderPainted(false);
-		canc.setBounds(270, 20, 20, 20);
+		canc.setBounds(270, 24, 20, 20);
 		//imposto l'immagine da dargli
 		icon = new ImageIcon(getClass().getClassLoader().getResource("ButtonDelUtentePress.png"));
 		iconScaled = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
@@ -121,8 +123,14 @@ public class ProdottoLungoMini extends JPanel{
 		iconScaled = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 		icon = new ImageIcon(iconScaled);
 		canc.setIcon(icon);
-		//aggiungo un actionlistener per acquistare il numero di elementi selezionato, e quindi sommare nAttuale a nAcquistati
-		canc.addActionListener(e -> canc());
+		//aggiungo un actionlistener per richiamare il metodo canc()
+		canc.addActionListener(e -> {
+			try {
+				canc();
+			} catch(IOException y) {
+				System.out.println("Error");
+			}
+		});
 		add(canc);
 	}
 
@@ -146,20 +154,43 @@ public class ProdottoLungoMini extends JPanel{
 		N.setText(""+nAttuale);
 	}
 
-	//metodo per sommare il numero di elementi comprati del prodotto
-	public void canc() {
-		
+	//metodo per rimettere il numero di elementi selezionati del prodotto nel catalogo
+	public void canc() throws IOException{
+		//for e if per controllare quale componente dell'array modificare
+		for(InformazioniDaPassare control : utente.getArrayInfo()) {
+			if(control.getNome().equals(nomeProdotto)) {
+				//una volta trovato sottraggo il numero di elementi da togliere dal carrello
+				control.subQuantita(nAttuale);
+				//decremento nAcquistati
+				nAcquistati -= nAttuale;
+				//if che controlla se non ho più elementi di questo prodotto nel carrello
+				if(nAcquistati == 0) {
+					//se il numero è ugugale a 0 aggiorno il suo riferimento nel catalogo ed elimino il prodotto dall'array info
+					reAddAlMagazzino(nAttuale);
+					utente.getArrayInfo().remove(control);
+				} else {
+					//altrimenti aggiorno il suo riferimento nel catalogo, gli modifico le variabili e gli aggiorno N
+					reAddAlMagazzino(nAttuale);
+					N.setText(""+nAcquistati);
+					nAttuale = nAcquistati;
+				}
+				break;
+			}
+		}
+		//aggiorno il carrello con le nuove quantità e senza i prodotti eliminati
+		utente.generaCarrello();
 	}
 	
-	public String getNome() {
-		return nomeProdotto;
-	}
-	
-	public int getNAcquistati() {
-		return nAcquistati;
-	}
-	
-	public int getNAttuale() {
-		return nAttuale;
+	//metodo per riaggiungere il numero di elementi, cancellati dal carrello, di nuovo nel catalogo
+	public void reAddAlMagazzino(int reAdd) {
+		//for e if per controllare il prodotto giusto da modificare
+		for(ProdottoQuadratoMini prod : utente.getArrayProdottiCatalogo()) {
+			if(prod.getNomeProdotto().equals(nomeProdotto)) {
+				//una volta trovato gli modifico le variabili e gli aggiorno N
+				prod.addNAcquistati(nAttuale);
+				prod.aggiornaN();
+				break;
+			}
+		}
 	}
 }

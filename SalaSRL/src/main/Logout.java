@@ -1,11 +1,9 @@
 package main;
 import java.awt.*;
 import javax.swing.*;
-import java.util.*;
-
+//COMMENTATA INTERAMENTE
 public class Logout extends JPanel{
 
-	//VARIABILI DI ISTANZA
 	//jlabel usata per impostare lo sfondo del pannello logout
 	private JLabel schermataLogout = new JLabel();
 	//bottone per effettuare il logout
@@ -19,10 +17,8 @@ public class Logout extends JPanel{
 	//variabile usata come appoggio per poter caricare le immagini
 	private ImageIcon immagine;
 	private Image immScalata;
-	//array che contiene il nome dei prodotti messi nel carrello
-	private ArrayList<InformazioniDaPassare> resetProdottiNelCarrello = new ArrayList<>();
 	
-	//COSTRUTTORE
+	//costruttore
 	public Logout() {
 		//setto il Panel	
 		setLayout(null);
@@ -36,15 +32,14 @@ public class Logout extends JPanel{
 		setLabelPrivilegiUtente();
 		setLabelEmailUtente();
 		//imposto lo sfondo
-		setSchermataLogout();
-		
+		setSchermataLogout();	
 	}
 	
-	//METODI DI ISTANZA	
 	//metodo per impostare lo sfondo del pannello logout
 	public void setSchermataLogout() {
-		//imposto lo sfondo
+		//setto la label
 		schermataLogout.setBounds(0, 0, 391, 190);
+		//carico l'immagine
 		immagine = new ImageIcon(getClass().getClassLoader().getResource("SfondoPanelLogout.png"));
 		schermataLogout.setIcon(immagine);
 		add(schermataLogout);
@@ -75,7 +70,7 @@ public class Logout extends JPanel{
 		logout.setContentAreaFilled(false);
 		logout.setBorderPainted(false);
 		logout.setBounds(12, 141, 128, 37);
-		//carico sul bottone le immagini per il tasto di chiusura
+		//carico sul bottone le immagini per il tasto di logout
 		immagine = new ImageIcon(getClass().getClassLoader().getResource("TastoLogout.png"));
 		immScalata = immagine.getImage().getScaledInstance(128, 37, Image.SCALE_SMOOTH);
 		immagine = new ImageIcon(immScalata);
@@ -87,6 +82,7 @@ public class Logout extends JPanel{
 		add(logout);
 	}
 	
+	//metodo per impostare le caratteristiche della label che contiene il nome utente
 	public void setLabelNomeUtente() {
 		//imposto coordinate e grandezza della label
 		labelNomeUtente.setBounds(0, 10, 391, 25);
@@ -96,7 +92,8 @@ public class Logout extends JPanel{
 		labelNomeUtente.setHorizontalAlignment(JLabel.CENTER);
 		add(labelNomeUtente);
 	}
-	
+
+	//metodo per impostare le caratteristiche della label che contiene il tipo di account
 	public void setLabelPrivilegiUtente() {
 		//imposto coordinate e grandezza della label
 		labelPrivilegiUtente.setBounds(0, 36, 391, 16);
@@ -106,7 +103,8 @@ public class Logout extends JPanel{
 		labelPrivilegiUtente.setHorizontalAlignment(JLabel.CENTER);
 		add(labelPrivilegiUtente);
 	}
-	
+
+	//metodo per impostare le caratteristiche della label che contiene l'email utente
 	public void setLabelEmailUtente() {
 		//imposto coordinate e grandezza della label
 		labelEmailUtente.setBounds(151, 142, 221, 30);
@@ -117,19 +115,15 @@ public class Logout extends JPanel{
 		add(labelEmailUtente);
 	}
 	
+	//metodo per impostare il testo delle 3 label
 	public void setLabelTesto(String nomeUtente, String privilegi, String email) {
 		labelNomeUtente.setText(nomeUtente);
 		labelPrivilegiUtente.setText(privilegi);
 		labelEmailUtente.setText(email);
 	}
 	
+	//metodo per restituire il bottone logout
 	public JButton getLogout() {
 		return logout;
 	}
-	
-	public void resetProdottiCarrello(ArrayList<InformazioniDaPassare> prodottiNelCarrello, JPanel panel) {
-		prodottiNelCarrello.clear();
-		panel.removeAll();
-	}
-	
 }

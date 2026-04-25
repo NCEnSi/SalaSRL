@@ -116,7 +116,8 @@ public class Catalogo extends JPanel{
 		//aggiungo un actionlistener per cambiare pannello
 		logout.getLogout().addActionListener(e -> {
 			Collegamenti.fromLogoutToLogin();
-			logout.resetProdottiCarrello(prodottiNelCarrello, panelScrollCatalogo);
+			prodottiNelCarrello.clear();
+			panelScrollCatalogo.removeAll();
 		});
 		add(logout);
 		logout.setVisible(false);

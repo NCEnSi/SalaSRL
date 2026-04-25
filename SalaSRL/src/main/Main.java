@@ -32,12 +32,6 @@ public class Main {
 		//GESTIONE UTENTI:
 		//il logout non rimanda alla schermata di login <--PARZIALMENTE OPZIONALE
 		
-		//UTENTE:
-		//sistemare calcolo grandezza scroll carrello <--DA FARE
-		//poter eliminare prodotti dal carrello <--PARZIALMENTE OPZIONALE
-		//se completo l'ordine modifica il file e il catalogo utente <--DA FARE
-		//se compri tutto un prodotto lo elimina dal file e dal catalogo utente <--DA FARE
-		
 		//PRODOTTI:
 		//preparare grafica tasti premuti del carrello admin <--OPZIONALE
 		//preparare info di ogni prodotto <--PARZIALMENTE OPZIONALE

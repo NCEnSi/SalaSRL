@@ -1,5 +1,5 @@
 1;Mozzarella
-6;PastaRigatoni
+0;PastaRigatoni
 2;RisoBasmati
 1;ParmigianoReggiano
 1;SalameMilano

@@ -3,8 +3,7 @@ package main;
 import java.awt.*;
 import javax.swing.*;
 import java.io.*;
-import java.util.ArrayList;
-
+//COMMENTATA INTERAMENTE
 public class ProdottoQuadratoMini extends JPanel{
 	
 	//Label per base del prodotto
@@ -23,14 +22,14 @@ public class ProdottoQuadratoMini extends JPanel{
 	//variabili per tenere traccia di N e di quanti elementi si ha già comprato del prodotto
 	private int nAttuale = 0;
 	private int nAcquistati = 0;
-	
+	//variabile per contenere la classe utente in cui viene creato
 	private Utente utente;
 	//string per tenere il nome del prodotto
 	private String nomeProdotto;
-	//private Catalogo catalogo;
 	
-	//costruttore, richiede (coordinata x, coordinata y, nome prodotto)
+	//costruttore che richiede le coordinate, il nome, la quantità disponibile e la classe utente in cui sta venendo creato
 	public ProdottoQuadratoMini(int prX, int prY, String nomeProdotto, int acquistatiMag, Utente utente) {
+		//setto le varie variabili
 		nAcquistati = acquistatiMag;
 		nAttuale = acquistatiMag;
 		this.utente = utente;
@@ -40,13 +39,11 @@ public class ProdottoQuadratoMini extends JPanel{
 		setBounds(prX, prY, 236, 236);
 		setOpaque(false);
 		//setto le varie Label e i vari Button
-		setNCatalogo();
+		setN();
 		setPiu();
 		setMeno();
 		setBuy();
 		setSfondo(nomeProdotto);
-	
-		
 	}
 	
 	//metodo per settare la label base
@@ -59,8 +56,8 @@ public class ProdottoQuadratoMini extends JPanel{
 		add(base);
 	}
 
-	//metodo per settare la label N nel catalogo
-	public void setNCatalogo() {
+	//metodo per settare la label N
+	public void setN() {
 		//imposto coordinate e grandezza della label
 		N.setBounds(88, 116, 23, 23);
 		//personalizzo la label e il suo testo
@@ -126,80 +123,66 @@ public class ProdottoQuadratoMini extends JPanel{
 		iconScaled = icon.getImage().getScaledInstance(23, 23, Image.SCALE_SMOOTH);
 		icon = new ImageIcon(iconScaled);
 		buy.setIcon(icon);
-		//aggiungo un actionlistener per acquistare il numero di elementi selezionato, e quindi sommare nAttuale a nAcquistati
-		buy.addActionListener(e -> buy());
+		//aggiungo un actionlistener per implementare il metodo buy()
+		buy.addActionListener(e -> {
+			try {
+				buy();
+			} catch(IOException y) {
+				System.out.println("Error");
+			}
+		});
 		add(buy);
 	}
 
 	//metodo per aumentare la variabile nAttuale in base al riferimento Label N
 	public void piuUno() {
-		if(nAcquistati != 0) {
-			nAttuale++;
-			//controllo che il numero non vada sopra il 9
-			if(nAttuale>nAcquistati) {
-				nAttuale = nAcquistati;
-			}
-			N.setText(""+nAttuale);
+		//incremento nAttuale
+		nAttuale++;
+		//controllo che il numero non vada sopra nAcquistati
+		if(nAttuale>nAcquistati) {
+			nAttuale = nAcquistati;
 		}
+		N.setText(""+nAttuale);
 	}
 	
 	//metodo per diminuire la variabile nAttuale in base al riferimento Label N
 	public void menoUno() {
-		if(nAcquistati != 0) {
-			nAttuale--;
-			//controllo che il numero non vada sotto lo 0
-			if(nAttuale<0) {
-				nAttuale = 0;
-			}
-			N.setText(""+nAttuale);
+		//decremento nAttuale
+		nAttuale--;
+		//controllo che il numero non vada sotto lo 0
+		if(nAttuale<0) {
+			nAttuale = 0;
 		}
+		N.setText(""+nAttuale);
 	}
 
-	//metodo per sommare il numero di elementi comprati del prodotto
-	public void buy() {
-		if(nAcquistati != 0) {
-			boolean nonTrovato = true;
-			for(InformazioniDaPassare control : utente.getArrayInfo()) {
-				if(control.getNome().equals(nomeProdotto)) {
-					control.addQuantita(nAttuale);
-					nAcquistati -= nAttuale;
-					N.setText(""+nAcquistati);
-					nAttuale = nAcquistati;
-					nonTrovato = false;
-					break;
-				}
-			}
-			if(nonTrovato) {
-				utente.getArrayInfo().add(new InformazioniDaPassare(nomeProdotto, nAttuale));
+	//metodo per passare la quantità scelta del prodotto al carrello
+	public void buy() throws IOException{
+		//boolean e for per verificare che il prodotto non sia già nel carrello
+		boolean nonTrovato = true;
+		for(InformazioniDaPassare control : utente.getArrayInfo()) {
+			if(control.getNome().equals(nomeProdotto)) {
+				//se è già presente aumenta la quantità che si sta comprando e decrementa le varie variabili e in N
+				control.addQuantita(nAttuale);
 				nAcquistati -= nAttuale;
 				N.setText(""+nAcquistati);
 				nAttuale = nAcquistati;
+				nonTrovato = false;
+				break;
 			}
-			utente.generaCarrello();
 		}
+		//se non è stato trovato lo aggiunge all'array e decrementa le varie variabili e in N
+		if(nonTrovato) {
+			utente.getArrayInfo().add(new InformazioniDaPassare(nomeProdotto, nAttuale));
+			nAcquistati -= nAttuale;
+			N.setText(""+nAcquistati);
+			nAttuale = nAcquistati;
+		}
+		//rigenerea il carrello con i prodotti aggiornati
+		utente.generaCarrello();
 	}
 	
-	//metodo per resettare nAcquistati
-	/*public void resetNAcquistati() {
-		nAcquistati = 0;
-	}
-	
-	//metodo per diminuire nAcquistati se si elimina dal carrello
-	public void delNAcquistati(int n) {
-		nAcquistati -= n;
-	}
-
-	//metodo per ottenere nAttuale
-	public int getNAttuale() {
-		return nAttuale;
-	}
-	
-	//metodo per ottenere nAcquistati
-	public int getNAcquistati() {
-		return nAcquistati;
-	}
-	
-	//metodo per ottenere nAcquistati
+	//metodo per aggiungere una quantità ad nAcquistati
 	public void addNAcquistati(int n) {
 		nAcquistati += n;
 	}
@@ -209,14 +192,11 @@ public class ProdottoQuadratoMini extends JPanel{
 		return nomeProdotto;
 	}
 	
-	//metodo per ottenere il tasto buy
-	public JButton getBuyButton() {
-		return buy;
-	}
-	
+	//metodo per aggiornare N
 	public void aggiornaN() {
 	    N.setText(""+nAcquistati);
+	    nAttuale = nAcquistati;
 	    N.revalidate();
 	    N.repaint();
-	}*/
+	}
 }
