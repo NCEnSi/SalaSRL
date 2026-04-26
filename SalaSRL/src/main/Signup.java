@@ -284,8 +284,6 @@ public class Signup extends JPanel implements KeyListener{
 				} else {
 					//controllo che il formato della email inserita sia valido
 					if(checkFormatoEmail() == false) {
-						//messaggio d'errore e impedisco il passaggio alla pagina successiva
-						erroriSignup.setText("Email non valida!");
 						//impedisco che venga salvato l'account
 						ok = false;
 					} else {
@@ -305,23 +303,35 @@ public class Signup extends JPanel implements KeyListener{
 	//metodo per controllare se il formato dell'email è corretto
 	public boolean checkFormatoEmail() {
 		boolean ok = true;
-		//divido l'email in due token usando il simbolo @
-		StringTokenizer email = new StringTokenizer(emailSignup.getText(), "@");
-		//controllo se sono presenti solo due token
-		if(email.countTokens() == 2) {
-			//scarto il primo token, ovvero la prima parte della mail
-			email.nextToken();
-			//divido la seconda parte della mail
-			StringTokenizer secondaParte = new StringTokenizer(email.nextToken(), ".");
-			//controllo se ci sono almeno due parti, quindi se è presente almeno 1 punto
-			if(secondaParte.countTokens() >= 2) {
-				ok = true;
+		//controllo se il numero di caratteri della email non sia troppo lungo
+		if(emailSignup.getText().length() < 17) {
+			//divido l'email in due token usando il simbolo @
+			StringTokenizer email = new StringTokenizer(emailSignup.getText(), "@");
+			//controllo se sono presenti solo due token
+			if(email.countTokens() == 2) {
+				//scarto il primo token, ovvero la prima parte della mail
+				email.nextToken();
+				//divido la seconda parte della mail
+				StringTokenizer secondaParte = new StringTokenizer(email.nextToken(), ".");
+				//controllo se ci sono almeno due parti, quindi se è presente almeno 1 punto
+				if(secondaParte.countTokens() >= 2) {
+					ok = true;
+				} else {
+					//messaggio d'errore e impedisco il passaggio alla pagina successiva
+					erroriSignup.setText("Email non valida!");
+					ok = false;
+				}
 			} else {
+				//messaggio d'errore e impedisco il passaggio alla pagina successiva
+				erroriSignup.setText("Email non valida!");
 				ok = false;
 			}
 		} else {
+			//messaggio d'errore e impedisco il passaggio alla pagina successiva
+			erroriSignup.setText("Email troppo lunga!");
 			ok = false;
 		}
+		
 		return ok;
 	}
 	//metodo per controllare se la lunghezza dell'username è corretta
