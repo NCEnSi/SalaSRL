@@ -230,7 +230,11 @@ public class Signup extends JPanel implements KeyListener{
 		usernameSignup.setBorder(null);
 		usernameSignup.setFont(new Font("Arial", Font.PLAIN, 20));
 		usernameSignup.setBounds(543, 357, 230, 30);
-
+		//faccio in modo che, se cliccato invio, passi al jtextfield successivo
+		usernameSignup.addActionListener(e -> {
+			emailSignup.requestFocusInWindow();
+		});
+				
 		schermataSignup.add(usernameSignup);
 	}
 	//metodo per impostare il campo dell'email
@@ -240,7 +244,11 @@ public class Signup extends JPanel implements KeyListener{
 		emailSignup.setBorder(null);
 		emailSignup.setFont(new Font("Arial", Font.PLAIN, 20));
 		emailSignup.setBounds(543, 446, 230, 30);
-
+		//faccio in modo che, se cliccato invio, passi al jtextfield successivo
+		emailSignup.addActionListener(e -> {
+			passwordSignup.requestFocusInWindow();
+		});
+				
 		schermataSignup.add(emailSignup);
 	}
 	//metodo per impostare il campo della password
@@ -250,7 +258,15 @@ public class Signup extends JPanel implements KeyListener{
 		passwordSignup.setBorder(null);
 		passwordSignup.setFont(new Font("Arial", Font.PLAIN, 20));
 		passwordSignup.setBounds(543, 535, 197, 30);
-
+		//faccio in modo che, se cliccato invio, passi alla pagina successiva
+		passwordSignup.addActionListener(e -> {
+			try {
+				toLogin();
+			}catch(IOException ioe) {
+				System.out.println("boh non so che mettere tanto non serve");
+			}
+		});
+		
 		schermataSignup.add(passwordSignup);
 	}
 	

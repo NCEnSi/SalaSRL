@@ -250,6 +250,10 @@ public class Login extends JPanel implements KeyListener{
 		emailLogin.setBorder(null);
 		emailLogin.setFont(new Font("Arial", Font.PLAIN, 20));
 		emailLogin.setBounds(543, 357, 230, 30);
+		//faccio in modo che, se cliccato invio, passi al jtextfield successivo
+		emailLogin.addActionListener(e -> {
+			passwordLogin.requestFocusInWindow();
+		});
 		
 		schermataLogin.add(emailLogin);
 	}
@@ -260,7 +264,15 @@ public class Login extends JPanel implements KeyListener{
 		passwordLogin.setBorder(null);
 		passwordLogin.setFont(new Font("Arial", Font.PLAIN, 20));
 		passwordLogin.setBounds(543, 446, 197, 30);
-
+		//faccio in modo che, se cliccato invio, passi alla pagina successiva
+		passwordLogin.addActionListener(e -> {
+			try{
+				toAccount();
+			}catch(IOException ioe) {
+				System.out.println("boh non so che mettere tanto non serve");
+			}
+		});
+		
 		schermataLogin.add(passwordLogin);
 	}
 	

@@ -16,7 +16,6 @@ public class Main {
 		
 		//LOGIN:
 		//suddividere per bene la schermata di login/signup <--OPZIONALE
-		//se premi invio passa al campo successivo, se si preme quando si è nel campo password è come premere invia <--OPZIONALE
 		
 		//MAGAZZINO:
 		//aggiungere i tasti per eliminare i prodotti dal magazzino <--OPZIONALE
