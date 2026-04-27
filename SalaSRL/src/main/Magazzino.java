@@ -22,7 +22,7 @@ public class Magazzino extends JPanel{
 	//label per coprire
 	private JLabel copriLineaMag = new JLabel();
 	//label dove appaiono i prodotti in magazzino
-	private JLabel luogoProdotti = new JLabel();
+	private JLabel baseMagazzino = new JLabel();
 	//label che fa vedere lo spazio nel magazzino
 	private JLabel spazioMagazzino = new JLabel();
 	//label di contorno
@@ -46,6 +46,8 @@ public class Magazzino extends JPanel{
 	//creo le variabili per gli oggetti per interagire con il file txt
 	private BufferedWriter scrittura;
 	private BufferedReader lettura;
+	//creo la scrollbar personalizzata
+	LineaScorrimento scrollBar;
 	
 	//variabili usate per aggiungere i prodotti nel magazzino
 	private int i = 0;
@@ -62,8 +64,9 @@ public class Magazzino extends JPanel{
 		setImmagineProfiloMag();
 		if(privilegi.equals("Creatore")) setGestioneUtenti();
 		addComponentiScroll();
+		addScrollBar();
 		setCopriLineaMagazzino();
-		setLuogoProdotti();
+		setBaseMagazzino();
 		setSpazioMagazzino();
 		setCatalogoMag();
 		setCarrelloMag();
@@ -131,13 +134,13 @@ public class Magazzino extends JPanel{
 	}
 	
 	//metodo per settare la label luogoProdotti
-	public void setLuogoProdotti() {
+	public void setBaseMagazzino() {
 		//imposto coordinate e grandezza della label
-		luogoProdotti.setBounds(0, 152, 1315, 616);
+		baseMagazzino.setBounds(0, 96, 1315, 672);
 		//imposto l'immagine da dargli
-		icon = new ImageIcon(getClass().getClassLoader().getResource("LuogoProdotti.png"));
-		luogoProdotti.setIcon(icon);
-		add(luogoProdotti);
+		icon = new ImageIcon(getClass().getClassLoader().getResource("SfondoMagazzinoCatalogoCarrello.png"));
+		baseMagazzino.setIcon(icon);
+		add(baseMagazzino);
 	}
 	
 	//metodo per settare la label copriLineaMag
@@ -158,7 +161,7 @@ public class Magazzino extends JPanel{
 		panelScrollMagazzino.setLayout(null);
 		panelScrollMagazzino.setOpaque(false);
 		scrollMagazzino = new JScrollPane(panelScrollMagazzino, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollMagazzino.setBounds(0, 155, 1279, 608);
+		scrollMagazzino.setBounds(0, 100, 1279, 663);
 		scrollMagazzino.setBackground(null);
 		scrollMagazzino.setOpaque(false);
 		scrollMagazzino.getViewport().setOpaque(false);
@@ -281,8 +284,6 @@ public class Magazzino extends JPanel{
 			}
 			if(aggiungiProd) {
 				nuoviProdottiNelMagazzino.add(new ProdottoQuadrato(x, y, prodotto.getNome(), "no", prodotto.getNAcquistati()));
-
-				System.out.println(y);
 			} else {
 				i--;
 			}
@@ -300,6 +301,11 @@ public class Magazzino extends JPanel{
 		getPresentiProdottiNelMagazzino().addAll(nuoviProdottiNelMagazzino);
 		addProdottiAlFile(getPresentiProdottiNelMagazzino());
 		panelScrollMagazzino.setPreferredSize(new Dimension(1315, calcolaAltezzaPanel()));
+		// calcola l'altezza reale del contenuto
+	    int altezzaContenuto = panelScrollMagazzino.getPreferredSize().height;
+	    // sottrai l'altezza visibile dello scrollPane per avere il massimo scrollabile
+	    int yMax = altezzaContenuto - scrollMagazzino.getHeight();
+		scrollBar.modifyYMaxScrollPane(yMax);
 		panelScrollMagazzino.revalidate();
 	    panelScrollMagazzino.repaint();
 	}
@@ -364,8 +370,6 @@ public class Magazzino extends JPanel{
 			}
 			//creo un array dove ogni componente contiene un'informazione del prodotto sapendo le loro posizioni
 			String[] datiProdotto = riga.split(";");
-
-			System.out.println(x+ " "+y);
 			getPresentiProdottiNelMagazzino().add(new ProdottoQuadrato(x, y, datiProdotto[1], "no", Integer.valueOf(datiProdotto[0])));
 
 			if(i==5) {
@@ -378,6 +382,11 @@ public class Magazzino extends JPanel{
 			panelScrollMagazzino.add(prodotto);
 		}
 		panelScrollMagazzino.setPreferredSize(new Dimension(1315, calcolaAltezzaPanel()));
+		// calcola l'altezza reale del contenuto
+	    int altezzaContenuto = panelScrollMagazzino.getPreferredSize().height;
+	    // sottrai l'altezza visibile dello scrollPane per avere il massimo scrollabile
+	    int yMax = altezzaContenuto - scrollMagazzino.getHeight();
+		scrollBar.modifyYMaxScrollPane(yMax);
 		panelScrollMagazzino.revalidate();
 	    panelScrollMagazzino.repaint();
 		//chiudo la lettura
@@ -390,5 +399,16 @@ public class Magazzino extends JPanel{
 
 	public void setPresentiProdottiNelMagazzino(ArrayList<ProdottoQuadrato> presentiProdottiNelMagazzino) {
 		this.presentiProdottiNelMagazzino = presentiProdottiNelMagazzino;
+	}
+	
+	//metodo per creare la scrollBar
+	public void addScrollBar() {
+		// calcola l'altezza reale del contenuto
+	    int altezzaContenuto = panelScrollMagazzino.getPreferredSize().height;
+	    // sottrai l'altezza visibile dello scrollPane per avere il massimo scrollabile
+	    int yMax = altezzaContenuto - scrollMagazzino.getHeight();
+		//creo l'oggetto
+	    scrollBar = new LineaScorrimento(1284, 102, scrollMagazzino, "AdminCatalogo", yMax);
+	    add(scrollBar);
 	}
 }

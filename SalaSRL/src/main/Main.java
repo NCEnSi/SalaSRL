@@ -1,36 +1,14 @@
 package main;
 import java.io.*;
 import javax.swing.*;
-
+//COMMENTATA INTERAMENTE
 public class Main {
 	
-	//da non cancellare grazie
+	//creazione statica necessaria per ppoter essere richiamato nelle altre classi
 	static Collegamenti finestra;
 	
+	//main che viene avviato
 	public static void main(String[] nmf) throws IOException {
-		finestra = new Collegamenti();
-		
-		//ScrollPersonalizzata:
-		//rifarla da capo <--PARZIALMENTE OPZIONALE
-		//aggiungerla a catalogo, carrello e gestione utenti, utente <--OPZIONALE
-		
-		//LOGIN:
-		//suddividere per bene la schermata di login/signup <--OPZIONALE
-		
-		//MAGAZZINO:
-		//aggiungere i tasti per eliminare i prodotti dal magazzino <--OPZIONALE
-		
-		//CATALOGO:
-		//potremmo cambiare qualche prodotto tipo in vino e alcool <--OPZIONALE
-		
-		//CARRELLO:
-		//se schiacci su un prodotto far apparire le informazioni nella label apposita <--PARZIALMENTE OPZIONALE
-		//mettere un massimo di (spazioLiberoMagazzino) nel carrello <--PARZIALMENTE OPZIONALE
-				
-		//PRODOTTI:
-		//preparare grafica tasti premuti del carrello admin <--OPZIONALE
-		//preparare info di ogni prodotto <--PARZIALMENTE OPZIONALE
-		//pensare alla grafica informazioni del carrello admin <--PARZIALMENTE OPZIONALE
-		
+		finestra = new Collegamenti();	
 	}
 }

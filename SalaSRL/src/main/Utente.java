@@ -45,6 +45,9 @@ public class Utente extends JPanel{
 	private ArrayList<ProdottoLungoMini> prodottiInCarrelloUtente = new ArrayList<>();
 	//array che contiene il nome dei prodotti messi nel carrello
 	private ArrayList<InformazioniDaPassare> info = new ArrayList<>();
+	//creo le scrollbar personalizzate
+	LineaScorrimento scrollBarCatalogo;
+	LineaScorrimento scrollBarCarrello;
 	
 	//costruttore
 	public Utente() throws IOException{
@@ -55,6 +58,7 @@ public class Utente extends JPanel{
 		setPanelLogout();
 		//setto i vari componenti
 		addComponentiScroll();
+		addScrollBar();
 		setImmagineProfiloMag();
 		setConfermaOrdine();
 		setStrisciaSuperiore();
@@ -182,12 +186,12 @@ public class Utente extends JPanel{
 		scrollCatalogoUtente.getVerticalScrollBar().setUnitIncrement(20);
 		add(scrollCatalogoUtente);
 		//setto e aggiungo il jscroll e il panel della parte carrello
-		panelScrollCarrelloUtente.setPreferredSize(new Dimension(345, 524));
+		panelScrollCarrelloUtente.setPreferredSize(new Dimension(308, 524));
 		panelScrollCarrelloUtente.setBackground(null);
 		panelScrollCarrelloUtente.setLayout(null);
 		panelScrollCarrelloUtente.setOpaque(false);
 		scrollCarrelloUtente = new JScrollPane(panelScrollCarrelloUtente, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollCarrelloUtente.setBounds(928, 91, 345, 520);
+		scrollCarrelloUtente.setBounds(928, 91, 308, 520);
 		scrollCarrelloUtente.setBackground(null);
 		scrollCarrelloUtente.setOpaque(false);
 		scrollCarrelloUtente.getViewport().setOpaque(false);
@@ -252,6 +256,11 @@ public class Utente extends JPanel{
 		}
 		//setto la nuova altezza del panel tramite il metodo calcolaAltezzaPanelCatalogo() e aggiorno la grafica
 		panelScrollCatalogoUtente.setPreferredSize(new Dimension(808, calcolaAltezzaPanelCatalogo()));
+		//calcola l'altezza reale del contenuto
+	    int altezzaContenuto = panelScrollCatalogoUtente.getPreferredSize().height;
+	    //sottrai l'altezza visibile dello scrollPane per avere il massimo scrollabile
+	    int yMax = altezzaContenuto - scrollCatalogoUtente.getHeight();
+	    scrollBarCatalogo.modifyYMaxScrollPane(yMax);
 		panelScrollCatalogoUtente.revalidate();
 		panelScrollCatalogoUtente.repaint();
 		//chiudo la lettura
@@ -291,7 +300,7 @@ public class Utente extends JPanel{
 		panelScrollCarrelloUtente.removeAll();
 		prodottiInCarrelloUtente.clear();
 		//setto le variabili per posizionare i prodotti nella posizione corretta
-		x = 10;
+		x = 5;
 		y = 10;
 		//for per aggiungere creare e aggiungere all'array tutti i prodotti contenuti in info
 		for(InformazioniDaPassare control : info) {
@@ -306,6 +315,11 @@ public class Utente extends JPanel{
 		}
 		//setto la nuova altezza del panel tramite il metodo calcolaAltezzaPanelCatalogo() e aggiorno la grafica
 		panelScrollCarrelloUtente.setPreferredSize(new Dimension(345, calcolaAltezzaPanelCarrello()));
+		//calcola l'altezza reale del contenuto
+	    int altezzaContenuto = panelScrollCarrelloUtente.getPreferredSize().height;
+	    //sottrai l'altezza visibile dello scrollPane per avere il massimo scrollabile
+	    int yMax = altezzaContenuto - scrollCarrelloUtente.getHeight();
+	    scrollBarCarrello.modifyYMaxScrollPane(yMax);
 		panelScrollCarrelloUtente.revalidate();
 		panelScrollCarrelloUtente.repaint();
 		//setto la posizione di visualizzazione del jscroll in cima
@@ -370,5 +384,23 @@ public class Utente extends JPanel{
 	//metodo per restituire prodottiInCatalogoUtente
 	public ArrayList<ProdottoQuadratoMini> getArrayProdottiCatalogo(){
 		return prodottiInCatalogoUtente;
+	}
+	
+	//metodo per creare la scrollBar
+	public void addScrollBar() {
+		//calcola l'altezza reale del contenuto
+	    int altezzaContenuto = panelScrollCatalogoUtente.getPreferredSize().height;
+	    //sottrai l'altezza visibile dello scrollPane per avere il massimo scrollabile
+	    int yMax = altezzaContenuto - scrollCatalogoUtente.getHeight();
+		//creo l'oggetto
+	    scrollBarCatalogo = new LineaScorrimento(850, 99, scrollCatalogoUtente, "UtenteCatalogo", yMax);
+	    add(scrollBarCatalogo);
+	    //calcola l'altezza reale del contenuto
+	    altezzaContenuto = panelScrollCarrelloUtente.getPreferredSize().height;
+	    // sottrai l'altezza visibile dello scrollPane per avere il massimo scrollabile
+	    yMax = altezzaContenuto - scrollCarrelloUtente.getHeight();
+		//creo l'oggetto
+	    scrollBarCarrello = new LineaScorrimento(1241, 94, scrollCarrelloUtente, "UtenteCarrello", yMax);
+	    add(scrollBarCarrello);
 	}
 }

@@ -40,6 +40,8 @@ public class Carrello extends JPanel{
 	private Logout logout = new Logout();
 	//bottone per passare alla schermata di elenco utenti
 	private JButton gestioneUtenti = new JButton();
+	//creo la scrollbar personalizzata
+	LineaScorrimento scrollBar;
 
 	//costruttore per creare la schermata del carrello
 	public Carrello(Catalogo catalogo, String privilegi) {
@@ -51,12 +53,13 @@ public class Carrello extends JPanel{
 		setPanelLogout();
 		//aggingo i prodotti e la scrollbar personalizzata
 		addComponentiScroll();
+		addScrollBar();
 		//setto i vari componenti
 		setImmagineProfiloCar();
 		if(privilegi.equals("Creatore")) setGestioneUtenti();
 		setCopriLineaCarrello();
 		setSfondoProdotti();
-		setInformazioni();
+		//setInformazioni();
 		setConfermaOrdine();
 		setBaseCarrello();
 		setMagazzinoCar();
@@ -142,7 +145,7 @@ public class Carrello extends JPanel{
 		//imposto coordinate e grandezza della label
 		baseCarrello.setBounds(0, 96, 1315, 672);
 		//imposto l'immagine da dargli
-		icon = new ImageIcon(getClass().getClassLoader().getResource("SfondoCatalogoCarrello.png"));
+		icon = new ImageIcon(getClass().getClassLoader().getResource("SfondoMagazzinoCatalogoCarrello.png"));
 		baseCarrello.setIcon(icon);
 		add(baseCarrello);
 	}
@@ -225,7 +228,7 @@ public class Carrello extends JPanel{
 		add(scrollCarrello);
 	}
 	
-	//metodo per generare i 70 prodotti nel catalogo
+	//metodo per generare i prodotti nel carrello
 	public void generaProdotti(ArrayList<InformazioniDaPassare> prodotti, String yes) {
 	    if(yes.equals("yes")) {
 			prodotti.clear();
@@ -249,6 +252,11 @@ public class Carrello extends JPanel{
 			altezzaPanelScrollCarrello = 10+78*this.prodotti.size();
 		}
 		panelScrollCarrello.setPreferredSize(new Dimension(804, altezzaPanelScrollCarrello));
+		// calcola l'altezza reale del contenuto
+	    int altezzaContenuto = panelScrollCarrello.getPreferredSize().height;
+	    // sottrai l'altezza visibile dello scrollPane per avere il massimo scrollabile
+	    int yMax = altezzaContenuto - scrollCarrello.getHeight();
+		scrollBar.modifyYMaxScrollPane(yMax);
 		for(ProdottoLungo prodotto : this.prodotti) {
 			panelScrollCarrello.add(prodotto);
 		}
@@ -307,5 +315,15 @@ public class Carrello extends JPanel{
 	public ArrayList<ProdottoLungo> getProdottiNelCarrello() {
 		return prodotti;
 	}
-
+	
+	//metodo per creare la scrollBar
+	public void addScrollBar() {
+		// calcola l'altezza reale del contenuto
+	    int altezzaContenuto = panelScrollCarrello.getPreferredSize().height;
+	    // sottrai l'altezza visibile dello scrollPane per avere il massimo scrollabile
+	    int yMax = altezzaContenuto - scrollCarrello.getHeight();
+		//creo l'oggetto
+	    scrollBar = new LineaScorrimento(850, 148, scrollCarrello, "AdminCarrello", yMax);
+	    add(scrollBar);
+	}
 }

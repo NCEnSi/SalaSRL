@@ -1,6 +1,6 @@
-7;Mozzarella
-6;PastaRigatoni
-2;RisoBasmati
+8;Mozzarella
+9;PastaRigatoni
+4;RisoBasmati
 1;ParmigianoReggiano
 1;SalameMilano
 1;Bresaola
@@ -8,7 +8,7 @@
 1;UvaBianca
 1;Farina00
 1;AcquaFrizzante
-1;AcquaNaturale
+2;AcquaNaturale
 1;SuccoDiArancia
 1;CioccolatoFondente
 1;Nutella
@@ -21,3 +21,6 @@
 1;Piselli
 1;Ceci
 1;FagioliBorlotti
+1;PaneIntegrale
+100;Pomodoro
+1;LasagneFresche

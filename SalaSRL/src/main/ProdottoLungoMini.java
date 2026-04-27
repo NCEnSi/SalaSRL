@@ -63,7 +63,7 @@ public class ProdottoLungoMini extends JPanel{
 		//personalizzo la label e il suo testo
 		N.setBackground(null);
 		N.setText(""+nAttuale);
-		N.setFont(new Font("Arial", Font.PLAIN, 20));
+		N.setFont(new Font("Arial", Font.PLAIN, 18));
 		N.setHorizontalAlignment(JLabel.CENTER);
 		add(N);
 	}

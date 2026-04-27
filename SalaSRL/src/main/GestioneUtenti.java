@@ -24,8 +24,8 @@ public class GestioneUtenti extends JPanel{
 	private BufferedReader lettura;
 	//jscroll e panel per contenere i prodotti del carrello
 	private int altezzaPanelScrollCarrello;
-	
-	
+	//creo la scrollbar personalizzata
+	LineaScorrimento scrollBar;
 	
 	//COSTRUTTORE
 	public GestioneUtenti(String nome) throws IOException {
@@ -35,6 +35,9 @@ public class GestioneUtenti extends JPanel{
 		
 		//aggiungo il panel per il logout
 		setPanelLogout();
+		//aggingo i prodotti e la scrollbar personalizzata
+		addComponentiScroll();
+		addScrollBar();
 		//creo la lista degli utenti
 		generaElencoUtenti(nome);
 		//imposto il bottone per le informazioni del profilo
@@ -94,9 +97,7 @@ public class GestioneUtenti extends JPanel{
 	//metodo per creare l'elenco degli utenti
 	public void generaElencoUtenti(String nomeLogin) throws IOException {
 		//setto il panel con la grandezza totale che deve avere
-		panelScrollGestUt.setBackground(null);
-		panelScrollGestUt.setLayout(null);
-		panelScrollGestUt.setOpaque(false);
+		
 				
 		//oggetto per leggere tutto il file
 		lettura = new BufferedReader(new FileReader("Credenziali.txt"));
@@ -119,7 +120,7 @@ public class GestioneUtenti extends JPanel{
 		//chiudo la lettura
 		lettura.close();
 		//variabile per impostare la coordinata y dei diversi pannelli utenti
-		int prY = 40;
+		int prY = 10;
 		//variabile per capire quale oggetto utenteLungo corrisponde all'utente loggato
 		boolean attivo;
 		//creo l'elenco utenti lungo
@@ -136,18 +137,16 @@ public class GestioneUtenti extends JPanel{
 		}		
 		
 		//setto la grandezza giusta del pane che contiene gli utenti
-		altezzaPanelScrollCarrello = 45+65*elencoUtenti.size();
+		altezzaPanelScrollCarrello = 20+65*elencoUtenti.size();
 		panelScrollGestUt.setPreferredSize(new Dimension(1315, altezzaPanelScrollCarrello));
+		// calcola l'altezza reale del contenuto
+	    int altezzaContenuto = panelScrollGestUt.getPreferredSize().height;
+	    // sottrai l'altezza visibile dello scrollPane per avere il massimo scrollabile
+	    int yMax = altezzaContenuto - scrollGestUt.getHeight();
+		scrollBar.modifyYMaxScrollPane(yMax);
 		
 		//setto lo scrollpane con la grandezza da mostrare
-		scrollGestUt = new JScrollPane(panelScrollGestUt, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollGestUt.setBounds(0, 100, 1279, 663);
-		scrollGestUt.setBackground(null);
-		scrollGestUt.setOpaque(false);
-		scrollGestUt.getViewport().setOpaque(false);
-		scrollGestUt.setBorder(null);
-		scrollGestUt.getVerticalScrollBar().setUnitIncrement(20);
-		add(scrollGestUt);
+		
 	}
 	
 	
@@ -177,4 +176,30 @@ public class GestioneUtenti extends JPanel{
 		logout.setVisible(false);
 	}
 	
+	//metodo per aggiungere subito questi due componenti se no vengono coperti
+	public void addComponentiScroll() {
+		panelScrollGestUt.setPreferredSize(new Dimension(1279, 663));
+		panelScrollGestUt.setBackground(null);
+		panelScrollGestUt.setLayout(null);
+		panelScrollGestUt.setOpaque(false);
+		scrollGestUt = new JScrollPane(panelScrollGestUt, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollGestUt.setBounds(0, 63, 1279, 702);
+		scrollGestUt.setBackground(null);
+		scrollGestUt.setOpaque(false);
+		scrollGestUt.getViewport().setOpaque(false);
+		scrollGestUt.setBorder(null);
+		scrollGestUt.getVerticalScrollBar().setUnitIncrement(20);
+		add(scrollGestUt);
+	}
+	
+	//metodo per creare la scrollBar
+	public void addScrollBar() {
+		// calcola l'altezza reale del contenuto
+	    int altezzaContenuto = panelScrollGestUt.getPreferredSize().height;
+	    // sottrai l'altezza visibile dello scrollPane per avere il massimo scrollabile
+	    int yMax = altezzaContenuto - scrollGestUt.getHeight();
+		//creo l'oggetto
+	    scrollBar = new LineaScorrimento(1270, 70, scrollGestUt, "GestioneUtenti", yMax);
+	    add(scrollBar);
+	}
 }

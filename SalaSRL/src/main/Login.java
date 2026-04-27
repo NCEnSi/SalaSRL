@@ -40,7 +40,6 @@ public class Login extends JPanel {
 		//imposto le dimensioni del pannello "schermo"
 		setLayout(null);
 		setBounds(0, 0, 1331, 768);
-		
 		//salvo le immagini per i bottoni delle password
 		immagine = new ImageIcon(getClass().getClassLoader().getResource("NoViewPass.png"));
 		immScalata = immagine.getImage().getScaledInstance(33, 33, Image.SCALE_SMOOTH);
@@ -50,10 +49,8 @@ public class Login extends JPanel {
 		immScalata = immagine.getImage().getScaledInstance(31, 19, Image.SCALE_SMOOTH);
 		immagine = new ImageIcon(immScalata);
 		visibile = immagine;
-		
 		//aggiungo al pannello
 		setFocusable(true);
-		
 		//creo le diverse "schermate" in modo tale da aggiornare la finestra in automatico quando viene cliccato un bottone
 		creaLogin();
 		creaSignup();
@@ -112,8 +109,6 @@ public class Login extends JPanel {
 		erroriLogin.setFont(new Font("Arial", Font.BOLD, 24));
 		erroriLogin.setHorizontalAlignment(SwingConstants.CENTER);		
 		erroriLogin.setBounds(0, 560, 1331, 30);
-		
-		//erroriLogin.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
 		schermataLogin.add(erroriLogin);
 	}

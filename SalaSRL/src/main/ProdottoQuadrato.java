@@ -30,6 +30,7 @@ public class ProdottoQuadrato extends JPanel{
 	
 	//costruttore, richiede (coordinata x, coordinata y, nome prodotto)
 	public ProdottoQuadrato(int prX, int prY, String nomeProdotto, String compra, Catalogo catalogo, int acquistatiMag) {
+		//setto le variabili
 		this.catalogo = catalogo;
 		this.nomeProdotto = nomeProdotto;
 		//setto il Panel
@@ -37,21 +38,11 @@ public class ProdottoQuadrato extends JPanel{
 		setBounds(prX, prY, 236, 236);
 		setOpaque(false);
 		//setto le varie Label e i vari Button
-		switch(compra) {
-		case "yes":
-			setNCatalogo();
-			setPiu(nomeProdotto);
-			setMeno(nomeProdotto);
-			setBuy(nomeProdotto);
-			setSfondo(nomeProdotto);
-			break;
-			
-		case "no":
-			setNMagazzino(acquistatiMag);
-			setSfondo(nomeProdotto);
-			break;
-		}
-		
+		setNCatalogo();
+		setPiu(nomeProdotto);
+		setMeno(nomeProdotto);
+		setBuy(nomeProdotto);
+		setSfondo(nomeProdotto);
 	}
 	
 	//costruttore, richiede (coordinata x, coordinata y, nome prodotto)
@@ -62,21 +53,8 @@ public class ProdottoQuadrato extends JPanel{
 		setBounds(prX, prY, 236, 236);
 		setOpaque(false);
 		//setto le varie Label e i vari Button
-		switch(compra) {
-		case "yes":
-			setNCatalogo();
-			setPiu(nomeProdotto);
-			setMeno(nomeProdotto);
-			setBuy(nomeProdotto);
-			setSfondo(nomeProdotto);
-			break;
-			
-		case "no":
-			setNMagazzino(acquistatiMag);
-			setSfondo(nomeProdotto);
-			break;
-		}
-		
+		setNMagazzino(acquistatiMag);
+		setSfondo(nomeProdotto);
 	}
 	
 	//metodo per settare la label base
@@ -248,11 +226,7 @@ public class ProdottoQuadrato extends JPanel{
 		return nomeProdotto;
 	}
 	
-	//metodo per ottenere il tasto buy
-	public JButton getBuyButton() {
-		return buy;
-	}
-	
+	//metodo per aggiornare la label N
 	public void aggiornaN() {
 	    N.setText(""+nAcquistati);
 	    N.revalidate();
