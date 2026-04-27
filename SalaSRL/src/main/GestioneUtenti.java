@@ -3,11 +3,10 @@ import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 import javax.swing.*;
-
+//COMMENTATA INTERAMENTE
 public class GestioneUtenti extends JPanel{
 
 	//VARIABILI DI ISTANZA
-	
 	//jlabel usata per lo sfondo della schermata
 	private JLabel schermataGestioneUtenti = new JLabel();
 	//bottone per tornare alla schermata precedente
@@ -18,18 +17,14 @@ public class GestioneUtenti extends JPanel{
 	private Logout logout = new Logout();
 	//variabile usata come appoggio per poter caricare le immagini sui bottoni
 	private ImageIcon immagine;
-	//JPanel usata per scorrere i prodotti nel catalogo
-	private LineaScorrimento scorriGestioneUtenti;
 	//jscroll e panel per contenere gli utenti dell'elenco
 	private JPanel panelScrollGestUt = new JPanel();
 	private JScrollPane scrollGestUt;
-	//variabili usate per settare scrollGestUt e scorriGestioneUtenti
-	private int valore;
-	private int cellaScorrimento;
 	//creo la variabile per gli oggetti per interagire con il file txt
 	private BufferedReader lettura;
 	//jscroll e panel per contenere i prodotti del carrello
-	private int altezzaPanelScrollCarrello, yMax;
+	private int altezzaPanelScrollCarrello;
+	
 	
 	
 	//COSTRUTTORE
@@ -96,31 +91,6 @@ public class GestioneUtenti extends JPanel{
 		add(freccetta);
 	}
 	
-	//metodi per gestire il pannello logout
-	public Logout getPanelLogout() {
-		return logout;
-	}
-	
-	public void setPanelLogout() {
-		//aggiungo un actionlistener per cambiare pannello
-		logout.getLogout().addActionListener(e -> Collegamenti.fromLogoutToLogin());
-		add(logout);
-		logout.setVisible(false);
-	}
-	
-	public void setLogout(String datiUtente) {
-		String[] account = datiUtente.split(";");
-		logout.setLabelTesto(account[0], account[2], account[1]);
-	}
-	
-	public void showLogouts() {
-		logout.setVisible(true);
-	}
-	
-	public void unShowLogouts() {
-		logout.setVisible(false);
-	}
-	
 	//metodo per creare l'elenco degli utenti
 	public void generaElencoUtenti(String nomeLogin) throws IOException {
 		//setto il panel con la grandezza totale che deve avere
@@ -181,5 +151,30 @@ public class GestioneUtenti extends JPanel{
 	}
 	
 	
+	
+	//METODI PER GESTIRE IL PANEL LOGOUT
+	//metodo per restituire il panel logout della schermata gestione utenti
+	public Logout getPanelLogout() {
+		return logout;
+	}
+	//metodo per impostare l'actionlistener del bottone di logout e per aggiungere al pannello quello di logout
+	public void setPanelLogout() {
+		//aggiungo un actionlistener per cambiare pannello
+		logout.getLogout().addActionListener(e -> Collegamenti.fromLogoutToLogin());
+		add(logout);
+		logout.setVisible(false);
+	}
+	//metodo per impostare i diversi campi del pannello logout con le informazioni dell'sccount attualmente in uso
+	public void setLogout(String datiUtente) {
+		String[] account = datiUtente.split(";");
+		logout.setLabelTesto(account[0], account[2], account[1]);
+	}
+	//metodi per mostrare o meno il pannello logout
+	public void showLogouts() {
+		logout.setVisible(true);
+	}
+	public void unShowLogouts() {
+		logout.setVisible(false);
+	}
 	
 }

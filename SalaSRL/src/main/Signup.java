@@ -4,8 +4,8 @@ import javax.swing.*;
 import java.io.*;
 import java.util.*;
 import java.awt.event.*;
-
-public class Signup extends JPanel implements KeyListener{
+//COMMENTATA INTERAMENTE
+public class Signup extends JPanel {
 
 	//VARIABILI DI ISTANZA
 	//bottone che uso per passare da un pannello a un altro
@@ -57,7 +57,6 @@ public class Signup extends JPanel implements KeyListener{
 		
 		//aggiungo al pannello
 		setFocusable(true);
-		addKeyListener(this);
 		
 		//imposto lo sfondo
 		setSchermataSignup();
@@ -263,7 +262,7 @@ public class Signup extends JPanel implements KeyListener{
 			try {
 				toLogin();
 			}catch(IOException ioe) {
-				System.out.println("boh non so che mettere tanto non serve");
+				System.out.println("error");
 			}
 		});
 		
@@ -403,47 +402,6 @@ public class Signup extends JPanel implements KeyListener{
 		//chiudo la lettura
 		lettura.close();
 		return ok;
-	}
-	
-	
-	
-	//METODI DI CONTROLLO TASTIERA
-	//metodo per controllare quando è stato cliccato enter
-	@Override
-	public void keyPressed(KeyEvent e) {
-		//controllo se è stato cliccato invio
-		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-			//controllo se uno dei tre componenti ha il focus
-			if(usernameSignup.hasFocus() || emailSignup.hasFocus() || passwordSignup.hasFocus()) {
-				//controllo se è il campo username ad avere il focus
-				if(usernameSignup.hasFocus()) {
-					//passo il focus al campo email
-					emailSignup.requestFocusInWindow();
-				} else {
-					//controllo se è il campo username ad avere il focus
-					if(emailSignup.hasFocus()) {
-						//passo il focus al campo password
-						passwordSignup.requestFocusInWindow();
-					} else {
-						//controllo se è il campo password ad avere il focus
-						if(passwordSignup.hasFocus()) {
-							//passo alla schermata successiva
-							try {
-								toLogin();
-							}catch(IOException ioe) {
-								System.out.println("boh non so che mettere tanto non serve");
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-	//metodi non utilizzati
-	@Override
-	public void keyReleased(KeyEvent e) {}
-	@Override
-	public void keyTyped(KeyEvent e) {}
-	
+	}	
 	
 }

@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.io.*;
 import java.util.*;
 import java.util.ArrayList;
-
+//COMMENTATA INTERAMENTE
 public class UtenteLungo extends JPanel{
 	
 	//VARIABILI DI ISTANZA
@@ -88,7 +88,7 @@ public class UtenteLungo extends JPanel{
 					if(utenteEnabled) modifyInUtente();
 				}
 			}catch(IOException ioe) {
-				System.out.println("boh non so che mettere tanto non serve");
+				System.out.println("error");
 			}
 		});
 		add(utente);
@@ -273,13 +273,5 @@ public class UtenteLungo extends JPanel{
 		}
 		scrittura.close();		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

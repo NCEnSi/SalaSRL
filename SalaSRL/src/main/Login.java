@@ -4,8 +4,8 @@ import javax.swing.*;
 import java.io.*;
 import java.util.*;
 import java.awt.event.*;
-
-public class Login extends JPanel implements KeyListener{
+//COMMENTATA INTERAMENTE
+public class Login extends JPanel {
 
 	//VARIABILI DI ISTANZA
 	//bottoni che uso per passare da un pannello a un altro
@@ -53,7 +53,6 @@ public class Login extends JPanel implements KeyListener{
 		
 		//aggiungo al pannello
 		setFocusable(true);
-		addKeyListener(this);
 		
 		//creo le diverse "schermate" in modo tale da aggiornare la finestra in automatico quando viene cliccato un bottone
 		creaLogin();
@@ -161,7 +160,7 @@ public class Login extends JPanel implements KeyListener{
 			try{
 				toAccount();
 			}catch(IOException ioe) {
-				System.out.println("boh non so che mettere tanto non serve");
+				System.out.println("error");
 			}
 		});
 		schermataLogin.add(confermaLogin);
@@ -316,6 +315,7 @@ public class Login extends JPanel implements KeyListener{
 		return risultato;
 	}
 	
+	//metodo per "pulire" tutti i label della pagina login dal testo precedentemente scritto
 	public void resetLoginLabel() {
 		passwordLogin.setText("");
 		emailLogin.setText("");
@@ -326,39 +326,5 @@ public class Login extends JPanel implements KeyListener{
 	public static void setTestoErroriLogin(String testo) {
 		erroriLogin.setText(testo);
 	}
-	
-	
-	
-	//METODI DI CONTROLLO TASTIERA
-	//metodo per controllare quando è stato cliccato enter
-	@Override
-	public void keyPressed(KeyEvent e) {
-		//controllo se è stato cliccato invio
-		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-			//controllo se uno dei due componenti ha il focus
-			if(emailLogin.hasFocus() || passwordLogin.hasFocus()) {
-				//controllo se è il campo email ad avere il focus
-				if(emailLogin.hasFocus()) {
-					//passo il focus al campo email
-					passwordLogin.requestFocusInWindow();
-				} else {
-					//controllo se è il campo password ad avere il focus
-					if(passwordLogin.hasFocus()) {
-						//passo alla schermata successiva
-						try{
-							toAccount();
-						}catch(IOException ioe) {
-							System.out.println("boh non so che mettere tanto non serve");
-						}
-					}
-				}
-			}
-		}
-	}
-	//metodi non utilizzati
-	@Override
-	public void keyReleased(KeyEvent e) {}
-	@Override
-	public void keyTyped(KeyEvent e) {}
 	
 }
