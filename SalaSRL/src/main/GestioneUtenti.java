@@ -178,12 +178,12 @@ public class GestioneUtenti extends JPanel{
 	
 	//metodo per aggiungere subito questi due componenti se no vengono coperti
 	public void addComponentiScroll() {
-		panelScrollGestUt.setPreferredSize(new Dimension(1279, 663));
+		panelScrollGestUt.setPreferredSize(new Dimension(1269, 663));
 		panelScrollGestUt.setBackground(null);
 		panelScrollGestUt.setLayout(null);
 		panelScrollGestUt.setOpaque(false);
 		scrollGestUt = new JScrollPane(panelScrollGestUt, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollGestUt.setBounds(0, 63, 1279, 702);
+		scrollGestUt.setBounds(0, 63, 1269, 702);
 		scrollGestUt.setBackground(null);
 		scrollGestUt.setOpaque(false);
 		scrollGestUt.getViewport().setOpaque(false);

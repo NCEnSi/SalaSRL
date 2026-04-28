@@ -146,9 +146,16 @@ public class Utente extends JPanel{
 	}
 
 	//metodo per far funzionare il logout
-	public void setPanelLogout() {
+	public void setPanelLogout() throws IOException{
 		//aggiungo un actionlistener per usare il metodo che permette il logout
-		logout.getLogout().addActionListener(e -> Collegamenti.fromLogoutToLogin());
+		logout.getLogout().addActionListener(e -> {
+			try {
+				resetCarrello();
+			} catch(Exception y) {
+				System.out.println("Error");
+			}
+			Collegamenti.fromLogoutToLogin();
+		});
 		add(logout);
 		logout.setVisible(false);
 	}
@@ -402,5 +409,14 @@ public class Utente extends JPanel{
 		//creo l'oggetto
 	    scrollBarCarrello = new LineaScorrimento(1241, 94, scrollCarrelloUtente, "UtenteCarrello", yMax);
 	    add(scrollBarCarrello);
+	}
+	
+	//reset carrello se esco dall'account
+	public void resetCarrello() throws IOException {
+		for(ProdottoLungoMini prod : prodottiInCarrelloUtente) {
+			prod.canc();
+		}
+		panelScrollCarrelloUtente.removeAll();
+		prodottiInCarrelloUtente.clear();
 	}
 }

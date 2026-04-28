@@ -1,10 +1,5 @@
 8;Mozzarella
-9;PastaRigatoni
-4;RisoBasmati
-1;ParmigianoReggiano
-1;SalameMilano
-1;Bresaola
-1;ProsciuttoCrudo
+13;PastaRigatoni
 1;UvaBianca
 1;Farina00
 1;AcquaFrizzante
